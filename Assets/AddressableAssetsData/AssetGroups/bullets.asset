@@ -1,0 +1,338 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: bullets
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: bullets
+  m_GUID: 0760c6a13358b9b43807343329c74330
+  m_SerializeEntries:
+  - m_GUID: 02e9b35580b1eaa4f9885b74d6d95f53
+    m_Address: bullets/bullet_2_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 06c2250436d40794a9801227dbca6d71
+    m_Address: bullets/hero_1_bullet_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 082a19a2443cc6c43a20e5e18299118f
+    m_Address: bullets/hero6skill0thunder
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 093bc28ad248f32468182e597d04e070
+    m_Address: bullets/hero_1009_bullet_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 128f740c28aa6064ea697d4b136574c0
+    m_Address: bullets/phoenixfireminion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 15a48df3eeb859749a8518952a4741e0
+    m_Address: bullets/bullet_2_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 176fc45160f570e48812d2581911f2cf
+    m_Address: bullets/metalwingfx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d2bcace65a3d0144824d8099d0dfe35
+    m_Address: bullets/hero_7_bullet_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 20e03e4c563933043bf35d60bb6a8a56
+    m_Address: bullets/bullet_2_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 233042b6f4b414447b6d6796ebc47013
+    m_Address: bullets/bullet_0_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25cd79db00ba8ef47ad92bd5e4c9580c
+    m_Address: bullets/bullet_1_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 32fa411139fd3fe45b99029f77cf3d51
+    m_Address: bullets/hero_1_bullet_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3400389891970fe4da0e5d8df1d0e626
+    m_Address: bullets/hero_10_bullet_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 357c638f487ea73488505a2e1b7c5ce0
+    m_Address: bullets/phoenixfirepath
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38ed34e7593914a4194bef5e1a4f3391
+    m_Address: bullets/bullet_3_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a8e088223f77de49b001c43ea4f8c6a
+    m_Address: bullets/bullet_1001_1001
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c15874189d176b49888491da2f8837c
+    m_Address: bullets/hero_1004_bullet_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e523276d500f2545aa11a2feeec7960
+    m_Address: bullets/hero_8_bullet_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 419cf488c41434f4c959bd12651e80f9
+    m_Address: bullets/burningcannonball
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 421ea434592ad58499ba8710f044cf32
+    m_Address: bullets/phoenixminionexplode
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4262693e2e76e4e489e0b44de0967b2c
+    m_Address: bullets/bullet_2_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44a217d66984127409fc93c4bcd8e13e
+    m_Address: bullets/hero4skill0breakdown
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4afbb73bd6e61124eb574b1c2c1a08b5
+    m_Address: bullets/hero3skill2icetrap
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 544aa7b6114a4704a9bd1fc69dd6ed1d
+    m_Address: bullets/phoenixactivatehealfx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 547bd2e970a6d1345a526ae18b22c977
+    m_Address: bullets/hero7skill1trap
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5aa362fcd26ccb141b4b520bd2ca9d74
+    m_Address: bullets/tower0ultimate0bullet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 600ed32df51a4b943b58a81f076f6172
+    m_Address: bullets/bullet_3_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 603d1a169c478da41b9fb862cf75260c
+    m_Address: bullets/dragonbitefx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6402d675bfdfc2b4186011fec5fd08c6
+    m_Address: bullets/bullet_3_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 658daea776ecd72409cf05982bdc2678
+    m_Address: bullets/freezingarrow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 661d54b217446634b8fca0a226c8443e
+    m_Address: bullets/enemy_24_bullet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 667c152e9f474454694c61d5b719cdff
+    m_Address: bullets/meteor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 702f0891bf9fe6a4d910fbea82299317
+    m_Address: bullets/dragonragefx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a8d9113ca70754448bcccd4978f713b
+    m_Address: bullets/bullet_2_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 816bf6ef4569c3d4a961c7a912bcea2a
+    m_Address: bullets/hero_1003_bullet_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a4383b5d26b6fc41ac5be2c9f940968
+    m_Address: bullets/bullet_3_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c28a68826e73fe4e84018af4f09e076
+    m_Address: bullets/hero3skill3sunstrike
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94e4dc7be25fb5b49a8c67e86fd24d99
+    m_Address: bullets/phoenixheal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 958266eef6c33f04dbf195be8c70425c
+    m_Address: bullets/hero8skill0homingmissile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 963fae1e2da97af41920d833504da698
+    m_Address: bullets/hero5skill3lightningspear
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cc8f1b94c5562243bbf2206d5a18aca
+    m_Address: bullets/bullet_peashooter
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad1626129f173fc489b21de119a38436
+    m_Address: bullets/phoenixpurification
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b23ff64f1d17e9849aa587b12097cafa
+    m_Address: bullets/phoenixroadexplode
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b523a55d954ba7145bbe0862331a1928
+    m_Address: bullets/lightningprojectile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b53756192ad6d1e48b30341a16550682
+    m_Address: bullets/hero_11_bullet_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6feccec75403c349ab584dcab5b4c34
+    m_Address: bullets/bullet_0_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb4a803fe6d0c26488152c91b381aac6
+    m_Address: bullets/minidragonbullet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3ee45e41540cab4f90ebca6bfa15435
+    m_Address: bullets/phoenixfireroadtrail
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cbb68b46072f5dd4fa261f54ff2f41ce
+    m_Address: bullets/hero3skill0meteor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf36372d7464c984395ebc76e698710d
+    m_Address: bullets/bullet_0_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8c22efb18620bc43add9a9ae638e1d8
+    m_Address: bullets/hero_3_bullet_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db173f5dce6f65946b71074bb36c2edf
+    m_Address: bullets/hero_1010_bullet_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc9154f9c161c2a4fa0e333d30d01535
+    m_Address: bullets/giantcannonball
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dde6ebe34690e9946a2b31cf6248cbec
+    m_Address: bullets/hero7skill3timerbomb
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0ac2e69ee03f054ab9af3fadf18da52
+    m_Address: bullets/bullet_0_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e398c81417fb4de41974250be35a1729
+    m_Address: bullets/bullet_0_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3bf72844d5d1114aa0e40ac9e762d5d
+    m_Address: bullets/hero_5_bullet_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e7dd3184f9be66c48948a09cff092efa
+    m_Address: bullets/bullet_3_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9f1840596a5031459a75b93c3823fb5
+    m_Address: bullets/boss3bullet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb93a3609f1fdba4aa8b5e35da47550a
+    m_Address: bullets/hero10explosion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f67fb265ecead824aae2fab0a55e6540
+    m_Address: bullets/enemy_14_bullet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f967db3353517c2458982f8f12cab34f
+    m_Address: bullets/hero5skill0healingbomb
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb4bde83fcc55254c949eabc850b010f
+    m_Address: bullets/hero_1009_bullet_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 943a4de6a547e4e49b8c6b7a0e843879, type: 2}
+    - {fileID: 11400000, guid: 151ce7f71b2444749b7eb6d509cbbdb2, type: 2}

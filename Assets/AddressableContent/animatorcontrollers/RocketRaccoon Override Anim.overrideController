@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "RocketRaccoon Override Anim"
+  m_Controller: {fileID: 9100000, guid: a3ddc5aa54b04a2badaa28bdef4860c7, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 0ebbaccbbd794d1cac5aa9aec0b7b24a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f7da59509be94a9f98a83032f9701f50, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 09997fb1a8ea42b89fca8e9fdb9e17c6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6d437cc749ab4d89bbfe9c5f170a7510, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a0b4e7da980849898c0e107a55a6373e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 306a8e3587064644b7e1ba598729893b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4506be016c6b4fb196e98e5108e592f3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c3fd7ee4d7b0400d96cce22900338258, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4008d24a4b814a04819c8d5e46df7a9f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: be03418e7c084fd4888d6b970c41c507, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 59890b61046a47eca999d63445681a70, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 40af35d88ca24a73a7de0ec48e4bd15a, type: 2}

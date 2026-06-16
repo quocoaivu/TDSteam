@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: enemies
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: enemies
+  m_GUID: 20dcb6ae15c779443b66671074b60b05
+  m_SerializeEntries:
+  - m_GUID: 06a64447e55e4e648a2cc8a16264c4dc
+    m_Address: enemies/enemy_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 145c721c1961d1c4c9486559578f6335
+    m_Address: enemies/enemy_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d1ffb1d24a229d45b86a7a19f4559d5
+    m_Address: enemies/enemy_18
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 253da1fb024d06c499e25e03e67ed6c0
+    m_Address: enemies/enemy_12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 301d14a26cac8094786d0b7f3ca89569
+    m_Address: enemies/enemy_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f15dc33e63a72142a83b6ddd3360163
+    m_Address: enemies/enemy_23
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 43c2a8c53207544418a3d3bff8ef4f7c
+    m_Address: enemies/enemy_20
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e2fea70095a25846adcd779c0fdcd65
+    m_Address: enemies/enemy_16
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73f0094a1503ab44eb35916f244cd03b
+    m_Address: enemies/enemy_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78000aeacd58e404e827b39e0327e6c0
+    m_Address: enemies/enemy_19
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80393d7ca37d3304e9ed4de71e219643
+    m_Address: enemies/enemy_25_backup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9bf0551c803a9ca42994ef2908043622
+    m_Address: enemies/enemy_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0ed247059d78f04fafa4d9aa7fb4fb3
+    m_Address: enemies/enemy_14
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab147e458143b8a41966c575ff544716
+    m_Address: enemies/enemy_15
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af877f13ce4482c4e83e1263d914ece6
+    m_Address: enemies/enemy_9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3a90d10ef2ed434ca19bc09a75f9ea8
+    m_Address: enemies/enemy_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b416dcf6061c3084a90464c3dec3e638
+    m_Address: enemies/enemy_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b817c99bd892a0545bc71894165fac40
+    m_Address: enemies/enemy_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bac1233c4f9efdc48b0478e5870fcb0e
+    m_Address: enemies/enemy_25
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c1f5adf06da4acf49bf0a4b1ab2a42db
+    m_Address: enemies/enemy_22
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cae282992c7c5fd45840f593b367047c
+    m_Address: enemies/enemy_21
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cfe885c299f71114a8d8b4c6ccfede1e
+    m_Address: enemies/enemy_24
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f722a1d12de7ab54881b31546d55d402
+    m_Address: enemies/enemy_13
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f74afb52141e295479e46be2d0f05856
+    m_Address: enemies/enemy_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa586b17751a3964f847c39e36445cd0
+    m_Address: enemies/enemy_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fbbec2120f3d23341b591944d2ff075b
+    m_Address: enemies/enemy_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd8ab883b14205b49b4f15cc507f0388
+    m_Address: enemies/enemy_17
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1c38d6d563d534b4bb14c77972c50e2a, type: 2}
+    - {fileID: 11400000, guid: 839724d3551c64a46adfe3469af091a8, type: 2}

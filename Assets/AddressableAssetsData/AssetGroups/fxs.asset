@@ -1,0 +1,358 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: fxs
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: fxs
+  m_GUID: aa8715a8d70fcdf4c91bde0138851fb1
+  m_SerializeEntries:
+  - m_GUID: 023e2648ad6926e4e94bba8855b5c833
+    m_Address: fxs/arrowontheground
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03702de52f1dc7348b0c327684e1298e
+    m_Address: fxs/infernogolemaura
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 05dc6b0416f8ab44fa324b58ee4c17eb
+    m_Address: fxs/unmoveable
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0f43823799b72eb4f9bab41f146d168c
+    m_Address: fxs/meteorexplosion2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13295621772c8874dab70f78c773eb00
+    m_Address: fxs/towerupgradeonally
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18e4a1efbf993e847a5124fcfa27c3ed
+    m_Address: fxs/icehit_e24
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a596959dbfd12941afb9d05c70c744f
+    m_Address: fxs/item-freeze
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e873a43c6bf7034b9cba39bf147b986
+    m_Address: fxs/airthunder
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2383e168292874f448eae5b753fdb6f0
+    m_Address: fxs/luachay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23afacc917231ae4cb44dec9bb30b8ee
+    m_Address: fxs/moveable_hero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23f76e70998703b459bd7a833858c8b3
+    m_Address: fxs/bloodyarrow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29f40644d3666ed4f83b2884a9413115
+    m_Address: fxs/turntostone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2bed9b599244e2c469dcbf9d0f63b96b
+    m_Address: fxs/groundaiming1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e68d9164605d0546bf3613adacc2901
+    m_Address: fxs/ignoredefeffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e8701ed66126234993df2054a546337
+    m_Address: fxs/miss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ead9dcd161bd124299c04d5d71280a6
+    m_Address: fxs/lightningprojectileshadow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31b0f18cf44bbb84783382b63e22b68d
+    m_Address: fxs/poison0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35c7701380553ee49953bf15a6ae4aaa
+    m_Address: fxs/poison1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f20d044c09a13d499bf0122a4c99cb1
+    m_Address: fxs/electric
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40f3237b616f2784c85214d5e66651e1
+    m_Address: fxs/bleed
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41e01e0bc75ae7c46a0c2f774364e30e
+    m_Address: fxs/thunder
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 464af955660f0cd4fb6df476bb42a5bc
+    m_Address: fxs/burning
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51eaa712f26a8a84c996e95ea87dafcc
+    m_Address: fxs/storm
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57d62f4e132dbd24ba1b66a9dff233ef
+    m_Address: fxs/burningeffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d39ad66750466c4ebccf9dc1f8f629f
+    m_Address: fxs/lightningprojectilerange
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e01a1cb0724a4147af2273f1e29adb0
+    m_Address: fxs/ui particle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5fb5cbd0bcfafc54f8ee1838ff431dd8
+    m_Address: fxs/healfx1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69db97d943f02304eb4f7ab96d4b322c
+    m_Address: fxs/healfx2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a80d0ec7bf286c498401d0fb5e4bc78
+    m_Address: fxs/canvas-freeze
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d7ddb7d783749e48ad16748c8cf7e72
+    m_Address: fxs/explosion-cannonball
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 706090a914bf48d4b84a9a1f6d4700d3
+    m_Address: fxs/buffspeedaura
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 70a3f8127a6b66642bf7bf94d1a14869
+    m_Address: fxs/bigbloodyarrow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73438cd3958e8f848ad987ea4f79acd3
+    m_Address: fxs/selectindicator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7853a72d78ecd3641858b2865368711e
+    m_Address: fxs/attackupfx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a1658022d0362b4a8e60ed5d5eca02c
+    m_Address: fxs/critical
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7be6b08dc7f86414480c9e22881ed5ef
+    m_Address: fxs/selectenemyindicator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d231e07e9c959040ae0595cad812afb
+    m_Address: fxs/explosion-mini
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80195b0390ebe3e498975fe83bcba6a5
+    m_Address: fxs/towersellonally
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 91a366bfc8235c94997e7b76dba75472
+    m_Address: fxs/fadescreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92f19a4bcd2dae14ea481462a080a8e0
+    m_Address: fxs/buildtower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93131d604be2c684381f3fbf4ba46ea3
+    m_Address: fxs/flyingcoin
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95e24c53eee96894f816ca293040a233
+    m_Address: fxs/stun
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a26dc1f8d286e34d83bf182b3c3451a
+    m_Address: fxs/meteorselfexplosion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cf682952aef7cf4fa9ea557699320a8
+    m_Address: fxs/spearontheground
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d885e373fe47714d85bfc82a3647ee7
+    m_Address: fxs/root
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f0f18409d7d8634db8be5aae0068290
+    m_Address: fxs/lightningexplosion2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a10d01c36d9843044859c5026983ac48
+    m_Address: fxs/landingthunder
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a79e3430c3667ab44b8a33e029f2f03b
+    m_Address: fxs/moveable_ally
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3f75e2c0941ff44582006d57b119fce
+    m_Address: fxs/goldchest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5076ec19288c0b47b3ff3a448c558b8
+    m_Address: fxs/fireball
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c270e35666134ee47b930929e7f7c46a
+    m_Address: fxs/healfx0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c463fd8ab071343479f530abb13c9f87
+    m_Address: fxs/healingwand
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccc3c13f953783441b5db3711593eccf
+    m_Address: fxs/slow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d09deaaaca7ad37459cb578d4efecc84
+    m_Address: fxs/phoenixhit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d752d6c8963cabe4aa399d123fead1a6
+    m_Address: fxs/smoketrail
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9e046da601c07a468a97c9b79fefe34
+    m_Address: fxs/buffspeedontower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da8d939b7ec5286449e36e7d9027ad17
+    m_Address: fxs/lightningexplosion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddfcdc9f882fc8647bb15d454be871c0
+    m_Address: fxs/electric2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4987a47cb25ce643a52216698ca24f5
+    m_Address: fxs/poisonarea
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6eccbcc106e5084880f503c6e1b3aa3
+    m_Address: fxs/groundbreak
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9bf6b7213c12c2439262af900950a38
+    m_Address: fxs/groundstomp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed9513295eb40a144838bb28409ef9fe
+    m_Address: fxs/slow2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4f7711986f643647b7776e745f9040e
+    m_Address: fxs/timerbombexplosion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f59e4abfc52563f4890db7c24e706236
+    m_Address: fxs/defdown
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8606076d44fd604d829fd499709308b
+    m_Address: fxs/towerseal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9334688f58fcce48a3b06e5693ea2be
+    m_Address: fxs/meteorexplosion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fec24922dd6210c4f8b2f1e112f04772
+    m_Address: fxs/bloodspread
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d6fa70ca1fa8a134fbe49b8904871fe4, type: 2}
+    - {fileID: 11400000, guid: 048f0d5653e07e940afaf6e98f80ad3b, type: 2}

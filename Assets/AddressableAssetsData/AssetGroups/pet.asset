@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: pet
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: pet
+  m_GUID: 1bc577d74c0858444b07605667d883c6
+  m_SerializeEntries:
+  - m_GUID: 02af8af3dc328354ab46cea036629c6f
+    m_Address: pet/pet_1002
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0499a862d4e138f49a1ec6ddf915162b
+    m_Address: pet/pet_1011
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e236ad76104b1a4c97fddc016bb2513
+    m_Address: pet/pet_1009
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4bfd9a90c027c0c49bf4b7da83e7853a
+    m_Address: pet/pet_1007
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7dca7903f1ca70e45b344c1b8443d000
+    m_Address: pet/pet_1000
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92b79034b23e8ae498697e188db0f8ef
+    m_Address: pet/pet_1008
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a537870e50ca939489f821832653ad40
+    m_Address: pet/pet_1004
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0fb85637af9c794fbfe3fc6e544c553
+    m_Address: pet/pet_1005
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c83a0b4f06b05794b84e24ab7c8bedd9
+    m_Address: pet/pet_1001
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9b615467337bcb42b306ba2f11f7205
+    m_Address: pet/pet_1010
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dcb88cbd06b478a4eb89f325df6510a4
+    m_Address: pet/pet_1006
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddd069f80a656094da2cafd5c58197cb
+    m_Address: pet/pet_1003
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 89bb01f5d08d9fb4e8d224c20b3ac211, type: 2}
+    - {fileID: 11400000, guid: 91a580d703d738b46982cf610f7fd044, type: 2}

@@ -1,0 +1,13 @@
+﻿using System;
+
+namespace Parameter
+{
+	public class Hero2Ability2Specs
+	{
+		public int skill_level;
+
+		public int count_crit;
+
+		public string description;
+	}
+}

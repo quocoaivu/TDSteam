@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "GalahadAngelOverrideAnim"
+  m_Controller: {fileID: 9100000, guid: df82527abf204a4b99d2978e93660ca2, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: b55e6b6bbe2547a99673b241320d0deb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 92f6ff0b77b2448e83315e8c331f4029, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2039784d72f14c2bbfdbd3029c4c3757, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 31c52ec4cdff4bb08cdf9e8f6a4e299f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ae2f5d54ce8c480d842a58be890e369b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e200d624b1704ee4ad60665bf8cc4063, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7b0334abc1544db4871eaed54d65c7ba, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d0531708c68140d597d88874506d2fe1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cdf72cc956f94fbaac8dce6f3c4b9015, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 29bee11096ab4bd6a76831a15c1dc579, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 16579038fe2b43688feb0a64adf93312, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a37826d782884f359b959bedf427875c, type: 2}

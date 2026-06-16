@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: 604cc846fbb5e8430c299783c7a73583
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  platformData:
+    Any:
+      enabled: 1
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+    WindowsStoreApps:
+      enabled: 0
+      settings:
+        CPU: AnyCPU
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32416
+  packageName: DOTween Pro
+  packageVersion: 1.0.410
+  assetPath: Assets/Plugins/Demigiant/DOTweenPro/DOTweenPro.dll
+  uploadId: 862446

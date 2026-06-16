@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Linh Lv5
+  m_Controller: {fileID: 9100000, guid: 31d14722c138451d987b474973894278, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 71aaf68f43fd48d19fe3434f7280841e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e96fba3e7075494c80bd8209a7e91d87, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3d0e99fae4f844de95291a358ccec8df, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 918228461f09411b9174df808a009d6d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2c158c9896fb46b9b81e5eb946ac55d4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2f64cc7d912a4796be54371750a0c6be, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 541417c7c39f4864af30dc5a2155195e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f710cd6ea8b548d7b2f7056494b6e4b7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2fbca302e5d84af484199f8468f9f7ef, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cd25e8cec478425ea945895a2d14c39c, type: 2}

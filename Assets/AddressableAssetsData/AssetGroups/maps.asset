@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: maps
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: maps
+  m_GUID: 7cf0e45b6647e384687947bb4105f95b
+  m_SerializeEntries:
+  - m_GUID: 046cda6a530b61949bc67e7f1b203fbf
+    m_Address: maps/map_campaign_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0545fe15e72317d448e56d4facc16273
+    m_Address: maps/map_campaign_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 34131c84083aa164181a407ce3a30f53
+    m_Address: maps/map_campaign_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c9138cc3be92324082b4eaefeb924c6
+    m_Address: maps/map_campaign_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e5cc0edfdd75ce4f82889d613cbab95
+    m_Address: maps/map_campaign_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41992560861b52843a16864714b0ccaf
+    m_Address: maps/map_campaign_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 43c2d50b1f32cbd4b8d4370246d80346
+    m_Address: maps/map_campaign_15
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 495978d4b92e5ee47a8fc019772eea64
+    m_Address: maps/map_campaign_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b888d4e646714f45ab641d05b4271de
+    m_Address: maps/map_campaign_9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 503cd41e410c8204ba40f7ddaeeab8c1
+    m_Address: maps/map_campaign_13
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57455893062a67b498a5a00d4eadcf81
+    m_Address: maps/map_campaign_12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75d6c13ee9f715c4d8493ca744ee3223
+    m_Address: maps/map_campaign_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 872574c2bcca9fe4ea4173e3dfb1d58e
+    m_Address: maps/map_campaign_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c4bae3ae50ed954c93ecc26b3cd021e
+    m_Address: maps/map_daily_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97f127d41286bf7448b08c6a6c6be163
+    m_Address: maps/map_daily_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cd0ca87a335c184db322a8d99eb5f63
+    m_Address: maps/map_tournament_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b36408db2d9f4d3418a3debb0a363b65
+    m_Address: maps/map_tournament_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4304ee1d37da9042876bffcabd31a86
+    m_Address: maps/map_tournament_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c41b294e306a9474ebe6cbdd00628cdb
+    m_Address: maps/map_campaign_14
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cecd769c9afc5df46a8643dc4fc56c80
+    m_Address: maps/map_tournament_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cfb0ddf40c5455140a55ee3e4ecba770
+    m_Address: maps/map_campaign_16
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cfd9c0c23a4777347a6ea8122c030d8b
+    m_Address: maps/map_campaign_17
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de4b2d297842117468e3db9706f21f70
+    m_Address: maps/map_tournament_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de812fe49b31fca488bccbd775720151
+    m_Address: maps/map_daily_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0cdafd6f02b33c479538ad52d43d8c2
+    m_Address: maps/map_campaign_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e994145f61ae6234db2841f77e3fc1f4
+    m_Address: maps/map_campaign_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f688d11639a15424db60ed8da9fa5df8
+    m_Address: maps/map_tournament_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d909ab05f1665fa43a428b966787e45d, type: 2}
+    - {fileID: 11400000, guid: 64ab4623e094f8b4d82373c082f24920, type: 2}

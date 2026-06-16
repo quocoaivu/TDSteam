@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: countryflags
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: countryflags
+  m_GUID: baca0dbacc3995b4c8db4bcd0a93b150
+  m_SerializeEntries:
+  - m_GUID: 1053ad5480b6441db08dec7f593dba14
+    m_Address: countryflags/flag_lg_chinese
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2052d6a06ad743fe987d7202454d8d53
+    m_Address: countryflags/flag_lg_spanish
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c4b4236766244d9912007e68b78a88b
+    m_Address: countryflags/flag_lg_polish
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 56fda400a65d4adbbb699a65030af75a
+    m_Address: countryflags/flag_lg_german
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 625b54aa08d54d4ca8eca03f6b8c145d
+    m_Address: countryflags/flag_lg_russian
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a435c0c1dd1c487683299b154253302c
+    m_Address: countryflags/flag_lg_french
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6dcfb73079f41e28453322de553b4b1
+    m_Address: countryflags/flag_lg_vi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c991357fa59a4daf8601e432e9456b39
+    m_Address: countryflags/flag_lg_brazil
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d488c5177ead4c4d8009009c58366830
+    m_Address: countryflags/flag_lg_korean
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: efa683b2b7f04ae193fc0ddef8044479
+    m_Address: countryflags/flag_lg_japanese
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8ed656a86b74ddf857bdef27821849e
+    m_Address: countryflags/flag_lg_en
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f8cda37bc8df32b4ebf32054cf650e8e, type: 2}
+    - {fileID: 11400000, guid: 6375ede26b2c0f14b9cf9c12b0aaa3db, type: 2}

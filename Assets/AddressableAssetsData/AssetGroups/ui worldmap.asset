@@ -1,0 +1,308 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ui worldmap
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: ui worldmap
+  m_GUID: aafb0e14bfe370549b74a5762fb3976a
+  m_SerializeEntries:
+  - m_GUID: 048ee8ea87dd418408454ca0b97df311
+    m_Address: ui worldmap/giftcode popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ba3385f5f72e0c4f905831d7c50d6a3
+    m_Address: ui worldmap/paneltournament2_backup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0f7c2e2ed79aeea4abf333bb51c74afe
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0fb8e36824a5a344bb75e96ace569dbe
+    m_Address: ui worldmap/panelupgrade
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17870d5eff100254c8494fa637a479fe
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_13
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2896bfd8e3450024eb20b2598ae288b4
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_19
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 30b32bd327da4004894e2d2f6a894879
+    m_Address: ui worldmap/paneldailyreward
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3aa70652f5242164ab3e6b2c12581c51
+    m_Address: ui worldmap/paneltournamentallprize
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 484689b89cc92a04389e536ab212c7dc
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 492c0d6afe0831e4bba765ee81b64f2f
+    m_Address: ui worldmap/paneldailytrial
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b131cb1f3c95454393fcc43d4d71bf0
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e3a2aacb3057284e866fee227425178
+    m_Address: ui worldmap/panelherocamp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5285a374615b50045bb612ef697ae483
+    m_Address: ui worldmap/guide/selecttower/select_tower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52d2bbf2c7984444db55c9bee8d3cd15
+    m_Address: ui worldmap/paneltournament
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b26fccba194daf4db5b481ef771427a
+    m_Address: ui worldmap/paneleventquest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6dbbc07562747cd4d92c6718568226fb
+    m_Address: ui worldmap/userprofile popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f6b1ae05d20486438c3e0765233e43b
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_16
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7350ea7116a883d44a19f419f276d5b2
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_18
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 745028a9aaf842140a9ddbb67a595523
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 759704ed0f7b50a48808af521e8767b6
+    m_Address: ui worldmap/link game popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e1e8288f6abe754d8d6d7d1b72c9130
+    m_Address: ui worldmap/dailyboosterprioritypopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f9c1fef308e2f64eb77f711c8469fff
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 816e6e1f182c22440a0d908bc4e3dd06
+    m_Address: ui worldmap/btn_skiptutorial
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 893c3f996113a034b869590d8cb3b13d
+    m_Address: ui worldmap/reward priority popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a6bf4ebe5904f14398db74c18e67ad7
+    m_Address: ui worldmap/paneltournamentrule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96b95d79b66a52c49882e11a6cbf086c
+    m_Address: ui worldmap/worldmap setting popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99a0710c20fba694eb8ca61c703d4f9f
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_14
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c54444be6c98f64fb5eff986be10711
+    m_Address: ui worldmap/guide/selectenemy/select_enemy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9db8a24f025cb1446b9964b34c0e1495
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a369287c313e1ba47b89d9386c765f3f
+    m_Address: ui worldmap/themes/worldmap_theme_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: acdc6729156563f418bff19dd5d166ac
+    m_Address: ui worldmap/themes/worldmap_theme_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad512f34d9f64a1478d7e1b2046af11a
+    m_Address: ui worldmap/button event quest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b468a497ee1767a4792b44a43391daf1
+    m_Address: ui worldmap/themes/worldmap_theme_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8dbc303cdd574448b9a377afd3688ab
+    m_Address: ui worldmap/panelguide
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba93618a406a8304c9d1829ca15030d1
+    m_Address: ui worldmap/heroprepare/select hero button
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be186895852866942b0853850eee1c3c
+    m_Address: ui worldmap/ask rate priority popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2c00db087be9ef448c16e360ee87b47
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4d56b7d7d9af14469aabf0ee447047a
+    m_Address: ui worldmap/landskybundlerprioritypopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c9ad1be106450424d8223203dbc44499
+    m_Address: ui worldmap/dualgodbundlerprioritypopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cef8f1d211b4f184f960cf3fd8e183ad
+    m_Address: ui worldmap/panelendless
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d21f9e8daa2c5f547a1c6ac05203e607
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_21
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6c9197416eebdf4db8651cb5e44dff6
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e543ba9655fda5d4aabd9dfad3e31655
+    m_Address: ui worldmap/paneltournament2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e58ee8541a1b7b24287cbdf15868a047
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e90ba1d534574824e85f66fc8762364b
+    m_Address: ui worldmap/starterbundlerprioritypopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eabb9059c00c81b469ffa2b707f603a5
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_17
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb8be5d6e01721e43845d85a0be96fed
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_15
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed53a5240ca95884c8c54b4d5ae93231
+    m_Address: ui worldmap/heroprepare/hero slot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee186d51558356a44893ff0a3ca463f8
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee787add2841c22489aa4fefdea4ae88
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f077eb8e70942294589264ffc13d4087
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_20
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f52b1c72542d8c643b510df02effa452
+    m_Address: ui worldmap/panelmaplevelselect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f61660421ffb4794a85c131b066e6c55
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6d897f4972b26d4095fc308c51079f4
+    m_Address: ui worldmap/paneltournamentreward
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9482836bc9139d45ab31169452c11aa
+    m_Address: ui worldmap/unlock theme popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9cc26853c61d92449842ed4925a3a71
+    m_Address: ui worldmap/triobundlerprioritypopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcaae6067bc66d447ab567383353d3be
+    m_Address: ui worldmap/guide/avatarenemy/avatar_enemy_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: deeb06be54e0bed4d93d1ccfe26765c4, type: 2}
+    - {fileID: 11400000, guid: fc3a9cb7bf5af4f409885f24593135e2, type: 2}

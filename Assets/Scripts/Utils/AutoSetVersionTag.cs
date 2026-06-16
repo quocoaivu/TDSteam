@@ -1,0 +1,15 @@
+using System;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class AutoSetVersionTag : MonoBehaviour
+{
+    [SerializeField]
+    private Text versionName;
+
+
+    private void Start()
+	{
+		versionName.text = "v" + Application.version.ToString();
+	}
+}

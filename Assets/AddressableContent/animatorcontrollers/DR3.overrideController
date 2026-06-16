@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "DR3"
+  m_Controller: {fileID: 9100000, guid: f0ff3da7512f4e3aa134719f5d7d5676, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 8fb17c588b4240cea5bcf53105373338, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1008d3d55ea047bfb00fdcbee96eda91, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f56f38d80e214c32a4c0a0044ef55dbe, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2364aa21043349feb50695a086823980, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d683eaccc16c42eabcfb748da6abba46, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 27a4e64aac2048e6b58d99a6653b5766, type: 2}

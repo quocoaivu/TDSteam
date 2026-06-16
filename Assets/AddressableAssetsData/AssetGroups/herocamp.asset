@@ -1,0 +1,393 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: herocamp
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: herocamp
+  m_GUID: 1fed5169b50280e4a93df4ef486ff6dd
+  m_SerializeEntries:
+  - m_GUID: 01fadf372dc4426a8c1d6577642a93c4
+    m_Address: herocamp/skillicons/hero_11_skill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 02118195037b442b944c4f901654be46
+    m_Address: herocamp/skillicons/hero_0_skill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c3039fcc00748dfac923c0f013d553f
+    m_Address: herocamp/skillicons/hero_5_skill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0dcee512d28c443781dd799aa4ae8197
+    m_Address: herocamp/skillicons/hero_4_skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0de4571cbbcd46140aaee0b186d298b0
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 111d1b0927d64c159c145e0f5b51bc9b
+    m_Address: herocamp/skillicons/hero_2_skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18e96001eed04f4784be0a7e56fa6954
+    m_Address: herocamp/skillicons/hero_7_skill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f4ca3ee4185e9147a84a64124c109e8
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1006
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f829f65fb134591888ccb196b58472b
+    m_Address: herocamp/skillicons/hero_5_skill_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22c24b82f2634d118e8fda64c596cad6
+    m_Address: herocamp/skillicons/hero_2_skill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27b20e18e19735d42bab21f6cb49ee9f
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27f29bce4bb8442cabddec8b047dac5a
+    m_Address: herocamp/skillicons/hero_1_skill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28bfdc968ddc24548acc2fc85b8dcee7
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b6b9b0294162c242aba917daddcaf12
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1007
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44095343a9b04d74a9b4ab2993de9fb9
+    m_Address: herocamp/skillicons/hero_9_skill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47e309184faf45cbad7f9234a4ab3e53
+    m_Address: herocamp/skillicons/hero_7_skill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48b86a365185449fabcb0bce09a37eba
+    m_Address: herocamp/skillicons/hero_8_skill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b0f077961634d34bf0b6097b59abf5d
+    m_Address: herocamp/skillicons/hero_3_skill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4fa44a9a7d07409982ba9b5bb8a33375
+    m_Address: herocamp/skillicons/hero_5_skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 50942664fb83a7444aee46d4cc8a37a7
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1001
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 50ff58fc550069a4b90ec90bdd8222cd
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1008
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 532187963e8e4bf44b298a79a7fa6f90
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1005
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5508651b711140afa95da871c7d71854
+    m_Address: herocamp/skillicons/hero_0_skill_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 55d0b273f56846789ffb0ed6b8c7c3f7
+    m_Address: herocamp/skillicons/hero_8_skill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 59bffbdcf042c0741b7e652d0f1579ee
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6787afe18447437089dc0ea0d65fd048
+    m_Address: herocamp/skillicons/hero_6_skill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6aa0f17ced74471386130326afe6c1e0
+    m_Address: herocamp/skillicons/hero_6_skill_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6df6a096ed41439e8642717519166aa2
+    m_Address: herocamp/skillicons/hero_7_skill_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 760be1457a7566d478b0754891d93531
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78a3265502194ec997ef49e619392d21
+    m_Address: herocamp/skillicons/hero_10_skill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b7d9393f48e4c4090a0031a9d2c6330
+    m_Address: herocamp/skillicons/hero_0_skill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7de306eb077f448da1c84918d534de6a
+    m_Address: herocamp/skillicons/hero_11_skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8081dfc1aa147f5439575f0157fdecb1
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80f863812eba400989f3ca989c2183f7
+    m_Address: herocamp/skillicons/hero_5_skill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84fe75bc5c7867345906d327e583e2e3
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1000
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 871285b8a58545a3aa36470fea39e222
+    m_Address: herocamp/skillicons/hero_11_skill_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8773c9db76f1420597c3d6b4067d36f1
+    m_Address: herocamp/skillicons/hero_10_skill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e8b8e083112a9c47ad7f59a181f8116
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1009
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f2cb3340284486bb2d47c7ad26e41c3
+    m_Address: herocamp/skillicons/hero_10_skill_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93aacbf1645a43d2bbe1ff45ae88c6f6
+    m_Address: herocamp/skillicons/hero_4_skill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94b52f599f9d445593b361d03c6703ff
+    m_Address: herocamp/skillicons/hero_4_skill_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d29d7f0c17a4f04a4803b6d069fdc6f
+    m_Address: herocamp/skillicons/hero_10_skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f765367555266343990be6214ea52ff
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1010
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0898beb04294fc40b6dd7d0006e1eb5
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1941922fedd400084bb07a7b83d9bef
+    m_Address: herocamp/skillicons/hero_9_skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a21f497a04aa48aa816483015b5cad43
+    m_Address: herocamp/skillicons/hero_4_skill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2d4a52ff1344c0f80702ef8c65c82aa
+    m_Address: herocamp/skillicons/hero_2_skill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a320d3b9494540c3baf4ec712b2ca609
+    m_Address: herocamp/skillicons/hero_3_skill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6d84f5675bb4c5c86f056f788da7bd2
+    m_Address: herocamp/previewmap/preview_map_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a730cdd7678f463ca9938c6d12fdc15d
+    m_Address: herocamp/skillicons/hero_6_skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac8643b50d23f1947aba3426dc77d327
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1011
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: adfa69c4164b4fb683acbd2e4644f67c
+    m_Address: herocamp/skillicons/hero_8_skill_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1e89e3b79b017c40a0bec3a13c8b8c8
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1004
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3a60d58b133440e836f6999aafb602c
+    m_Address: herocamp/skillicons/hero_9_skill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b7d255a30ece4d9fadc3527ed26f69e5
+    m_Address: herocamp/skillicons/hero_3_skill_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b819758c360a4acd942825cb0915f976
+    m_Address: herocamp/skillicons/hero_6_skill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba3bd18c3e2a10546ad57303e0791cac
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c155517e8edb4f1ea271182c5d75a4aa
+    m_Address: herocamp/skillicons/hero_7_skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5c5f09c14e4e69419acad40c2e90b07
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6bc5f3b5bbf4b8c9a08f4741c01fc9e
+    m_Address: herocamp/skillicons/hero_0_skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8b1bfa02072436ba1389881acf1f438
+    m_Address: herocamp/skillicons/hero_11_skill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca26e83a6a02b63498909bea3247fbf2
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1003
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf2323d99eb940db95298bf9aecc17be
+    m_Address: herocamp/skillicons/hero_8_skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d17a03b5293c421295b15e407ec3e41d
+    m_Address: herocamp/skillicons/hero_1_skill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d4bcfd6c16690f547805d3198722650e
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dfeb0f98fe214e6d8a2e748459afa1cb
+    m_Address: herocamp/skillicons/hero_9_skill_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e327884a3f434c898790eb63c6392fc7
+    m_Address: herocamp/skillicons/hero_1_skill_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6269037c85143cfb3687a5e06015dec
+    m_Address: herocamp/previewmap/preview_map_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9f2852a0199801479eb082253341e10
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed434f1499be45d419fba79410ba59a3
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed7cbdb3e30e4119b2e29dcad81c351c
+    m_Address: herocamp/skillicons/hero_3_skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee6fc4ca70ce4bc4a6751b6c35867ec5
+    m_Address: herocamp/skillicons/hero_2_skill_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3dc6478085e7f140bd19a3a12464089
+    m_Address: herocamp/miniactionavatars/action_avatar_hero_1002
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6830dc151df449891d5784dc14df153
+    m_Address: herocamp/skillicons/hero_1_skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: a98fbbd54254e5548ae8d4f8eb9fad7c, type: 2}
+    - {fileID: 11400000, guid: a6ec78a1f733aa841b87e644c959353b, type: 2}

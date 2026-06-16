@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: towers
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: towers
+  m_GUID: 46e9ea31e6ee7904eb64b34839b12dfa
+  m_SerializeEntries:
+  - m_GUID: 087b6ed818abe3240b5abbf80fc06e6f
+    m_Address: towers/tower_0_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ca5a853925370a449088d285a30bdb5
+    m_Address: towers/tower_3_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f816146fc4be5741b65248527587e3c
+    m_Address: towers/tower_2_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48cb6b43cbfaa1942bc9e16c88bd3182
+    m_Address: towers/controlpoint
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f3d89b0d7f78e742a5007830d9d152d
+    m_Address: towers/pushdragon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 60b1bc9f8dd24e8449e7b3b164585a7d
+    m_Address: towers/tower_2_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b349d4eccf3da64287a4b4ee603f52e
+    m_Address: towers/tower_0_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6fad1ad96d8e2d848a91c0a981c7263d
+    m_Address: towers/tower_0_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7169fec289541e740b3311e693430a8a
+    m_Address: towers/tower_3_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7dead9c7083288747868d737c356ee84
+    m_Address: towers/tower_3_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 81de16294e59e1e4797c0feaf1646bbe
+    m_Address: towers/tower_2_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a3c3dd8d45d23f44bb4238925f5bd28
+    m_Address: towers/tower_0_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f7742cc6931afb41a88596a43f8197b
+    m_Address: towers/tower_2_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93bd78c27b7fc7849abcd7d4538d584e
+    m_Address: towers/tower_1_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cfd1818d1388da4fab46fa4a8fe1c27
+    m_Address: towers/tower_4_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d0a740acd9d8aa4ca94e2ea75f119ba
+    m_Address: towers/tower_4_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab895807906d5db4d97a9471673b5e9c
+    m_Address: towers/tower_1_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b62077dc28810c041a7d193879e7df9b
+    m_Address: towers/tower_1_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9107c3d35c31b64bbb85cf38fb25400
+    m_Address: towers/tower_4_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bfcc03c38e5832d48a4841ed950e467e
+    m_Address: towers/towerrange
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c647724b2c758bd4f8d5fcbc2025e9c7
+    m_Address: towers/minidragon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca18103e3db21974e936a6cb3f9a14e9
+    m_Address: towers/tower_0_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d46a52664ae654647b7a7bb425554632
+    m_Address: towers/tower_1_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f01857ff6c3e65b418a60ceb097901fd
+    m_Address: towers/tower_4_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7ce3a12dce738a4d94fee1d70b5f1b5
+    m_Address: towers/tower_3_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa28691474a5f274caa722ff7b30b5bf
+    m_Address: towers/tower_2_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcaf94ee3fd3e6e409af835354cb72f9
+    m_Address: towers/tower_1_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fdf26e6c73682704fa21d0d6505e7daa
+    m_Address: towers/tower_3_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: e00aefd9a8d40f041b3ab96228ff9976, type: 2}
+    - {fileID: 11400000, guid: 73075fde0d0c5054cab25723941f3420, type: 2}

@@ -1,0 +1,12 @@
+root = true
+
+[*.cs]
+# UDR0001 — Unity Domain Reload analyzer: "static field has no RuntimeInitializeOnLoadMethod reset".
+# This project uses full Domain Reload when entering Play Mode (the default —
+# m_EnterPlayModeOptionsEnabled is not set in EditorSettings.asset), so every static
+# field is reset automatically on each Play. The diagnostic is therefore a false
+# positive for this project's configuration and is silenced project-wide.
+# If you later enable "Enter Play Mode Options" with Domain Reload DISABLED, remove this
+# line and add RuntimeInitializeOnLoadMethod resets to the few MUTABLE runtime statics
+# (singletons, caches, queues) — not to const/readonly fields or third-party code.
+dotnet_diagnostic.UDR0001.severity = none

@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: eventquest
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: eventquest
+  m_GUID: 419742f639c8d0642b48eac0fcf8a6a3
+  m_SerializeEntries:
+  - m_GUID: 093e2d9cdf10449593a1af28c6879ad8
+    m_Address: eventquest/icon/eventicon0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0995764b97bc4fa09ed136cf27ecd5fd
+    m_Address: eventquest/icon/eventicon7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2906d0aeafa54a4a8035f265589ec863
+    m_Address: eventquest/icon/eventicon1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3756d0ea9b914cfc8784b3c6acc14360
+    m_Address: eventquest/icon/eventicon5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ac104a542214d1cbf2664fb94e1cdc4
+    m_Address: eventquest/icon/eventicon6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f98894b13ed48f6ae571a48c23645fd
+    m_Address: eventquest/icon/eventicon2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8182cee3429e4731a79df4013e7d88d4
+    m_Address: eventquest/button_events
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84d77dcadfa645b2a04370b78208b357
+    m_Address: eventquest/icon/eventicon3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2088411a4dd4d3c80a11fded4cfdd9e
+    m_Address: eventquest/icon/eventicon4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 94707b5bec44691458daac58f95d1438, type: 2}
+    - {fileID: 11400000, guid: d1e452650fec17c4fafb9fbee4c1a17e, type: 2}

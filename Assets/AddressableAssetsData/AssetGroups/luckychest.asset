@@ -1,0 +1,193 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: luckychest
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: luckychest
+  m_GUID: 7d0e03f461402c948884d7d482d6c495
+  m_SerializeEntries:
+  - m_GUID: 04c700da24434effad0f5694a268b49b
+    m_Address: luckychest/items/lucky_item_hero_1_max
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0be8862238084b4389c9436633e508f9
+    m_Address: luckychest/items/lucky_item_hero_9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 110ffa8cad1a4beba52945e196bf9efd
+    m_Address: luckychest/items/h2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1361c7df632f4bd39f721813e342b5fd
+    m_Address: luckychest/items/lucky_item_pw_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 149139f20aef4056830cf53d92a59948
+    m_Address: luckychest/items/lucky_item_pw_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23d1f688a6f24813b1d1382e3a435c58
+    m_Address: luckychest/items/lucky_item_hero_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27a45dff1e0145e59f10661962d92472
+    m_Address: luckychest/items/lucky_item_pw_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b13159a015240bcbda5d5b2a27a746c
+    m_Address: luckychest/items/lucky_item_pw_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3623aca927144a198d6cac0bbf555b56
+    m_Address: luckychest/items/lucky_item_gem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a28bde8d2c34f618d38ed0a791920ee
+    m_Address: luckychest/items/lucky_item_pw_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 425e8ba09b844d69b39e651dd3b29384
+    m_Address: luckychest/items/lucky_item_money
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4742a19bbd2546c2a99654054f5c142a
+    m_Address: luckychest/items/lucky_item_hero_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5542f26b63ce4db1bc4f3e8800c7d46c
+    m_Address: luckychest/items/lucky_item_pw_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58edde8ad71646bea5e166d51b24aa4f
+    m_Address: luckychest/items/lucky_item_hero_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 683e30d3ac6a4d46a06b6912c0ec36a6
+    m_Address: luckychest/items/lucky_item_hero_offer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76312df9561443518bc017613864f7f2
+    m_Address: luckychest/items/h6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84cb503d133646b1a3ee6f907a150493
+    m_Address: luckychest/items/lucky_item_life
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8bfc90636e3046dbbf7a47b40ac69797
+    m_Address: luckychest/items/lucky_item_hero_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98b39c71ba784205a29fd655902ab90f
+    m_Address: luckychest/items/h7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9936894955bc464e9a523845742ff042
+    m_Address: luckychest/items/lucky_item_hero_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a9472d52dd449e4a312c3398cba9cac
+    m_Address: luckychest/items/h1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: acc047f6d015402883c943fa21ee1004
+    m_Address: luckychest/items/lucky_item_hero_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aea3018ca110482b86ed825de64fe9e3
+    m_Address: luckychest/items/lucky_item_hero_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b14307f351a0485caac71039541e5fa3
+    m_Address: luckychest/items/lucky_item_pw_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1a3fb0b04c343cba247baf862a5b037
+    m_Address: luckychest/items/lucky_item_hero_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b64a6e28947f4dcfaba798bfac9d3a44
+    m_Address: luckychest/items/h3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b67a88cc5fcd4c729bee84724474b82a
+    m_Address: luckychest/items/h5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba8942d1f0ce4b1ea01ebfe22a3f7584
+    m_Address: luckychest/items/lucky_item_hero_2_max
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bedb3d309fd24f32b56fa504e211c79a
+    m_Address: luckychest/items/lucky_item_pw_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7b4413cb6c24a698b7cebe138abddbd
+    m_Address: luckychest/items/lucky_item_hero_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea28604e6d62464d95c4f8683fe19af3
+    m_Address: luckychest/items/lucky_item_hero_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eaf2f7eaaa09428abcd5f85603c5a5b2
+    m_Address: luckychest/items/lucky_item_hero_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f27fdf49a5b44fff996b9051fcb01bdc
+    m_Address: luckychest/items/lucky_item_pw_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f374903ada294f17bcd2647cf14888c3
+    m_Address: luckychest/items/h4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4b7b1cf6ca305254ca2667f7070f4813, type: 2}
+    - {fileID: 11400000, guid: f7c9cf088f1e84a4a86bf5b79df1966b, type: 2}

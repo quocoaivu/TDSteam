@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: allies
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: allies
+  m_GUID: 63015fde03af7f045bd056c33d6e7ee6
+  m_SerializeEntries:
+  - m_GUID: 1d41ed681feafba4cb1c2ec684f1c016
+    m_Address: allies/ally_1_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 302407d8963f7874c8c15c79af9bdb2e
+    m_Address: allies/ally_100_100
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f8f602ee146f1e42b93e381b782f7fc
+    m_Address: allies/ally_1_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44e6a40459b753b408da11d9591f1c8a
+    m_Address: allies/ally_1000_1000
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 513dfd89d97ddb849a0fe43b11f7b2fa
+    m_Address: allies/ally_109_109
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ac6392c7deb9914d81bf219a0b13b80
+    m_Address: allies/ally_1_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 817f5ec46d3ee5644bd0d55fd65123ec
+    m_Address: allies/ally_1_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90e3553aaba5b7d4fb96d83482c4e32c
+    m_Address: allies/ally_1_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a996b2a8cc542174b9a520ed2c37df78
+    m_Address: allies/ally_102_102
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e40ad053e6b8ad64dbb19da4c50f32b4
+    m_Address: allies/ally_1001_1001
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d151bf13d4c6a794a87b19eb8238c07f, type: 2}
+    - {fileID: 11400000, guid: 1a23f579d14c3d241bd3ee7e48ce7226, type: 2}

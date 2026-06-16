@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: gameplay-heroicon
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: gameplay-heroicon
+  m_GUID: eab4407f7f55f4541b9978003fdfc2cb
+  m_SerializeEntries:
+  - m_GUID: 11e7c264a522430dbc9e57630b213781
+    m_Address: gameplay-heroicon/mini_icon_hero_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 148030fca36b4881bf9ef081622f61f3
+    m_Address: gameplay-heroicon/mini_icon_hero_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1589434f510c4165bef29cf1f029bee3
+    m_Address: gameplay-heroicon/mini_icon_hero_9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2059e8b5e6644eb884d50f7d7cce3ff7
+    m_Address: gameplay-heroicon/mini_icon_hero_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2cd110d58d6b406ab6732883accdff3a
+    m_Address: gameplay-heroicon/mini_icon_hero_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 42772345cffd408a878c4d9eb958ea21
+    m_Address: gameplay-heroicon/mini_icon_hero_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6216a984552b49808c87e726a79fc33d
+    m_Address: gameplay-heroicon/mini_icon_hero_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78bd477260194800b54cdb162b5a0310
+    m_Address: gameplay-heroicon/mini_icon_hero_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a44c5f5ce744315af2cf9d5ea4df5e0
+    m_Address: gameplay-heroicon/mini_icon_hero_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98566c39f63f44d893d249e83c4dbd50
+    m_Address: gameplay-heroicon/mini_icon_hero_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c50479f4f4d643f1a21dc1b9d24230ea
+    m_Address: gameplay-heroicon/mini_icon_hero_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f97868efe05649bb9dd431cb402b53fd
+    m_Address: gameplay-heroicon/mini_icon_hero_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b6704300cd814f946a16644c0f3632d3, type: 2}
+    - {fileID: 11400000, guid: 870dc4c13fbc7534bad55294ceba760e, type: 2}

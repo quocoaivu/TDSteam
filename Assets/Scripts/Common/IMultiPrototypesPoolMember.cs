@@ -1,0 +1,11 @@
+using System;
+
+namespace Common
+{
+	public interface IMultiPrototypesPoolMember<T> : IPoolMemberBase<T>, ICloneable<T>
+	{
+		IMultiPrototypesPool<T> Pool { get; set; }
+
+		int PrototypeId { get; set; }
+	}
+}

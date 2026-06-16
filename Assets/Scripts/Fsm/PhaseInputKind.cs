@@ -1,0 +1,16 @@
+﻿using System;
+
+public enum PhaseInputKind
+{
+	UserAssignPosition,
+	MonsterInAtkRange,
+	Die,
+	SpecialState,
+	Disappear,
+	Resurge,
+	SetEnemyIdleWaitForMeleeAtk,
+	HeroMeleeAttackEnemy,
+	PetReachFollowSpot,
+	PetFarFromOwner,
+	ThePetOwnerIsMoving
+}

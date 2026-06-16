@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ui mainmenu
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: ui mainmenu
+  m_GUID: 8fb8f9b3d9e4ddb4a85ad035a4557d9a
+  m_SerializeEntries:
+  - m_GUID: 23404ae4418cbd640bafd254e89536f1
+    m_Address: ui mainmenu/bundle attack booster 2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f74db88e0a863e45b9b9b0c38477682
+    m_Address: ui mainmenu/asktoquitpopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4497e2d3ee7c4684da83805212b63402
+    m_Address: ui mainmenu/bundle daily booster
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a8bc9ef0252e864e893f34400deeda0
+    m_Address: ui mainmenu/policypanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7752ae50f670a064c86479415e325cb5
+    m_Address: ui mainmenu/panellanguage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99bc9058844a5f84ca6c164aa19c31a2
+    m_Address: ui mainmenu/uisoundmanager
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7af4e825fcc92447b4476fb9a1839e2
+    m_Address: ui mainmenu/lifetimecanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d82f4daa5e3d0dd46b0104e8b0481226
+    m_Address: ui mainmenu/creditpanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da47989862b8e1b49ac89ec3d676661c
+    m_Address: ui mainmenu/uitest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6b2067bb15b56e469a4f8de15101849
+    m_Address: ui mainmenu/bundle attack booster 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ad9eef6c00e51bf4fa45cb95ed147033, type: 2}
+    - {fileID: 11400000, guid: d6326a6393eccb74783ea3faca565938, type: 2}

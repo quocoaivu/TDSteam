@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "WukongClone"
+  m_Controller: {fileID: 9100000, guid: df82527abf204a4b99d2978e93660ca2, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: b55e6b6bbe2547a99673b241320d0deb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fd83d26f0f12431f91bd9596b86617fc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7b0334abc1544db4871eaed54d65c7ba, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e0ca708331c14f538dfc6a2ed2c284cd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ae2f5d54ce8c480d842a58be890e369b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 26314eb9049a42f8ae55bbeaec368a4e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cdf72cc956f94fbaac8dce6f3c4b9015, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 98599d9a012e493da2cd66fa210ad8c8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 16579038fe2b43688feb0a64adf93312, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2f99b384f6e8425fa21e95a427a3a13c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2039784d72f14c2bbfdbd3029c4c3757, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 80b76849481f422e9d40c6259b66fd26, type: 2}

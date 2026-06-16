@@ -1,0 +1,383 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: preview
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: preview
+  m_GUID: ea244a53e6e8ab544a88af1a7a48e11c
+  m_SerializeEntries:
+  - m_GUID: 005c840c2edb4aafbcdf157c1bbf40a8
+    m_Address: preview/enemies/fullavatars/fa_enemy_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0291f23cf9f543fca66f37ee1a4562a7
+    m_Address: preview/enemies/p_enemy_18
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 039b8a67ded44b40bef9358a4b6920a1
+    m_Address: preview/enemies/p_enemy_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 07d648ffcc2640ccb70d7f0ef05264c0
+    m_Address: preview/towers/p_tower_0_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 082ab00d09d34ba0a9cae576e06906f0
+    m_Address: preview/enemies/p_enemy_17
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0b9ced070c32442a96a7ef20c8fac543
+    m_Address: preview/enemies/fullavatars/fa_enemy_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0cde79ebdb874b4dab1833a6ae8e2d3f
+    m_Address: preview/towers/p_tower_2_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 130aaed440f04276b894c6514a0038e7
+    m_Address: preview/enemies/fullavatars/fa_enemy_21
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16d5b6ec9fcc49b898ae500929ea3e62
+    m_Address: preview/enemies/p_enemy_13
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 175d22d3a05c4751aa66708382c3e9dc
+    m_Address: preview/enemies/fullavatars/fa_enemy_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 178cd4872f6d49eab9cb331176cdc444
+    m_Address: preview/towers/p_tower_1_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 21678ca7f08a4fa6a06f64e8271d6e3d
+    m_Address: preview/enemies/fullavatars/fa_enemy_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 277b5ef4d8054b30a6dbdd6aa82b11a2
+    m_Address: preview/towers/p_tower_2_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27c122b0cff44d93b641fa67a0c5a009
+    m_Address: preview/towers/p_tower_0_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28d5ce7254434df8bf17b7decef12f57
+    m_Address: preview/enemies/p_enemy_23
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3271c6c9a059463fb8e0ad4ae897c687
+    m_Address: preview/enemies/p_enemy_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3352c5c614ce471bbc82a4b1d937c463
+    m_Address: preview/towers/p_tower_1_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33aef86d47a64e92a4d8efdd088bcb95
+    m_Address: preview/enemies/fullavatars/fa_enemy_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3dc338f513d3485995d8893e6e3c9bee
+    m_Address: preview/enemies/fullavatars/fa_enemy_23
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4004d00da0764efea0753101d2a9588c
+    m_Address: preview/enemies/p_enemy_24
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44b9c2e268194e5fb92fc125a480bd17
+    m_Address: preview/enemies/fullavatars/fa_enemy_20
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 49b38064f3de4385b72cf488a5fab985
+    m_Address: preview/towers/p_tower_3_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ce599cbaee045efa30111007da7e220
+    m_Address: preview/enemies/p_enemy_15
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5500ebc63110408e90adcf0bc56761c4
+    m_Address: preview/enemies/fullavatars/fa_enemy_24
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ee16747346b47208e5f301641148fa2
+    m_Address: preview/enemies/fullavatars/fa_enemy_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61b0968c6f434c17bb79234e0cdcb887
+    m_Address: preview/towers/p_tower_1_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63f163515cd84069aa6bfb8f3f312a8b
+    m_Address: preview/enemies/fullavatars/fa_enemy_22
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 689be51d24624accbfee4727b9c8b2d8
+    m_Address: preview/enemies/p_enemy_22
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6978252cae184334897b7a4c97336693
+    m_Address: preview/enemies/p_enemy_14
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b11c42347ab4669bf8147ee19f221fa
+    m_Address: preview/enemies/p_enemy_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f877d10157f4dc9b6ca7771c82860d9
+    m_Address: preview/enemies/fullavatars/fa_enemy_25
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7151e38070a14438b5636a9d608ba4e0
+    m_Address: preview/towers/p_tower_3_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 735bfceca5074d25a6d99c84346490ee
+    m_Address: preview/towers/p_tower_1_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 779b2657f0cc4ad7ac6456fcd04b0978
+    m_Address: preview/towers/p_tower_3_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a66650cf19148e49e3107577b71e46d
+    m_Address: preview/enemies/p_enemy_12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b8f507be7484126b71dfabe018c2bbd
+    m_Address: preview/enemies/fullavatars/fa_enemy_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7cfba5ac0ed9449594350aefbc014e64
+    m_Address: preview/enemies/fullavatars/fa_enemy_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 801af7934a5a48eaa3433149abf1ba0b
+    m_Address: preview/enemies/p_enemy_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84363dd25b7b4f8ebf70f6d89a2aa145
+    m_Address: preview/enemies/fullavatars/fa_enemy_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8acb0b948af74a5f970fe2a8514f3a0a
+    m_Address: preview/enemies/fullavatars/fa_enemy_15
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f7736f19db64ab1aee9c80fae204fe5
+    m_Address: preview/enemies/p_enemy_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 989a671ca8f345ddaed027223395e6de
+    m_Address: preview/enemies/p_enemy_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9acd16633c514a6ea2f9652df7eff8bb
+    m_Address: preview/towers/p_tower_3_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2c790fe4b2142efa677467aae5d535c
+    m_Address: preview/enemies/p_enemy_20
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a4074b1a8d8a450c85cc02083c3c0392
+    m_Address: preview/towers/p_tower_0_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6b22eb6b0d64db38396c02e86199f7f
+    m_Address: preview/enemies/p_enemy_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: acfb14f9e01a45a4b83fe1c54616dbcd
+    m_Address: preview/towers/p_tower_2_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ade0cb3be1ce4861883976d6f4a59230
+    m_Address: preview/enemies/p_enemy_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b02ae1be68f845eda535f2eefdeffc01
+    m_Address: preview/enemies/fullavatars/fa_enemy_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b30997490cb54eb5b1493526ad5af0d4
+    m_Address: preview/enemies/fullavatars/fa_enemy_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b68873513ee24cc18677205e68841688
+    m_Address: preview/towers/p_tower_3_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9aec6be46534cdeb0ddb0b0e7a4e43a
+    m_Address: preview/enemies/fullavatars/fa_enemy_18
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc74ab9ab1244ad294043aaa4ddfccff
+    m_Address: preview/enemies/p_enemy_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2922339b80d40f89680f909400b8018
+    m_Address: preview/towers/p_tower_0_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c667b6635d074defb048a140573c8f95
+    m_Address: preview/enemies/p_enemy_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c70b678ff47b4ac38a0b235072c54fe9
+    m_Address: preview/enemies/fullavatars/fa_enemy_13
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c79ac3579dc44131b8183f5fdf7e8b66
+    m_Address: preview/enemies/fullavatars/fa_enemy_9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce443902d74943c99073ab505e4394bb
+    m_Address: preview/enemies/fullavatars/fa_enemy_17
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf66211e593d44daba2700b074432c26
+    m_Address: preview/enemies/fullavatars/fa_enemy_19
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1f78db0ab0e4c219d7d7094abce157b
+    m_Address: preview/enemies/p_enemy_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3d3cc6d243141ac9d3758d248e29028
+    m_Address: preview/enemies/p_enemy_9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d4abb38f52e547b180c17c79b66332e5
+    m_Address: preview/towers/p_tower_1_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6708ff278ce4bb0b4055b15f3718535
+    m_Address: preview/enemies/fullavatars/fa_enemy_16
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8d39fcfb481404ca74d8937107d05b1
+    m_Address: preview/towers/p_tower_2_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbd640aa51914f1fb0921035a2ce8098
+    m_Address: preview/enemies/p_enemy_16
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de4bd6830a4f4c42a05c5093cd7521e2
+    m_Address: preview/towers/p_tower_0_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4f5c967cc124cb1af0fc7d5c8fab0f7
+    m_Address: preview/enemies/fullavatars/fa_enemy_14
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5d3e32646494ee497b354c50ddbdbd2
+    m_Address: preview/enemies/p_enemy_25
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e77c5cdf5fbb48b7941756751edb9816
+    m_Address: preview/enemies/p_enemy_19
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f60983550bb84b1c8ef1df1acd007e1f
+    m_Address: preview/enemies/fullavatars/fa_enemy_12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8625d78e5b54f4b943baf99a5ca2b81
+    m_Address: preview/towers/p_tower_2_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc7301b624a541259f6f72e54e297f36
+    m_Address: preview/enemies/p_enemy_21
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9527f1fbe415e2a4eba77aad8395d3da, type: 2}
+    - {fileID: 11400000, guid: 210c803911c4ec747b52987320f14800, type: 2}

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 5a59f3df375d4b3a94f4fc89fad6dcc8
+timeCreated: 1568996381
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: "Nirmala Normal"
+  fontNames:
+  - Nirmala UI
+  fallbackFontReferences: []
+  customCharacters:
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData:
+  assetBundleName: 
+  assetBundleVariant: 

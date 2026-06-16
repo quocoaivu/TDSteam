@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: towerultimateupgradeicon
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: towerultimateupgradeicon
+  m_GUID: 3f343b8d89f9efe419381d9bcfd67578
+  m_SerializeEntries:
+  - m_GUID: 0788a8ff467a4c568e1ef95d6e5056f6
+    m_Address: towerultimateupgradeicon/ultimate_3_1_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 136fa1e739944d6a82b7b8becb85b6f6
+    m_Address: towerultimateupgradeicon/ultimate_0_0_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 15b74b7b7fa04449a5be3dab775ee92b
+    m_Address: towerultimateupgradeicon/ultimate_4_0_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22b3d6643cb741d8b9a5441c58f9c0e2
+    m_Address: towerultimateupgradeicon/ultimate_0_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39583cb11245408dad32507f55e9e02b
+    m_Address: towerultimateupgradeicon/ultimate_4_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44972217e5ce405e95a09c9ad9c068e4
+    m_Address: towerultimateupgradeicon/ultimate_4_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ae178046cf7428884af10772bea696c
+    m_Address: towerultimateupgradeicon/ultimate_1_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ab67d36bf2f4077a50aeffe792b5184
+    m_Address: towerultimateupgradeicon/ultimate_1_1_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c291b49a6764001823dd3bb65af483e
+    m_Address: towerultimateupgradeicon/ultimate_0_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ebdeee187224e97a57d0191db2c9f9c
+    m_Address: towerultimateupgradeicon/ultimate_3_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 731b0ef89175445884247d1d2acd8d1e
+    m_Address: towerultimateupgradeicon/ultimate_2_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 791d0eda22d44b0aab871b4dcbcbe454
+    m_Address: towerultimateupgradeicon/ultimate_3_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79a88cec4b25485fa5af3bb8bfec5d69
+    m_Address: towerultimateupgradeicon/ultimate_2_0_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 889c7b8b4fac46c29cc31f65e77f3bd3
+    m_Address: towerultimateupgradeicon/ultimate_1_0_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d417f920b7b4c71bc19449c171555fd
+    m_Address: towerultimateupgradeicon/ultimate_3_1_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0fcdeb0eaea4b9abf661fc01a0f7b20
+    m_Address: towerultimateupgradeicon/ultimate_1_1_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1843816e740450f86627d8b8017f5d9
+    m_Address: towerultimateupgradeicon/ultimate_4_0_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a4e0cb01e43c41ec9df636e0ce64f7fd
+    m_Address: towerultimateupgradeicon/ultimate_0_1_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5c52642acfa448e956f96be32a8bab2
+    m_Address: towerultimateupgradeicon/ultimate name convention
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a888a29299ad45c49594ebe7bb8d4035
+    m_Address: towerultimateupgradeicon/ultimate_1_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: addfd69887f045b98cc8eee111380100
+    m_Address: towerultimateupgradeicon/ultimate_0_1_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b794b76c19bb4a3f847cf684554b281a
+    m_Address: towerultimateupgradeicon/ultimate_1_0_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c704b0dd1f9e4886b3bb0f693a2fb4ea
+    m_Address: towerultimateupgradeicon/ultimate_3_0_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc5bdc27b71e47f08776d6a83684baf2
+    m_Address: towerultimateupgradeicon/ultimate_2_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d971b9d3fe6c41e5be38854274a3439e
+    m_Address: towerultimateupgradeicon/ultimate_2_1_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb8333ccad2347d09bb3e0e9a7c78cea
+    m_Address: towerultimateupgradeicon/ultimate_2_1_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ecbf54cd9b1245d58d0a4358de9c06c6
+    m_Address: towerultimateupgradeicon/ultimate_2_0_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: edcee7d140ff4843ac7de59e45eaaaa2
+    m_Address: towerultimateupgradeicon/ultimate_3_0_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ffd3bd4f95c447c1babb48cb5b935e02
+    m_Address: towerultimateupgradeicon/ultimate_0_0_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9139b3047908fbb48991dcc7ed7b2869, type: 2}
+    - {fileID: 11400000, guid: 83fa58ec1b36ece4e899f0ac892a5e50, type: 2}

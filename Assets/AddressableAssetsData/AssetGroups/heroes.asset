@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: heroes
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: heroes
+  m_GUID: 734d04b7c3b8ae743bc73dc5a445b44f
+  m_SerializeEntries:
+  - m_GUID: 1519036fe1681634d842dd5d8f3716b1
+    m_Address: heroes/hero_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 15bf077bce894614eba6edbb9e66e1f2
+    m_Address: heroes/hero_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25e9b327dc42dde4c9a1f0cc35dbbb20
+    m_Address: heroes/hero_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 30423828a741caa4e87addf6739b4a70
+    m_Address: heroes/hero_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 354a202012078d948ae2fc3efb39f1fa
+    m_Address: heroes/hero_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 531eaab5e732b594b8bd951c3f63f0ba
+    m_Address: heroes/hero_9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84e7a46ef857c174990f5fb27295bdd6
+    m_Address: heroes/hero_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9731daeade8a235419952d2c3a3f09a5
+    m_Address: heroes/hero_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d696b44f7a6239f419e7fe788480f45c
+    m_Address: heroes/hero_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df6e80f1515ff7d44b136b02bf2e44eb
+    m_Address: heroes/hero_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e03eb10a684bcc44793e57989bf80c63
+    m_Address: heroes/hero_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f454d955723e386449ecbf6b520e6f90
+    m_Address: heroes/hero_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9f7fc518e254d13438ebbd0ae7470887, type: 2}
+    - {fileID: 11400000, guid: 970f75faf8435034aa53ef0de54126c3, type: 2}

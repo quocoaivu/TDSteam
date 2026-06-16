@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: heroesavatar
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: heroesavatar
+  m_GUID: a47ebf65de150624da0b40fe6bd0a688
+  m_SerializeEntries:
+  - m_GUID: 00e5620c12a14c36a51a3dc6a86744f3
+    m_Address: heroesavatar/avatar_hero_9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 116199ca3cdf4eebb112be69d0cfb4b8
+    m_Address: heroesavatar/avatar_hero_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1240bd9b40a941b3abebec15d69dafca
+    m_Address: heroesavatar/avatar_hero_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38f00f0da7ba4ed3ae29ad17858b627c
+    m_Address: heroesavatar/avatar_hero_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ed74a2954994e96a0d880791fe32e50
+    m_Address: heroesavatar/avatar_hero_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d4ff393e66a452baaf0b8bdaafef61d
+    m_Address: heroesavatar/avatar_hero_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5db252e0c75a406384e9ce153e028d1f
+    m_Address: heroesavatar/avatar_hero_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c3ee0429ced494fa9ef8ecf2d53f535
+    m_Address: heroesavatar/avatar_hero_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7df18e40962a4892ab7301edd440eca1
+    m_Address: heroesavatar/avatar_hero_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89f25240f7de4a1c907878250bff02ef
+    m_Address: heroesavatar/avatar_hero_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95f46d5007424ec88df55dab56360783
+    m_Address: heroesavatar/avatar_hero_combo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d10625f325054b30a268e72b6051520b
+    m_Address: heroesavatar/avatar_hero_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3adda4a2fa94ac793fd811ec12391c7
+    m_Address: heroesavatar/avatar_hero_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 10f04cd7c1fe6da42ac82b7b073b2fa1, type: 2}
+    - {fileID: 11400000, guid: d6b4bea0064b3754792d2a0a184bb50a, type: 2}

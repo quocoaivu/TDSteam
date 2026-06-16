@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ui gameplay
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: ui gameplay
+  m_GUID: 9404983126909fa4da830258db89a941
+  m_SerializeEntries:
+  - m_GUID: 03c1727c36afda24bae1d4e14dfd5e68
+    m_Address: ui gameplay/popups/gameplay free resources popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04e18861778a1e344a43ca84703319f6
+    m_Address: ui gameplay/popups/allyinfogroup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0810398220a67f9419c48c7702fc3311
+    m_Address: ui gameplay/wave message tournament
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a7b9f09b5b982b4aa1e6e4098538629
+    m_Address: ui gameplay/ui hero/btnhero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 699e300adc4bf3f4a84332c464465153
+    m_Address: ui gameplay/buttonstartwave
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8635f29c7ffb7da44aee160382f22edc
+    m_Address: ui gameplay/popups/tournament result popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87a470999a4dab94a8637f618fe927b2
+    m_Address: ui gameplay/popups/dailytrial result popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8957bd19e740b83478885df86e6ab1cc
+    m_Address: ui gameplay/gemdropped
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9094ed16c36bf8245b7a910657e77d89
+    m_Address: ui gameplay/popups/end game video
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b1a2ba736cc97040b2451b29cedcbb2
+    m_Address: ui gameplay/unitsound
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d6837cfdd6032e41b6172252080f981
+    m_Address: ui gameplay/popups/wave tracking popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a82b12cc0b6bf3d45bb4e3b4b7401d7f
+    m_Address: ui gameplay/popups/end game popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aaef289974b48b248a0fdb3e8e3adf16
+    m_Address: ui gameplay/popups/towercontrollercollider
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad47830dde8708b4897736ff373ae09f
+    m_Address: ui gameplay/popups/gameplay setting popup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b838a68253bc1f0498a0af8acf233cdf
+    m_Address: ui gameplay/popups/enemyinfogroup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b860998c683d698448f0ffc84285b3ab
+    m_Address: ui gameplay/popups/newenemyinforpopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba67596d25bc28049b5856a57410860a
+    m_Address: ui gameplay/hero level up/hero level up item
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c23c4fad628e4414a8c083dd1e41105d
+    m_Address: ui gameplay/popups/incomingwavepopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4f6c0b54fcfb04498188f7a5806fc81
+    m_Address: ui gameplay/popups/newgameplaytippopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e549b9eba388a6741b7ff8743bfd5a8f
+    m_Address: ui gameplay/popups/petinfogroup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e70a1c827aefe524c8c4dd9de397c4fb
+    m_Address: ui gameplay/wave message dailytrial
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed36c9c5ad0297a44aff63a5f7f70e1f
+    m_Address: ui gameplay/bonusmoney
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed45a31c33c103f498d64afed4d7814f
+    m_Address: ui gameplay/wave message campaign
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee8651e140b5a544aa4904dab633b0c7
+    m_Address: ui gameplay/golddropped
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7657dd35a8579544a85daca72fae52a
+    m_Address: ui gameplay/ui hero/btnskill
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3042c3d804c547c49881d87513a4fb8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0899f643778a1764cb1f0f43b3ee0590, type: 2}
+    - {fileID: 11400000, guid: f6fe0f0f02132c542b71cf02f4c4ec3c, type: 2}

@@ -13,6 +13,38 @@ namespace Data
 			ReadTowerParameter();
 			ReadTowerDefaultSkillParameter();
 			ReadTowerSkillParameter();
+			ReadTowerSkillTreeParameter();
+		}
+
+		private void ReadTowerSkillTreeParameter()
+		{
+			string text = "Parameters/tower_skilltree_parameter";
+			try
+			{
+				TowerSkillTreeSpec.Instance.Clear();
+				List<Dictionary<string, object>> list = CSVLoader.Read(text);
+				for (int i = 0; i < list.Count; i++)
+				{
+					TowerSkillNode node = default(TowerSkillNode);
+					node.towerID = (int)list[i]["tower_id"];
+					node.nodeID = (int)list[i]["node_id"];
+					node.name = (string)list[i]["name"];
+					node.cost = (int)list[i]["cost"];
+					// Read via ToString so a single-id prereq parsed as int (e.g. "0") still works.
+					node.prerequisites = list[i]["prerequisites"].ToString();
+					node.dmgAdd = (int)list[i]["dmg_add"];
+					node.rangeAdd = (int)list[i]["range_add"];
+					node.reloadReduce = (int)list[i]["reload_reduce"];
+					node.critAdd = (int)list[i]["crit_add"];
+					node.pierceAdd = (int)list[i]["pierce_add"];
+					TowerSkillTreeSpec.Instance.SetParameter(node);
+				}
+			}
+			catch (Exception)
+			{
+				TowerDataLoader.ShowError(text);
+				throw;
+			}
 		}
 
 		private void ReadTowerDefaultSkillParameter()

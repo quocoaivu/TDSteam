@@ -13,32 +13,44 @@ namespace Gameplay
 			int numberOfTower = TowerParameterManager.Instance.GetNumberOfTower();
 			for (int i = 0; i < numberOfTower; i++)
 			{
-				int num = GetMaxLevelTowerCanUpgrade(i);
-				for (int j = 0; j <= num; j++)
+				// GetMaxLevelTowerCanUpgrade < 0 still means this tower isn't available on the
+				// current map/mode, so skip pooling it entirely.
+				if (GetMaxLevelTowerCanUpgrade(i) < 0)
 				{
-					string arg = PoolNames.Tower(i, j);
-					TurretEntity prefab = Common.AssetLoader.Load<TurretEntity>(string.Format("Towers/{0}", arg));
-					if (prefab == null)
-					{
-						Debug.LogError("TowerPool.InitTowerPool: tower prefab not found: " + arg);
-						continue;
-					}
-					TurretEntity towerModel = Instantiate(prefab);
-					towerModel.gameObject.SetActive(false);
-					// Towers that fire through the common controller pull "bullet_{i}_{j}" at runtime.
-					// Detect that here so we can pre-pool the bullet alongside the tower (below).
-					bool firesCommonBullet = towerModel.GetComponentInChildren<TurretStrikeSingleMarkSharedHandler>(true) != null;
-					Common.GameObjectPool.ManagePool(towerModel.gameObject, 0);
-					Common.GameObjectPool.Despawn(towerModel.gameObject);
-					// Pre-pool the matching bullet at load so a missing prefab surfaces now (BulletPool
-					// logs an error) instead of mid-combat, and the pool is warm before the first shot.
-					// Barracks/gold/custom-ultimate towers lack that controller and have no common bullet.
-					if (firesCommonBullet)
-					{
-						MonoSingleton<BulletPool>.Instance.InitBulletsFromTower(i, j);
-					}
+					continue;
+				}
+				// Towers no longer level up in-run: pool only the canonical highest-tier prefab.
+				int level = CanonicalLevel(i);
+				string arg = PoolNames.Tower(i, level);
+				TurretEntity prefab = Common.AssetLoader.Load<TurretEntity>(string.Format("Towers/{0}", arg));
+				if (prefab == null)
+				{
+					Debug.LogError("TowerPool.InitTowerPool: tower prefab not found: " + arg);
+					continue;
+				}
+				TurretEntity towerModel = Instantiate(prefab);
+				towerModel.gameObject.SetActive(false);
+				// Towers that fire through the common controller pull "bullet_{i}_{level}" at runtime.
+				// Detect that here so we can pre-pool the bullet alongside the tower (below).
+				bool firesCommonBullet = towerModel.GetComponentInChildren<TurretStrikeSingleMarkSharedHandler>(true) != null;
+				Common.GameObjectPool.ManagePool(towerModel.gameObject, 0);
+				Common.GameObjectPool.Despawn(towerModel.gameObject);
+				// Pre-pool the matching bullet at load so a missing prefab surfaces now (BulletPool
+				// logs an error) instead of mid-combat, and the pool is warm before the first shot.
+				// Barracks/gold/custom-ultimate towers lack that controller and have no common bullet.
+				if (firesCommonBullet)
+				{
+					MonoSingleton<BulletPool>.Instance.InitBulletsFromTower(i, level);
 				}
 			}
+		}
+
+		// Highest-tier prefab per tower = the canonical in-match visual. Towers no longer level up
+		// in-run, so we always spawn this single prefab regardless of the requested level.
+		private int CanonicalLevel(int towerId)
+		{
+			// Priest (id 4) has no L4 prefab; its top tier is L3.
+			return towerId == 4 ? 3 : 4;
 		}
 
 		// Max upgrade level allowed for tower `towerIndex` in the current game mode.
@@ -78,7 +90,9 @@ namespace Gameplay
 
 		public TurretEntity GetTower(int id, int level)
 		{
-			string gameObjectName = PoolNames.Clone(PoolNames.Tower(id, level));
+			// Towers no longer vary by level in-run; always spawn the canonical highest-tier prefab.
+			// The `level` arg is kept for now because callers still pass it (removed in a later phase).
+			string gameObjectName = PoolNames.Clone(PoolNames.Tower(id, CanonicalLevel(id)));
 			GameObject gameObject = Common.GameObjectPool.Spawn(gameObjectName, default(Vector3), default(Quaternion));
 			TurretEntity component = gameObject.GetComponent<TurretEntity>();
 			component.gameObject.SetActive(true);

@@ -1,0 +1,15 @@
+tower_id,node_id,name,cost,prerequisites,dmg_add,range_add,reload_reduce,crit_add,pierce_add
+0,0,Sharpened Arrows I,1,_,2,0,0,0,0
+0,1,Sharpened Arrows II,2,0,3,0,0,0,0
+0,2,Sharpened Arrows III,3,1,5,0,0,0,0
+0,3,Quick Draw I,1,0,0,0,80,0,0
+0,4,Quick Draw II,2,3,0,0,120,0,0
+0,5,Rapid Fire,3,4,0,0,180,0,0
+0,6,Eagle Eye I,1,0,0,20,0,0,0
+0,7,Eagle Eye II,2,6,0,30,0,0,0
+0,8,Marksman,3,7,3,40,0,0,0
+0,9,Deadly Aim,2,1,0,0,0,10,0
+0,10,Armor Piercing,2,7,0,0,0,0,20
+0,11,Critical Mastery,3,9,0,0,0,20,0
+0,12,Hawkeye Volley,5,8_2,8,30,0,5,0
+0,13,Storm of Arrows,5,5_2,5,0,150,0,0

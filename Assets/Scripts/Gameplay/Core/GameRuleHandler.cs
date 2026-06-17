@@ -169,7 +169,17 @@ namespace Gameplay
 			MapProgressStore.Instance.IncreaseMapPlaycount(MonoSingleton<GameRecord>.Instance.MapID, BattleStanding.Victory);
 			int actuallyGemAmount = MonoSingleton<GameRecord>.Instance.GetActuallyGemAmount();
 			PlayerCurrencyStore.Instance.ChangeGem(actuallyGemAmount, false);
+			AwardSkillPoint();
 			UISfxDirector.Instance.PlayVictory();
+		}
+
+		// Skill Point (meta currency for the tower skill tree) earned on a campaign win, scaled by the
+		// star rating (1-3) using the same health->star rule as the end-game popup.
+		private void AwardSkillPoint()
+		{
+			var data = MonoSingleton<GameRecord>.Instance;
+			int star = Parameter.StarSpec.Instance.GetStar(100 * data.CurrentHealth / data.TotalHealth);
+			TowerSkillPointStore.Instance.AddSkillPoint(star, false);
 		}
 
 		public void EndGame()

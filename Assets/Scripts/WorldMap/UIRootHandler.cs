@@ -40,6 +40,9 @@ namespace WorldMap
         private GameObject upgradePrefab;
 
         [SerializeField]
+        private GameObject archerSkillTreePrefab;
+
+        [SerializeField]
         private GameObject settingPrefab;
 
         [SerializeField]
@@ -99,6 +102,10 @@ namespace WorldMap
         private bool isUpgradePopupExist;
 
         private GlobalUpgradePopupController _upgradePopupController;
+
+        private bool isArcherSkillTreePopupExist;
+
+        private TowerSkillTreePanel _archerSkillTreePopupController;
 
         private bool isSettingPopupExist;
 
@@ -181,6 +188,14 @@ namespace WorldMap
 			get
 			{
 				return GetOrCreatePopup(upgradePrefab, ref _upgradePopupController, ref isUpgradePopupExist);
+			}
+		}
+
+		public TowerSkillTreePanel archerSkillTreePopupController
+		{
+			get
+			{
+				return GetOrCreatePopup(archerSkillTreePrefab, ref _archerSkillTreePopupController, ref isArcherSkillTreePopupExist);
 			}
 		}
 
@@ -370,6 +385,11 @@ namespace WorldMap
 				if (isUpgradePopupExist && upgradePopupController.isOpen)
 				{
 					upgradePopupController.CloseWithScaleAnimation();
+					return;
+				}
+				if (isArcherSkillTreePopupExist && archerSkillTreePopupController.isOpen)
+				{
+					archerSkillTreePopupController.CloseWithScaleAnimation();
 					return;
 				}
 				if (isGiftCodePopupExist && giftCodePopupController.isOpen)

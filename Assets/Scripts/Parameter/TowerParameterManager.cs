@@ -50,6 +50,44 @@ namespace Parameter
 			listTower[id][level] = newParameter;
 		}
 
+		// Roguelite stat source that replaces per-level upgrades: the tower's base (level 0) spec
+		// with every permanently-unlocked skill-tree node delta added on top. Not yet wired into
+		// the build path (that swap happens in a later phase).
+		public TurretSpec GetStatWithTree(int id)
+		{
+			TurretSpec spec = GetTowerParameter(id, 0);
+			List<int> unlockedNodes = Data.TowerSkillTreeStore.Instance.GetUnlockedNodes(id);
+			for (int i = 0; i < unlockedNodes.Count; i++)
+			{
+				TowerSkillNode node;
+				if (!TowerSkillTreeSpec.Instance.TryGetNode(id, unlockedNodes[i], out node))
+				{
+					continue;
+				}
+				// Damage delta applies to whichever damage type the tower actually uses.
+				if (spec.damage_Physics_max > 0)
+				{
+					spec.damage_Physics_min += node.dmgAdd;
+					spec.damage_Physics_max += node.dmgAdd;
+				}
+				else
+				{
+					spec.damage_Magic_min += node.dmgAdd;
+					spec.damage_Magic_max += node.dmgAdd;
+				}
+				spec.attackRangeMax += node.rangeAdd;
+				spec.reload -= node.reloadReduce;
+				spec.criticalStrikeChance += node.critAdd;
+				spec.ignoreArmorChance += node.pierceAdd;
+			}
+			// Safety floor so stacked reload reductions can't reach 0 (cooldown = reload/1000).
+			if (spec.reload < 100)
+			{
+				spec.reload = 100;
+			}
+			return spec;
+		}
+
 		private bool CheckParameter(int id, int level)
 		{
 			return id >= 0 && level >= 0 && id < GetNumberOfTower() && level < GetNumberOfLevel();

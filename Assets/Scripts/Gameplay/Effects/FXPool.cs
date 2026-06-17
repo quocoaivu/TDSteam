@@ -28,6 +28,14 @@ namespace Gameplay
 			droppedGoldController.gameObject.SetActive(false);
 			Common.GameObjectPool.ManagePool(droppedGoldController.gameObject, 0);
 			Common.GameObjectPool.Despawn(droppedGoldController.gameObject);
+			// Item drop indicator is optional: skip pooling until the prefab is assigned in the scene.
+			if (itemDropControllerPrefab != null)
+			{
+				ItemDropHandler droppedItemController = Instantiate(itemDropControllerPrefab);
+				droppedItemController.gameObject.SetActive(false);
+				Common.GameObjectPool.ManagePool(droppedItemController.gameObject, 0);
+				Common.GameObjectPool.Despawn(droppedItemController.gameObject);
+			}
 		}
 
 		public void InitFX(string effectName)
@@ -113,6 +121,16 @@ namespace Gameplay
 			return GetPooled<DroppedBullionHandler>(DROPPED_GOLD_NAME + "(Clone)");
 		}
 
+		// Null until the ItemDropped prefab is assigned in the scene (drop still auto-collects without it).
+		public ItemDropHandler GetDroppedItem()
+		{
+			if (itemDropControllerPrefab == null)
+			{
+				return null;
+			}
+			return GetPooled<ItemDropHandler>(DROPPED_ITEM_NAME + "(Clone)");
+		}
+
 		[Space]
 		[Header("Start Wave Button n Bonus Money")]
 		[SerializeField]
@@ -125,6 +143,11 @@ namespace Gameplay
 
 		[SerializeField]
 		private DroppedBullionHandler goldControllerPrefab;
+
+		[Space]
+		[Header("Tower item drop")]
+		[SerializeField]
+		private ItemDropHandler itemDropControllerPrefab;
 
 		public const string EFFECT_MISS = "Miss";
 		public const string EFFECT_CRITICAL = "Critical";
@@ -149,6 +172,7 @@ namespace Gameplay
 		public const string ICON_UNMOVEABLE = "UnMoveable";
 		private const string DROPPED_GEM_NAME = "GemDropped";
 		private const string DROPPED_GOLD_NAME = "GoldDropped";
+		private const string DROPPED_ITEM_NAME = "ItemDropped";
 		public const string EFFECT_ITEM_FREEZE = "Item-Freeze";
 		public const string LIGHTNING_PROJECTILE_RANGE = "LightningProjectileRange";
 		public const string LIGHTNING_PROJECTILE = "LightningProjectile";

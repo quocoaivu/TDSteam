@@ -32,6 +32,10 @@ namespace Gameplay
 			currentLevelInformationPopup.Init();
 			nextLevelInfomationPopoup.Close();
 			ultimateInforGroup.HideList();
+			if (itemPanel != null)
+			{
+				itemPanel.Init(towerModel);
+			}
 			Open();
 			ShowRange(towerModel);
 			TryToFocusTowerPosition();
@@ -76,19 +80,8 @@ namespace Gameplay
 
 		private void UpdateUpgradeButtonsState()
 		{
-			if (towerModel.OriginalParameter.level < 2)
-			{
-				canUpgrade = towerModel.GetUpgradeEnable(towerModel.OriginalParameter.level);
-				upgradeButtonController.UpdateStatusButton(canUpgrade);
-			}
-			// At the top base tier the player chooses an ultimate branch: button[0] -> branch 0, button[1] -> branch 1.
-			if (towerModel.OriginalParameter.level == TowerParameterManager.MAX_BASE_LEVEL)
-			{
-				canUpgrade = towerModel.GetUpgradeEnable(towerModel.OriginalParameter.level);
-				ultimateUpgradeButtonController[0].UpdateStatusButton(canUpgrade);
-				canUpgrade = towerModel.GetUpgradeEnable(TowerParameterManager.Instance.GetUpgradeTargetLevel(towerModel.OriginalParameter.level, 1));
-				ultimateUpgradeButtonController[1].UpdateStatusButton(canUpgrade);
-			}
+			// No-op: in-match level/ultimate upgrades are retired; the upgrade buttons are hidden and
+			// have no per-frame state to refresh.
 		}
 
 		public void OnUpgrade(int ultimateBranch)
@@ -110,79 +103,15 @@ namespace Gameplay
 
 		private void SetUpgrateButtonFolowTower()
 		{
-			int num = 0;
-			GameFormat gameMode = FormatDirector.Instance.gameMode;
-			if (gameMode != GameFormat.CampaignMode)
-			{
-				if (gameMode != GameFormat.DailyTrialMode)
-				{
-					if (gameMode == GameFormat.TournamentMode)
-					{
-						string currentSeasonID = ZoneRuleSpec.Instance.GetCurrentSeasonID();
-						num = ZoneRuleSpec.Instance.GetMaxLevelTowerCanUpgrade_Tournament(currentSeasonID, towerModel.Id);
-					}
-				}
-				else
-				{
-					int currentDayIndex = DailyTrialStore.Instance.GetCurrentDayIndex();
-					int currentWave = MonoSingleton<GameRecord>.Instance.CurrentWave;
-					num = ZoneRuleSpec.Instance.GetMaxLevelTowerCanUpgrade_Daily(currentWave, towerModel.Id);
-				}
-			}
-			else
-			{
-				num = ZoneRuleSpec.Instance.GetMaxLevelTowerCanUpgrade_Campaign(MonoSingleton<GameRecord>.Instance.MapID, towerModel.Id);
-			}
-			if (towerModel.OriginalParameter.level == num)
-			{
-			}
-			if (towerModel.OriginalParameter.level < 2)
-			{
-				bool isAllowedToUpgrade = towerModel.OriginalParameter.level < num;
-				int price = TowerParameterManager.Instance.GetPrice(towerModel.OriginalParameter.id, towerModel.OriginalParameter.level + 1);
-				ultimateInforButtonController.gameObject.SetActive(false);
-				upgradeButtonController.gameObject.SetActive(true);
-				upgradeButtonController.Init(towerModel, isAllowedToUpgrade, price);
-				ultimateUpgradeButtonController[0].gameObject.SetActive(false);
-				ultimateUpgradeButtonController[1].gameObject.SetActive(false);
-				upgradeUltimate0ButtonController.gameObject.SetActive(false);
-				upgradeUltimate1ButtonController.gameObject.SetActive(false);
-			}
-			else if (towerModel.OriginalParameter.level == 2)
-			{
-				ultimateInforButtonController.gameObject.SetActive(false);
-				upgradeButtonController.gameObject.SetActive(false);
-				ultimateUpgradeButtonController[0].gameObject.SetActive(true);
-				ultimateUpgradeButtonController[1].gameObject.SetActive(true);
-				upgradeUltimate0ButtonController.gameObject.SetActive(false);
-				upgradeUltimate1ButtonController.gameObject.SetActive(false);
-				if (num == 3)
-				{
-					ultimateUpgradeButtonController[0].Init(towerModel, true, TowerParameterManager.Instance.GetPrice(towerModel.OriginalParameter.id, 3));
-					ultimateUpgradeButtonController[1].Init(towerModel, false, TowerParameterManager.Instance.GetPrice(towerModel.OriginalParameter.id, 4));
-				}
-				else if (num == 4)
-				{
-					ultimateUpgradeButtonController[0].Init(towerModel, true, TowerParameterManager.Instance.GetPrice(towerModel.OriginalParameter.id, 3));
-					ultimateUpgradeButtonController[1].Init(towerModel, true, TowerParameterManager.Instance.GetPrice(towerModel.OriginalParameter.id, 4));
-				}
-				else
-				{
-					ultimateUpgradeButtonController[0].Init(towerModel, false, 0);
-					ultimateUpgradeButtonController[1].Init(towerModel, false, 0);
-				}
-			}
-			else
-			{
-				ultimateInforButtonController.gameObject.SetActive(true);
-				upgradeButtonController.gameObject.SetActive(false);
-				ultimateUpgradeButtonController[0].gameObject.SetActive(false);
-				ultimateUpgradeButtonController[1].gameObject.SetActive(false);
-				upgradeUltimate0ButtonController.gameObject.SetActive(true);
-				upgradeUltimate0ButtonController.Init(towerModel);
-				upgradeUltimate1ButtonController.gameObject.SetActive(true);
-				upgradeUltimate1ButtonController.Init(towerModel);
-			}
+			// Level-up / ultimate-branch / mastery upgrades are retired: tower power now comes from the
+			// permanent skill tree bought between matches. So the in-match upgrade buttons are always
+			// hidden. The popup still shows sell, range and info.
+			upgradeButtonController.gameObject.SetActive(false);
+			ultimateUpgradeButtonController[0].gameObject.SetActive(false);
+			ultimateUpgradeButtonController[1].gameObject.SetActive(false);
+			upgradeUltimate0ButtonController.gameObject.SetActive(false);
+			upgradeUltimate1ButtonController.gameObject.SetActive(false);
+			ultimateInforButtonController.gameObject.SetActive(false);
 		}
 
 		public void OnSell()
@@ -291,6 +220,11 @@ namespace Gameplay
 		private UltimateInformationButtonController ultimateInforButtonController;
 
 		public UltimateInformationGroup ultimateInforGroup;
+
+		[Space]
+		[Header("Item equip")]
+		[SerializeField]
+		private Items.TowerItemPanel itemPanel;
 
 		[Space]
 		[Header("Pop-ups")]

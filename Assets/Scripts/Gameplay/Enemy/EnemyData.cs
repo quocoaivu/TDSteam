@@ -559,6 +559,7 @@ namespace Gameplay
 				MonoSingleton<GameRecord>.Instance.IncreaseMoney(OriginalParameter.value);
 			}
 			MonoSingleton<GameRecord>.Instance.TotalExp += OriginalParameter.lifeTaken;
+			Items.ItemDropRoller.TryDropOnKill(base.transform.position);
 			GameplayDirector.Instance.OnEnemyDie();
 			IsAlive = false;
 			IsAttacking = false;

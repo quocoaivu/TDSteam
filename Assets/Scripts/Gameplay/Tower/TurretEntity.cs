@@ -155,7 +155,9 @@ namespace Gameplay
 
 		private void LoadParameters()
 		{
-			OriginalParameter = TowerParameterManager.Instance.GetTowerParameter(Id, Level);
+			// Stats now come from the permanent skill tree (base + unlocked nodes), not the tower's
+			// level. The serialized Level only selects which prefab visual is used (canonical tier).
+			OriginalParameter = TowerParameterManager.Instance.GetStatWithTree(Id);
 		}
 
 		public TurretSpec GetTowerParameter()
@@ -197,29 +199,11 @@ namespace Gameplay
 			OnAppearEvent.Dispatch();
 		}
 
+		// Level-up upgrades are retired: tower power now comes from the permanent skill tree, bought
+		// between matches. Kept as a no-op so existing UI callers still compile; the in-match upgrade
+		// UI is removed in a later phase.
 		public void Upgrade(int ultiNo)
 		{
-			if (OriginalParameter.level + 1 < TowerParameterManager.Instance.GetNumberOfLevel())
-			{
-				int num = TowerParameterManager.Instance.GetUpgradeTargetLevel(OriginalParameter.level, ultiNo);
-				TurretEntity towerModel = MonoSingleton<TowerPool>.Instance.GetTower(OriginalParameter.id, num);
-				if (OnUpgrade != null)
-				{
-					OnUpgrade(this, towerModel);
-				}
-				towerModel.transform.position = base.transform.position;
-				towerModel.gun.eulerAngles = gun.eulerAngles;
-				towerModel.StartBuild(OriginalParameter.id, num, RegionID);
-				towerModel.Appear();
-				MonoSingleton<GameRecord>.Instance.DecreaseMoney(towerModel.OriginalParameter.price);
-				BuffsHolder.CopyBuff(towerModel.BuffsHolder);
-				ReturnPool(false);
-				UnityEngine.Debug.Log("Upgrade Tower Done!");
-			}
-			else
-			{
-				UnityEngine.Debug.LogError("Can't upgrade: Max level!");
-			}
 		}
 
 		public void Sell()

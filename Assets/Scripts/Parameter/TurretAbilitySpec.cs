@@ -98,6 +98,19 @@ namespace Parameter
 			return result;
 		}
 
+		// Display name of an ability (= an item). Only the level-0 row carries the name in the CSV.
+		public string GetSkillName(int towerID, int ultimateBranch, int skillID)
+		{
+			foreach (TurretAbilitySpecs towerSkillParam in listTowerSkillParams)
+			{
+				if (towerSkillParam.towerID == towerID && towerSkillParam.ultimateBranch == ultimateBranch && towerSkillParam.skillID == skillID && !string.IsNullOrEmpty(towerSkillParam.skillName))
+				{
+					return towerSkillParam.skillName;
+				}
+			}
+			return string.Empty;
+		}
+
 		public int GetUltimateSkillUpgradeCost(int towerID, int ultimateBranch, int skillID, int skillLevel)
 		{
 			int result = -1;

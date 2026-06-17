@@ -72,6 +72,8 @@ namespace Gameplay
 		private void SetDefaultGameData()
 		{
 			MonoSingleton<GameRecord>.Instance.SetDefaultGameData();
+			// Items are in-run: clear the bag so each match starts empty (drops refill it).
+			Items.ItemInventory.Instance.Clear();
 			customWave = -1;
 		}
 

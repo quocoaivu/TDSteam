@@ -94,14 +94,15 @@
 - `Gameplay/Enemy/EnemyData.cs` — hook `ItemDropRoller.TryDropOnKill` trong `Dead()`.
 - `Gameplay/Core/GameplayDirector.cs` — `ItemInventory.Clear()` mỗi match start.
 - `Gameplay/Core/GameRuleHandler.cs` — `AwardSkillPoint()` khi thắng.
+- `Gameplay/Tower/TurretAbilityProduceBullion.cs` — đọc `OriginalParameter` (base L0 + cây) cho gold/reload/autoCollect, để cây Supporter có tác dụng.
 
 ### Editor builders (`Assets/Scripts/Editor/`)
-- `SkillTreeBuilder.cs` — menu **Tools > Tower Skill Tree > Build Archer Nodes**.
+- `SkillTreeBuilder.cs` — menu **Tools > Tower Skill Tree > Build Skill Tree Template** (dựng template node + line + 2 container + wire panel; chạy 1 lần trên prefab dùng chung).
 - `ItemSlotBuilder.cs` — menu **Tools > Tower Item > Build Item Slots**.
 - `ItemShopBuilder.cs` — menu **Tools > Tower Item > Build Item Shop**.
 
 ### Data files (`Assets/Resources/parameters/`)
-- `tower_skilltree_parameter.txt` — node cây skill (hiện 14 node Archer id 0).
+- `tower_skilltree_parameter.txt` — node cây skill (Archer id 0, Knights id 1, Stone God id 2, Magic Dragon id 3, Supporter id 4 — mỗi tower 14 node). Cột thêm theo loại tower: `health_add/armor_add` (barracks), `gold_add/autocollect_reduce` (gold tower). Cột `pos_x,pos_y` = vị trí node (panel đặt button runtime). Cột `health_add,armor_add` = buff máu/giáp lính (cho barracks như Knights; tower khác để 0).
 - `TowerSkills/tower_skill_parameter.txt` — param ability = data Item (5 tower × 2 branch × 2 skill × 3 level).
 
 ---
@@ -122,10 +123,19 @@
 
 ## 7. Wire trong Unity Editor
 
-### Skill Tree (Worldmap)
-1. Prefab `PanelArcherSkillTree` → chạy **Build Archer Nodes** trên panel gốc.
-2. `UIRootHandler` (Worldmap): gán `archerSkillTreePrefab`.
-3. Nút mở: component `ArcherSkillTreeSwitchHandler` (towerID=0) → OnClick.
+### Skill Tree (Worldmap) — 1 prefab dùng chung, dựng node động từ CSV
+- **1 prefab duy nhất** cho mọi tower. `UIRootHandler.towerSkillTreePrefab` (1 field) + `GetTowerSkillTree()` instantiate 1 lần, cache.
+- `panel.Init(towerID)` sinh node/line lúc runtime: clone `nodeTemplate`/`lineTemplate` theo từng node của tower (vị trí/tên/cost/prereq đọc từ CSV). Rebuild chỉ khi đổi tower.
+- `ArcherSkillTreeSwitchHandler` dùng chung — chỉ set field `towerID` trên nút mở.
+
+**Dựng prefab dùng chung (1 lần):**
+1. Mở prefab `PanelArcherSkillTree` (prefab dùng chung). Nếu còn `SkillTreeNodes`/`SkillTreeLines` node đặt sẵn cũ → **xóa**.
+2. Chọn root panel (có `TowerSkillTreePanel`) → chạy **Tools > Tower Skill Tree > Build Skill Tree Template** → Save prefab.
+   - Builder tạo: `SkillTreeNodes` + `SkillTreeLines` (container), `NodeTemplate` + `LineTemplate` (tắt sẵn), và wire 4 field template vào panel.
+3. `UIRootHandler.towerSkillTreePrefab` = prefab này (scene đã trỏ sẵn guid Archer).
+4. Prefab `PanelStoneGodSkillTree` cũ **không còn cần** — có thể xóa.
+
+**Thêm nút mở cho 1 tower** (vd Stone God): thêm component `ArcherSkillTreeSwitchHandler`, set **towerID = 2**, gán OnClick → xong. Không cần prefab/builder riêng.
 
 ### Item equip (popup tower — scene Gameplay)
 - Object **`Upgrade Tower`** (dưới `Canvas 1 - Fixed > Control Tower Group`).
@@ -172,7 +182,11 @@ Các bước:
 - Shop: `ItemShopPanel.buyCost = 100`, `rerollCost = 50` (SerializeField, tune Inspector).
 
 ### Khác
-- Cây skill tree mới chỉ có Archer (id 0) — cần thiết kế node cho 4 tower còn lại.
+- ✅ Cả 5 tower đã có cây skill: Archer (0), Knights (1), Stone God (2), Magic Dragon (3), Supporter (4). Thêm tower mới (nếu có) chỉ cần: **thêm dòng node vào CSV** + 1 nút mở set `towerID`.
+- Lưu ý stat theo loại tower:
+  - `dmg/crit/pierce/reload/range` — tower bắn (Archer/Stone God/Magic Dragon). `dmgAdd` vào physics hay magic tùy tower (Magic Dragon → magic).
+  - `health_add`/`armor_add` — barracks (Knights): lính đọc `unit_health`/`unit_armor_physics` khi spawn. `range` = bán kính rally.
+  - `gold_add`/`autocollect_reduce` + `reload_reduce` — gold tower (Supporter). `TurretAbilityProduceBullion` đã đổi đọc `OriginalParameter` (base L0 + cây) thay vì base-theo-level; base L0 gold bump 10→20.
 - Item drop hiện đồng đều random — cân nhắc drop table theo độ hiếm/level.
 
 ---

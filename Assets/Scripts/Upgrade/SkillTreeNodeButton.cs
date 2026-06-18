@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 namespace Upgrade
 {
-	// One node button in a tower's permanent skill tree (Phase 5 meta UI). Place one per node in the
-	// tree prefab, set its nodeID, and add it to TowerSkillTreePanel.nodeButtons. The panel drives
-	// Refresh and handles the actual purchase when the button is clicked.
+	// One node button in a tower's permanent skill tree. The panel clones a single inactive template
+	// of this at runtime (one per node, from CSV), calls Setup to assign its id/name/position, then
+	// drives Refresh and handles the purchase when the button is clicked.
 	public class SkillTreeNodeButton : MonoBehaviour
 	{
 		public int NodeID
@@ -14,6 +14,17 @@ namespace Upgrade
 			get
 			{
 				return nodeID;
+			}
+		}
+
+		// Called right after the panel instantiates this from the template. Sets the node id and
+		// display name (the position is set by the panel directly on the RectTransform).
+		public void Setup(int id, string displayName)
+		{
+			nodeID = id;
+			if (nameText != null)
+			{
+				nameText.SetText(displayName);
 			}
 		}
 
@@ -63,6 +74,9 @@ namespace Upgrade
 
 		[SerializeField]
 		private int nodeID;
+
+		[SerializeField]
+		private TMP_Text nameText;
 
 		[SerializeField]
 		private Button button;

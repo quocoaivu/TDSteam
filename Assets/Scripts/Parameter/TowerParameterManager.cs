@@ -79,11 +79,22 @@ namespace Parameter
 				spec.reload -= node.reloadReduce;
 				spec.criticalStrikeChance += node.critAdd;
 				spec.ignoreArmorChance += node.pierceAdd;
+				// Barracks units (Knights) read these from the tower spec at spawn.
+				spec.unit_health += node.healthAdd;
+				spec.unit_armor_physics += node.armorAdd;
+				// Gold tower (Supporter): more gold per cycle, faster auto-collect.
+				spec.goldProduce += node.goldAdd;
+				spec.autoCollectTime -= node.autocollectReduce;
 			}
 			// Safety floor so stacked reload reductions can't reach 0 (cooldown = reload/1000).
 			if (spec.reload < 100)
 			{
 				spec.reload = 100;
+			}
+			// Same floor for auto-collect so stacked reductions stay positive.
+			if (spec.autoCollectTime < 100)
+			{
+				spec.autoCollectTime = 100;
 			}
 			return spec;
 		}

@@ -15,5 +15,14 @@ namespace Parameter
 		public int reloadReduce;
 		public int critAdd;
 		public int pierceAdd;
+		// Melee/barracks stats: added onto the spawned unit's health and physical armor (Knights).
+		public int healthAdd;
+		public int armorAdd;
+		// Gold-tower stats (Supporter): added gold per cycle, and ms shaved off auto-collect time.
+		public int goldAdd;
+		public int autocollectReduce;
+		// Anchored position (UI units, y up) where the panel places this node's button at runtime.
+		public int posX;
+		public int posY;
 	}
 }

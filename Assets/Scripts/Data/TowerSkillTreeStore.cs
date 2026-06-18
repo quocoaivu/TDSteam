@@ -62,6 +62,16 @@ namespace Data
 			DispatchChangeEvent();
 		}
 
+		// Clears all unlocked nodes for one tower (respec) and persists. No-op if nothing unlocked.
+		public void ResetTower(int towerID)
+		{
+			if (data.unlockedNodes.Remove(towerID))
+			{
+				Save();
+				DispatchChangeEvent();
+			}
+		}
+
 		private void Load()
 		{
 			string path = Application.persistentDataPath + TowerSkillTreeStore.DB_NAME;

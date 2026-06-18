@@ -40,7 +40,7 @@ namespace WorldMap
         private GameObject upgradePrefab;
 
         [SerializeField]
-        private GameObject archerSkillTreePrefab;
+        private GameObject towerSkillTreePrefab; // 1 prefab dùng chung, dựng node theo towerID lúc runtime
 
         [SerializeField]
         private GameObject settingPrefab;
@@ -103,9 +103,7 @@ namespace WorldMap
 
         private GlobalUpgradePopupController _upgradePopupController;
 
-        private bool isArcherSkillTreePopupExist;
-
-        private TowerSkillTreePanel _archerSkillTreePopupController;
+        private TowerSkillTreePanel _towerSkillTreePanel;
 
         private bool isSettingPopupExist;
 
@@ -191,12 +189,34 @@ namespace WorldMap
 			}
 		}
 
-		public TowerSkillTreePanel archerSkillTreePopupController
+		// Lazily instantiate (and cache) the shared skill-tree panel. One prefab serves every tower;
+		// the caller passes towerID to panel.Init, which builds that tower's nodes at runtime.
+		public TowerSkillTreePanel GetTowerSkillTree()
 		{
-			get
+			if (_towerSkillTreePanel == null)
 			{
-				return GetOrCreatePopup(archerSkillTreePrefab, ref _archerSkillTreePopupController, ref isArcherSkillTreePopupExist);
+				if (towerSkillTreePrefab == null)
+				{
+					return null;
+				}
+				GameObject instance = UnityEngine.Object.Instantiate<GameObject>(towerSkillTreePrefab);
+				instance.transform.SetParent(popupParent);
+				instance.transform.localPosition = Vector3.zero;
+				instance.transform.localScale = Vector3.one;
+				_towerSkillTreePanel = instance.GetComponent<TowerSkillTreePanel>();
 			}
+			return _towerSkillTreePanel;
+		}
+
+		// Closes the skill-tree panel if it is open. Used by the Esc/back handler.
+		private bool TryCloseOpenTowerSkillTree()
+		{
+			if (_towerSkillTreePanel != null && _towerSkillTreePanel.isOpen)
+			{
+				_towerSkillTreePanel.CloseWithScaleAnimation();
+				return true;
+			}
+			return false;
 		}
 
 		public OptionDialogHandler settingPopupController
@@ -387,9 +407,8 @@ namespace WorldMap
 					upgradePopupController.CloseWithScaleAnimation();
 					return;
 				}
-				if (isArcherSkillTreePopupExist && archerSkillTreePopupController.isOpen)
+				if (TryCloseOpenTowerSkillTree())
 				{
-					archerSkillTreePopupController.CloseWithScaleAnimation();
 					return;
 				}
 				if (isGiftCodePopupExist && giftCodePopupController.isOpen)

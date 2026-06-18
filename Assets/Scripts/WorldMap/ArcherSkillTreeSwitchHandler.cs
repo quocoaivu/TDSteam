@@ -1,8 +1,11 @@
 using System;
+using Upgrade;
 using UnityEngine;
 
 namespace WorldMap
 {
+	// Opens a tower's skill-tree panel from the Worldmap. Generic across towers: set `towerID`
+	// per button (0 = Archer, 2 = Stone God, ...). Panel prefabs are wired in UIRootHandler.
 	public class ArcherSkillTreeSwitchHandler : SwitchHandler
 	{
         [SerializeField]
@@ -20,7 +23,11 @@ namespace WorldMap
 
 		private void DoOpen()
 		{
-			MonoSingleton<UIRootHandler>.Instance.archerSkillTreePopupController.Init(towerID);
+			TowerSkillTreePanel panel = MonoSingleton<UIRootHandler>.Instance.GetTowerSkillTree();
+			if (panel != null)
+			{
+				panel.Init(towerID);
+			}
 		}
 	}
 }

@@ -37,6 +37,12 @@ namespace Data
 					node.reloadReduce = (int)list[i]["reload_reduce"];
 					node.critAdd = (int)list[i]["crit_add"];
 					node.pierceAdd = (int)list[i]["pierce_add"];
+					node.healthAdd = (int)list[i]["health_add"];
+					node.armorAdd = (int)list[i]["armor_add"];
+					node.goldAdd = (int)list[i]["gold_add"];
+					node.autocollectReduce = (int)list[i]["autocollect_reduce"];
+					node.posX = (int)list[i]["pos_x"];
+					node.posY = (int)list[i]["pos_y"];
 					TowerSkillTreeSpec.Instance.SetParameter(node);
 				}
 			}

@@ -23,10 +23,13 @@ namespace Gameplay
 
 		private void SetParameter()
 		{
-			goldProduce = TowerParameterManager.Instance.GetGoldProduce(base.TowerModel.Id, base.TowerModel.Level);
-			cooldownTimeProduce = TowerParameterManager.Instance.GetCooldownTime(base.TowerModel.Id, base.TowerModel.Level);
+			// Roguelite stats = base (level 0) + unlocked skill-tree nodes, same source the combat
+			// towers read. The Supporter tree buffs goldProduce / reload / autoCollectTime here.
+			TurretSpec spec = base.TowerModel.OriginalParameter;
+			goldProduce = spec.goldProduce;
+			cooldownTimeProduce = (float)spec.reload / 1000f;
 			cooldownTimeProduceTracking = cooldownTimeProduce;
-			cooldownTimeAutoCollect = TowerParameterManager.Instance.GetAutoCollectProduceGoldTime(base.TowerModel.Id, base.TowerModel.Level);
+			cooldownTimeAutoCollect = (float)spec.autoCollectTime / 1000f;
 			cooldownTimeAutoCollectTracking = cooldownTimeAutoCollect;
 			skillReady = true;
 		}

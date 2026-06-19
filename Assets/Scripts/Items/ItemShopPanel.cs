@@ -23,16 +23,29 @@ namespace Items
 			OpenWithScaleAnimation();
 		}
 
-		public void OnOfferClicked(ItemShopOfferButton offerButton)
+		// Rebuilds the offer buttons in place (after a purchase elsewhere changed gold/offers).
+		public void RefreshOpen()
 		{
+			RefreshAll();
+		}
+
+		// Buys the offer: spends gold, adds the item to the inventory, marks the offer sold. Returns
+		// false (no change) when the offer is gone or the player can't afford it. Called by the
+		// inventory drop target when a shop offer is dragged onto the bag.
+		public bool TryBuy(ItemShopOfferButton offerButton)
+		{
+			if (offerButton == null)
+			{
+				return false;
+			}
 			TowerItem item = offerButton.Offer;
 			if (item == null)
 			{
-				return;
+				return false;
 			}
 			if (!TrySpendGold(buyCost))
 			{
-				return;
+				return false;
 			}
 			ItemInventory.Instance.Add(item);
 			// One purchase per offer: mark this slot sold.
@@ -42,6 +55,7 @@ namespace Items
 				offers[index] = null;
 			}
 			RefreshAll();
+			return true;
 		}
 
 		public void OnReroll()

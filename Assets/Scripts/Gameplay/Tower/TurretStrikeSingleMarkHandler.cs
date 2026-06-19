@@ -76,6 +76,11 @@ namespace Gameplay
 
 		private void BuffsHolder_OnBuffValueChanged(string buffKey, bool added)
 		{
+			// Crit % must be refreshed before UpdateBuffDamage so the new value is folded in this pass.
+			if (critIncrementBuffKeys.Contains(buffKey))
+			{
+				UpdateCritIncrement();
+			}
 			UpdateBuffDamage();
 			if (damageIncrementPercentageBuffKeys.Contains(buffKey))
 			{
@@ -107,6 +112,11 @@ namespace Gameplay
 			buffedInstantKillChance = base.TowerModel.OriginalParameter.instantKillChance + (int)buffsValue;
 		}
 
+		private void UpdateCritIncrement()
+		{
+			critIncrementPercentage = base.TowerModel.BuffsHolder.GetBuffsValue(critIncrementBuffKeys);
+		}
+
 		private void UpdateBuffDamage()
 		{
 			float num = 1f + (damageIncrementPercentage - damageDecrementPercentage) / 100f;
@@ -118,7 +128,8 @@ namespace Gameplay
 			buffedDamagePhysics_max = (float)base.TowerModel.finalDamagePhysics_max * num;
 			buffedDamageMagic_min = (float)base.TowerModel.finalDamageMagic_min * num;
 			buffedDamageMagic_max = (float)base.TowerModel.finalDamageMagic_max * num;
-			buffedCriticalStrikeChance = (float)base.TowerModel.finalCriticalStrikeChange * num;
+			// Flat crit % from equipped items adds on top of the scaled base crit.
+			buffedCriticalStrikeChance = (float)base.TowerModel.finalCriticalStrikeChange * num + critIncrementPercentage;
 			buffedInstantKillChance = base.TowerModel.OriginalParameter.instantKillChance;
 		}
 
@@ -151,6 +162,13 @@ namespace Gameplay
 		{
 			"InstantKillRateIncrementCommon"
 		};
+
+		private List<string> critIncrementBuffKeys = new List<string>
+		{
+			"CritIncrementCommon"
+		};
+
+		private float critIncrementPercentage;
 
 		private float damageIncrementPercentage;
 

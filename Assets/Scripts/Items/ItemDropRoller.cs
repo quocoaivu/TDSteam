@@ -18,6 +18,10 @@ namespace Items
 				return;
 			}
 			TowerItem item = ItemFactory.CreateRandom();
+			if (item == null)
+			{
+				return;
+			}
 			ItemInventory.Instance.Add(item);
 			ShowDropVisual(position, item.name);
 		}

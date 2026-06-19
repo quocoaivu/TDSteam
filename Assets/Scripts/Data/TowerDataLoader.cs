@@ -14,6 +14,47 @@ namespace Data
 			ReadTowerDefaultSkillParameter();
 			ReadTowerSkillParameter();
 			ReadTowerSkillTreeParameter();
+			ReadItemParameter();
+		}
+
+		private void ReadItemParameter()
+		{
+			string text = "Parameters/items/tower_item_parameter";
+			try
+			{
+				ItemSpecCatalog.Instance.Clear();
+				List<Dictionary<string, object>> list = CSVLoader.Read(text);
+				for (int i = 0; i < list.Count; i++)
+				{
+					ItemSpec spec = default(ItemSpec);
+					spec.itemId = (int)list[i]["item_id"];
+					spec.towerId = (int)list[i]["tower_id"];
+					spec.name = (string)list[i]["name"];
+					spec.statType = ParseStatType(list[i]["stat_type"].ToString());
+					spec.statValue = (int)list[i]["stat_value"];
+					spec.rarity = (int)list[i]["rarity"];
+					spec.icon = list[i].ContainsKey("icon") ? list[i]["icon"].ToString() : string.Empty;
+					ItemSpecCatalog.Instance.SetParameter(spec);
+				}
+			}
+			catch (Exception)
+			{
+				TowerDataLoader.ShowError(text);
+				throw;
+			}
+		}
+
+		private static Items.StatType ParseStatType(string raw)
+		{
+			switch (raw)
+			{
+			case "AttackSpeed":
+				return Items.StatType.AttackSpeed;
+			case "Crit":
+				return Items.StatType.Crit;
+			default:
+				return Items.StatType.Damage;
+			}
 		}
 
 		private void ReadTowerSkillTreeParameter()

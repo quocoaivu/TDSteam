@@ -3,27 +3,24 @@ using UnityEngine;
 
 namespace Items
 {
-	// Builds TowerItem instances. Shared by drops (ItemDropRoller) and the shop (ItemShopPanel) so the
-	// "random tower + slot -> ability name" rule lives in one place. Per-tower (Phase 6): branch is fixed
-	// by the canonical prefab (Priest id 4 tops at L3 -> branch 0, others at L4 -> branch 1).
+	// Builds TowerItem instances from the loaded ItemSpec catalog. Shared by drops (ItemDropRoller) and
+	// the shop (ItemShopPanel) so the "pick a definition -> runtime item" rule lives in one place.
 	public static class ItemFactory
 	{
-		public const int TOWER_COUNT = 5;
-
-		public const int SLOT_COUNT = 2;
-
+		// Rolls a random item definition. Returns null if no specs are loaded (data missing).
 		public static TowerItem CreateRandom()
 		{
-			int towerID = Random.Range(0, TOWER_COUNT);
-			int slotIndex = Random.Range(0, SLOT_COUNT);
-			return Create(towerID, slotIndex, 0);
+			System.Collections.Generic.IReadOnlyList<ItemSpec> all = ItemSpecCatalog.Instance.All;
+			if (all.Count == 0)
+			{
+				return null;
+			}
+			return Create(all[Random.Range(0, all.Count)]);
 		}
 
-		public static TowerItem Create(int towerID, int slotIndex, int level)
+		public static TowerItem Create(ItemSpec spec)
 		{
-			int branch = (towerID == 4) ? 0 : 1;
-			string name = TurretAbilitySpec.Instance.GetSkillName(towerID, branch, slotIndex);
-			return new TowerItem(towerID, slotIndex, level, name);
+			return new TowerItem(spec.itemId, spec.towerId, spec.name, spec.statType, spec.statValue, spec.rarity, spec.icon);
 		}
 	}
 }

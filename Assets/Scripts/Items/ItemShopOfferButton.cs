@@ -51,13 +51,24 @@ namespace Items
 			{
 				button.interactable = (offer != null && affordable);
 			}
+			if (draggable != null)
+			{
+				if (offer != null)
+				{
+					draggable.SetShopPayload(offer, panel, this);
+				}
+				else
+				{
+					draggable.ClearPayload();
+				}
+			}
 		}
 
 		private void OnClick()
 		{
 			if (panel != null)
 			{
-				panel.OnOfferClicked(this);
+				panel.TryBuy(this);
 			}
 		}
 
@@ -72,6 +83,9 @@ namespace Items
 
 		[SerializeField]
 		private GameObject soldOverlay;
+
+		[SerializeField]
+		private DraggableItem draggable;
 
 		[SerializeField]
 		private Color affordableColor = Color.yellow;

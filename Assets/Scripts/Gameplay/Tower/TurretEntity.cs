@@ -187,7 +187,20 @@ namespace Gameplay
 		{
 			GetControllers();
 			GetAllComponents();
+			SetupEquipment();
 			Initialize();
+		}
+
+		// Item-equip holder. Added at runtime so no per-prefab wiring is needed; shares this tower's
+		// BuffHolder so item stats flow through the same buff pipeline as everything else.
+		private void SetupEquipment()
+		{
+			Equipment = base.GetComponentInChildren<TowerEquipment>();
+			if (Equipment == null)
+			{
+				Equipment = base.gameObject.AddComponent<TowerEquipment>();
+			}
+			Equipment.Initialize(this, BuffsHolder);
 		}
 
 		public void Appear()
@@ -208,6 +221,10 @@ namespace Gameplay
 
 		public void Sell()
 		{
+			if (Equipment != null)
+			{
+				Equipment.ReturnAllToInventory();
+			}
 			MonoSingleton<GameRecord>.Instance.IncreaseMoney(OriginalParameter.value);
 			MonoSingleton<TurretControlSfxHandler>.Instance.PlaySell();
 			MonoSingleton<ConstructSectorDirector>.Instance.listRegions[RegionID].DisplayBuildable();
@@ -269,6 +286,11 @@ namespace Gameplay
 			}
 			MonoSingleton<GameRecord>.Instance.AddTowerToActiveList(this);
 			BuffsHolder.ResetBuffs();
+			// Fresh build from the pool: start with no items so a reused tower never inherits old gear.
+			if (Equipment != null)
+			{
+				Equipment.ClearAll();
+			}
 			OnBuildDone();
 		}
 
@@ -380,6 +402,9 @@ namespace Gameplay
 		private BuffHolder buffsHolder;
 
 		public TurretMasteryHandler towerUltimateController;
+
+		// Item-equip holder (4 slots). Set up at runtime in PrototypeInitialize.
+		public TowerEquipment Equipment { get; private set; }
 
 		private Vector3 cachedPosition;
 

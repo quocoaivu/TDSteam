@@ -233,6 +233,24 @@ namespace Gameplay
 			return false;
 		}
 
+		// Shared screen->tower pick used by both the tap handler and item drag & drop. Returns the
+		// TurretEntity under a screen position, or false when the point is not over a tower.
+		public static bool RaycastTower(Vector2 screenPos, out TurretEntity tower)
+		{
+			tower = null;
+			if (Camera.main == null)
+			{
+				return false;
+			}
+			Vector3 world = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 0f));
+			RaycastHit2D hit = Physics2D.Raycast(new Vector2(world.x, world.y), Vector3.back, 5f);
+			if (hit.collider != null && hit.transform.CompareTag(GeneralVariable.GeneralDefine.TOWER_TAG))
+			{
+				tower = hit.transform.gameObject.GetComponent<TurretEntity>();
+			}
+			return tower != null;
+		}
+
 		private Vector2 getTargetVector()
 		{
 			Vector2 screenPosition = input.Gameplay.Point.ReadValue<Vector2>();

@@ -1,79 +1,37 @@
+using Gameplay;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Items
 {
-	// One ability slot on the tower popup. Shows the item that can be equipped into this slot (if the
-	// player owns one) and equips it on click. slotIndex maps to TurretMasteryHandler.listTowerUltimate
-	// (== skillID). Place one per ability the tower's canonical prefab carries (2) and register it in
-	// TowerItemPanel.slotButtons. Mirrors SkillTreeNodeButton from the skill-tree UI.
+	// One equipped-item slot on the tower popup. Shows the item in this slot (or empty) and lets the
+	// player drag it out to the inventory to unequip. Place one per equip slot (TowerEquipment.SLOT_COUNT)
+	// and register it in TowerItemPanel.slotButtons.
 	public class ItemSlotButton : MonoBehaviour
 	{
-		public int SlotIndex
+		// item == null -> slot empty. equipment is the holder to unequip from when the slot is dragged out.
+		public void Refresh(TowerItem item, TowerEquipment equipment)
 		{
-			get
-			{
-				return slotIndex;
-			}
-		}
-
-		public TowerItem OwnedItem
-		{
-			get
-			{
-				return ownedItem;
-			}
-		}
-
-		private void Awake()
-		{
-			if (button != null)
-			{
-				button.onClick.AddListener(OnClick);
-			}
-		}
-
-		public void Init(TowerItemPanel panel)
-		{
-			this.panel = panel;
-		}
-
-		// ownedItem == null -> no compatible item in inventory; equipped -> already active on the tower.
-		public void Refresh(TowerItem ownedItem, bool equipped)
-		{
-			this.ownedItem = ownedItem;
 			if (nameText != null)
 			{
-				nameText.SetText(ownedItem != null ? ownedItem.name : "—");
+				nameText.SetText(item != null ? item.name : "—");
 			}
 			if (emptyOverlay != null)
 			{
-				emptyOverlay.SetActive(ownedItem == null);
+				emptyOverlay.SetActive(item == null);
 			}
-			if (equippedOverlay != null)
+			if (draggable != null)
 			{
-				equippedOverlay.SetActive(equipped);
-			}
-			if (button != null)
-			{
-				button.interactable = (ownedItem != null && !equipped);
+				if (item != null)
+				{
+					draggable.SetTowerSlotPayload(item, equipment);
+				}
+				else
+				{
+					draggable.ClearPayload();
+				}
 			}
 		}
-
-		private void OnClick()
-		{
-			if (panel != null)
-			{
-				panel.OnSlotClicked(this);
-			}
-		}
-
-		[SerializeField]
-		private int slotIndex;
-
-		[SerializeField]
-		private Button button;
 
 		[SerializeField]
 		private TMP_Text nameText;
@@ -82,10 +40,6 @@ namespace Items
 		private GameObject emptyOverlay;
 
 		[SerializeField]
-		private GameObject equippedOverlay;
-
-		private TowerItem ownedItem;
-
-		private TowerItemPanel panel;
+		private DraggableItem draggable;
 	}
 }

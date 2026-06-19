@@ -16,6 +16,8 @@ namespace Gameplay
 
         public const string InstantKillRateIncrementCommon = "InstantKillRateIncrementCommon";
 
+        public const string CritIncrementCommon = "CritIncrementCommon";
+
 
         public const string INCREASE_ATTACK_SPEED_BY_PERCENTAGE = "IncreaseAttackSpeedByPercentage";
         public static string[] AllKeys
@@ -38,6 +40,7 @@ namespace Gameplay
 			"AttackRangeIncrementCommon",
 			"HellfireCooldownTimeDecrementCommon",
 			"InstantKillRateIncrementCommon",
+			"CritIncrementCommon",
 			"IncreaseAttackSpeedByPercentage"
 		};
 

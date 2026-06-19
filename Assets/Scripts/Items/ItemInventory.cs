@@ -3,9 +3,9 @@ using System.Collections.Generic;
 namespace Items
 {
 	// In-run bag of tower items the player currently holds. NOT persisted: items are picked up during
-	// a match and reset between runs (roguelite). Equipping an item activates the tower's matching
-	// ability via TurretMasteryHandler.EquipItem. Lazy singleton -> no scene wiring, like
-	// TowerSkillPointStore. (Drop sources + per-run reset wiring come in Phase 7.)
+	// a match and reset between runs (roguelite). Equipping an item moves it onto a tower's
+	// TowerEquipment (drag & drop); selling/unequipping returns it here. Lazy singleton -> no scene
+	// wiring, like TowerSkillPointStore. Cleared per run from GameplayDirector.
 	public class ItemInventory
 	{
 		public static ItemInventory Instance
@@ -17,6 +17,15 @@ namespace Items
 					instance = new ItemInventory();
 				}
 				return instance;
+			}
+		}
+
+		// Read-only view of everything the player holds this run (for the inventory UI). Display only.
+		public IReadOnlyList<TowerItem> Items
+		{
+			get
+			{
+				return items;
 			}
 		}
 
@@ -33,25 +42,6 @@ namespace Items
 		public void Clear()
 		{
 			items.Clear();
-		}
-
-		// Best owned item for a tower's ability slot (highest level), or null if the player owns none.
-		public TowerItem GetBestItemForSlot(int towerID, int slotIndex)
-		{
-			TowerItem best = null;
-			for (int i = 0; i < items.Count; i++)
-			{
-				TowerItem item = items[i];
-				if (item.towerID != towerID || item.slotIndex != slotIndex)
-				{
-					continue;
-				}
-				if (best == null || item.level > best.level)
-				{
-					best = item;
-				}
-			}
-			return best;
 		}
 
 		private readonly List<TowerItem> items = new List<TowerItem>();

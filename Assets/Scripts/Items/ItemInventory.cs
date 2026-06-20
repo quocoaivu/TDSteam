@@ -34,10 +34,31 @@ namespace Items
 		// changes don't go through the panel (e.g. items returned to the bag when a tower is sold).
 		public event Action OnChanged;
 
-		public void Add(TowerItem item)
+		// Max items the bag holds (a fixed 3x3 grid). Adds are rejected once it's full.
+		public const int CAPACITY = 9;
+
+		// True when the bag is at capacity; callers should block adding more.
+		public bool IsFull
 		{
+			get { return items.Count >= CAPACITY; }
+		}
+
+		// Empty slots left in the bag (used to check there's room before a tower sell returns its items).
+		public int FreeSlots
+		{
+			get { return CAPACITY - items.Count; }
+		}
+
+		// Adds the item to the bag. Returns false (and changes nothing) when the bag is full.
+		public bool Add(TowerItem item)
+		{
+			if (item == null || items.Count >= CAPACITY)
+			{
+				return false;
+			}
 			items.Add(item);
 			OnChanged?.Invoke();
+			return true;
 		}
 
 		public void Remove(TowerItem item)

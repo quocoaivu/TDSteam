@@ -244,6 +244,12 @@ namespace Gameplay
 
 		public void OnSell()
 		{
+			// Don't sell if the bag can't hold the tower's equipped items (they'd be lost).
+			if (towerModel.Equipment != null && !towerModel.Equipment.CanReturnAllToInventory())
+			{
+				Items.ItemFeedback.InventoryNoRoom();
+				return;
+			}
 			towerModel.Sell();
 			Close();
 		}

@@ -119,6 +119,11 @@ namespace Items
 			{
 				return false;
 			}
+			// Don't spend gold if the bag has no room for the item.
+			if (ItemInventory.Instance.IsFull)
+			{
+				return false;
+			}
 			if (!TrySpendGold(buyCost))
 			{
 				return false;

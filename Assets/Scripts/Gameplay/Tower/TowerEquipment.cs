@@ -83,6 +83,12 @@ namespace Gameplay
 			}
 		}
 
+		// True when the inventory has room for every equipped item, so selling won't lose any.
+		public bool CanReturnAllToInventory()
+		{
+			return ItemInventory.Instance.FreeSlots >= equipped.Count;
+		}
+
 		// Sell / despawn while items are equipped: hand them back to the inventory so nothing is lost.
 		public void ReturnAllToInventory()
 		{

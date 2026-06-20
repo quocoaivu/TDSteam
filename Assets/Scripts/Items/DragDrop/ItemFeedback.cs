@@ -18,6 +18,16 @@ namespace Items
 			Show("Không đủ vàng");
 		}
 
+		public static void InventoryFull()
+		{
+			Show("Túi đồ đã đầy");
+		}
+
+		public static void InventoryNoRoom()
+		{
+			Show("Túi đồ không đủ chỗ");
+		}
+
 		// Maps a tower equip rejection to a player-facing message.
 		public static void Equip(TowerEquipment.EquipBlock block)
 		{

@@ -39,6 +39,8 @@ namespace Items
 			{
 				return;
 			}
+			// Carry takes over with its own per-tower preview; drop the hover's class-wide highlight.
+			Gameplay.TowerHighlight.ClearAll();
 			ItemCarryController.Instance.PickUp(offer, DragSource.Shop, panel, this, null, panel);
 		}
 
@@ -82,7 +84,9 @@ namespace Items
 			}
 		}
 
-		// Hover highlight: scale the icon up. SetUpdate(true) so it animates while the shop pauses the game.
+		// Hover highlight: scale the icon up and pulse every map tower this item fits. SetUpdate(true) so the
+		// icon animates while the shop pauses the game. Skipped while carrying an item (the carry has its own
+		// per-tower preview, and the shop falls through to clicks then).
 		public void OnPointerEnter(PointerEventData eventData)
 		{
 			if (offer == null || iconImage == null)
@@ -91,10 +95,15 @@ namespace Items
 			}
 			iconImage.transform.DOKill();
 			iconImage.transform.DOScale(hoverScale, hoverDuration).SetUpdate(true);
+			if (!ItemCarryController.IsCarryingItem)
+			{
+				Gameplay.TowerHighlight.HighlightClass(offer.towerID);
+			}
 		}
 
 		public void OnPointerExit(PointerEventData eventData)
 		{
+			Gameplay.TowerHighlight.ClearAll();
 			if (iconImage == null)
 			{
 				return;

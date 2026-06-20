@@ -22,7 +22,11 @@ namespace Items
 			{
 				return;
 			}
-			ItemInventory.Instance.Add(item);
+			// Bag full: the drop is lost (fixed-size inventory).
+			if (!ItemInventory.Instance.Add(item))
+			{
+				return;
+			}
 			ShowDropVisual(position, item.name);
 		}
 

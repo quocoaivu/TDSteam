@@ -61,18 +61,31 @@ namespace Items
 					RefreshAll();
 					return true;
 				}
-				// The only way TryBuy fails here (shop ref is set, offer in stock) is too little gold.
-				ItemFeedback.NotEnoughGold();
-				return false;
-			case DragSource.TowerSlot:
-				if (carrier.SourceEquipment != null)
+				// TryBuy fails when the bag is full or there isn't enough gold.
+				if (ItemInventory.Instance.IsFull)
 				{
-					carrier.SourceEquipment.Unequip(item);
-					ItemInventory.Instance.Add(item);
-					RefreshAll();
-					return true;
+					ItemFeedback.InventoryFull();
+				}
+				else
+				{
+					ItemFeedback.NotEnoughGold();
 				}
 				return false;
+			case DragSource.TowerSlot:
+				if (carrier.SourceEquipment == null)
+				{
+					return false;
+				}
+				// Don't unequip into a full bag, or the item would be lost.
+				if (ItemInventory.Instance.IsFull)
+				{
+					ItemFeedback.InventoryFull();
+					return false;
+				}
+				carrier.SourceEquipment.Unequip(item);
+				ItemInventory.Instance.Add(item);
+				RefreshAll();
+				return true;
 			default:
 				// Inventory -> inventory: nothing to do.
 				return false;
@@ -82,25 +95,39 @@ namespace Items
 		private void RefreshAll()
 		{
 			IReadOnlyList<TowerItem> items = ItemInventory.Instance.Items;
-			EnsurePool(items.Count);
-			// Stack cells top-down ourselves (no Layout Group component needed). Cells anchor top-center
-			// with pivot at their top, so anchoredPosition.y = -i * step places them under each other.
+			// Fixed grid of slots; the bag never holds more than this (full adds are rejected).
+			int slotCount = ItemInventory.CAPACITY;
+			EnsurePool(slotCount);
+			// Lay cells out in a grid ourselves (no Layout Group component needed). Cells anchor top-left with
+			// pivot at their top-left, so column * step goes right and -row * step goes down. Slots past the
+			// item count show as empty frames.
 			for (int i = 0; i < cellPool.Count; i++)
 			{
-				bool used = (i < items.Count);
-				cellPool[i].gameObject.SetActive(used);
-				if (used)
+				bool visible = (i < slotCount);
+				cellPool[i].gameObject.SetActive(visible);
+				if (!visible)
+				{
+					continue;
+				}
+				if (i < items.Count)
 				{
 					cellPool[i].Bind(items[i]);
-					RectTransform rt = cellPool[i].transform as RectTransform;
-					rt.anchoredPosition = new Vector2(0f, -i * CELL_STEP);
 				}
+				else
+				{
+					cellPool[i].Clear();
+				}
+				RectTransform rt = cellPool[i].transform as RectTransform;
+				int column = i % COLUMNS;
+				int row = i / COLUMNS;
+				rt.anchoredPosition = new Vector2(column * CELL_STEP, -row * CELL_STEP);
 			}
-			// Size the content so the ScrollRect can scroll when the list is long.
+			// Size the content to the grid (COLUMNS wide, as many rows as the slots need).
 			RectTransform content = cellContainer as RectTransform;
 			if (content != null)
 			{
-				content.sizeDelta = new Vector2(content.sizeDelta.x, items.Count * CELL_STEP);
+				int rows = (slotCount + COLUMNS - 1) / COLUMNS;
+				content.sizeDelta = new Vector2(COLUMNS * CELL_STEP, rows * CELL_STEP);
 			}
 			if (emptyLabel != null)
 			{
@@ -153,8 +180,11 @@ namespace Items
 		[SerializeField]
 		private GameObject emptyLabel;
 
-		// Cell height (64 in ItemCell.prefab) + spacing between cells.
+		// Cell size (64 in ItemCell.prefab) + spacing between cells.
 		private const float CELL_STEP = 72f;
+
+		// Items per row in the inventory grid.
+		private const int COLUMNS = 3;
 
 		private readonly List<ItemInventoryCell> cellPool = new List<ItemInventoryCell>();
 	}

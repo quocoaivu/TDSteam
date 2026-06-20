@@ -29,7 +29,9 @@ namespace Gameplay
 		{
 			foreach (ControlTowerButtonController controllTowerButtonController in listControllButton)
 			{
-				if (!controllTowerButtonController.Equals(NoDisableButton))
+				// Skip null entries: the retired upgrade buttons may have been deleted with the tower popup's
+				// ContentHolder, leaving holes in this serialized list.
+				if (controllTowerButtonController != null && controllTowerButtonController != NoDisableButton)
 				{
 					controllTowerButtonController.DisableConfirm();
 				}
@@ -40,7 +42,10 @@ namespace Gameplay
 		{
 			foreach (ControlTowerButtonController controllTowerButtonController in listControllButton)
 			{
-				controllTowerButtonController.DisableConfirm();
+				if (controllTowerButtonController != null)
+				{
+					controllTowerButtonController.DisableConfirm();
+				}
 			}
 		}
 
@@ -54,7 +59,10 @@ namespace Gameplay
 		{
 			foreach (ControlTowerButtonController controllTowerButtonController in listControllButton)
 			{
-				controllTowerButtonController.UpdateBuyState();
+				if (controllTowerButtonController != null)
+				{
+					controllTowerButtonController.UpdateBuyState();
+				}
 			}
 		}
 

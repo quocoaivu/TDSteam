@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Items
@@ -29,19 +30,26 @@ namespace Items
 			}
 		}
 
+		// Fired whenever the bag changes so an always-on inventory UI refreshes itself. Needed because some
+		// changes don't go through the panel (e.g. items returned to the bag when a tower is sold).
+		public event Action OnChanged;
+
 		public void Add(TowerItem item)
 		{
 			items.Add(item);
+			OnChanged?.Invoke();
 		}
 
 		public void Remove(TowerItem item)
 		{
 			items.Remove(item);
+			OnChanged?.Invoke();
 		}
 
 		public void Clear()
 		{
 			items.Clear();
+			OnChanged?.Invoke();
 		}
 
 		private readonly List<TowerItem> items = new List<TowerItem>();

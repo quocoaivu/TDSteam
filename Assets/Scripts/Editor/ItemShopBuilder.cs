@@ -51,9 +51,19 @@ namespace ItemsEditor
 				return;
 			}
 
+			// The panel is a UI dialog (GameplayDialogHandler) so its root must be a RectTransform under a
+			// Canvas. A plain GameObject (only Transform) means it wasn't created as a UI element.
+			RectTransform rootRect = selected.GetComponent<RectTransform>();
+			if (rootRect == null)
+			{
+				EditorUtility.DisplayDialog("Item Shop Builder",
+					"GameObject này không phải UI object (thiếu RectTransform). Hãy đặt ItemShopPanel làm con của một Canvas " +
+					"(chuột phải Canvas > UI > ... hoặc Create Empty rồi Add Component > Rect Transform) rồi chạy lại.", "OK");
+				return;
+			}
+
 			// Normalize the panel root so it exactly covers the canvas; otherwise a mis-sized root (or a
 			// non-1 localScale) makes the whole shop look huge relative to the map.
-			RectTransform rootRect = selected.GetComponent<RectTransform>();
 			StretchFull(rootRect);
 			rootRect.localScale = Vector3.one;
 
@@ -95,11 +105,16 @@ namespace ItemsEditor
 
 			BuildClose(window.transform, panel);
 
-			WirePanel(panel, offers, rerollButton, rerollCostText, goldText);
+			WirePanel(panel, offers, rerollButton, rerollCostText, goldText, window);
+
+			// Start hidden: the panel's full-screen backdrop would otherwise eat all clicks on the HUD.
+			// OpenShop() reactivates it on demand.
+			selected.SetActive(false);
 
 			EditorUtility.SetDirty(panel);
 			EditorSceneMarkDirty();
-			Debug.Log("ItemShopBuilder: dựng xong 3 offer + reroll + close + gold, wire vào panel. Nhớ Save scene. " +
+			Debug.Log("ItemShopBuilder: dựng xong 3 offer + reroll + close + gold, wire vào panel. Panel đã được TẮT " +
+				"(inactive) để không chặn click HUD. Nhớ Save scene. " +
 				"Còn lại THỦ CÔNG: 1 nút gameplay trên HUD OnClick -> ItemShopPanel.OpenShop().");
 		}
 
@@ -120,6 +135,18 @@ namespace ItemsEditor
 			TMP_Text nameText = NewText(offerGo.transform, "Name", "—", 18f, TextAlignmentOptions.Top);
 			StretchFull(nameText.rectTransform);
 
+			// Item icon (runtime loads the sprite from the spec's icon key; hidden when sold).
+			GameObject iconGo = NewUIObject("Icon", offerGo.transform);
+			RectTransform iconRect = iconGo.GetComponent<RectTransform>();
+			iconRect.anchorMin = new Vector2(0.5f, 0.5f);
+			iconRect.anchorMax = new Vector2(0.5f, 0.5f);
+			iconRect.pivot = new Vector2(0.5f, 0.5f);
+			iconRect.sizeDelta = new Vector2(120f, 120f);
+			iconRect.anchoredPosition = Vector2.zero;
+			Image iconImage = iconGo.AddComponent<Image>();
+			iconImage.raycastTarget = false;
+			iconImage.preserveAspect = true;
+
 			// Gold cost (hidden once sold).
 			TMP_Text costText = NewText(offerGo.transform, "Cost", "0", 22f, TextAlignmentOptions.Bottom);
 			StretchFull(costText.rectTransform);
@@ -137,6 +164,7 @@ namespace ItemsEditor
 			so.FindProperty("button").objectReferenceValue = button;
 			so.FindProperty("nameText").objectReferenceValue = nameText;
 			so.FindProperty("costText").objectReferenceValue = costText;
+			so.FindProperty("iconImage").objectReferenceValue = iconImage;
 			so.FindProperty("soldOverlay").objectReferenceValue = sold;
 			so.ApplyModifiedPropertiesWithoutUndo();
 
@@ -190,7 +218,7 @@ namespace ItemsEditor
 			UnityEventTools.AddPersistentListener(button.onClick, panel.CloseWithScaleAnimation);
 		}
 
-		private static void WirePanel(ItemShopPanel panel, List<ItemShopOfferButton> offers, Button rerollButton, TMP_Text rerollCostText, TMP_Text goldText)
+		private static void WirePanel(ItemShopPanel panel, List<ItemShopOfferButton> offers, Button rerollButton, TMP_Text rerollCostText, TMP_Text goldText, GameObject contentHolder)
 		{
 			SerializedObject so = new SerializedObject(panel);
 			SerializedProperty list = so.FindProperty("offerButtons");
@@ -203,6 +231,12 @@ namespace ItemsEditor
 			so.FindProperty("rerollButton").objectReferenceValue = rerollButton;
 			so.FindProperty("rerollCostText").objectReferenceValue = rerollCostText;
 			so.FindProperty("goldText").objectReferenceValue = goldText;
+			// contentHolder is the centered window GameplayDialogHandler scales for the open/close animation.
+			SerializedProperty content = so.FindProperty("contentHolder");
+			if (content != null)
+			{
+				content.objectReferenceValue = contentHolder;
+			}
 			so.ApplyModifiedPropertiesWithoutUndo();
 		}
 

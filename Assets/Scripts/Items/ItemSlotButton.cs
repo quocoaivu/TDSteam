@@ -1,6 +1,7 @@
 using Gameplay;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Items
 {
@@ -20,6 +21,11 @@ namespace Items
 			{
 				emptyOverlay.SetActive(item == null);
 			}
+			EnsureIcon();
+			if (iconImage != null)
+			{
+				SetIcon(iconImage, item != null ? item.icon : null);
+			}
 			if (draggable != null)
 			{
 				if (item != null)
@@ -33,11 +39,55 @@ namespace Items
 			}
 		}
 
+		// The hand-built slots in the scene have no icon Image wired, so make sure one exists: use the wired
+		// reference if set, else reuse a child named "Icon", else create a centered one on top (last sibling)
+		// so the equipped item's sprite reads like the shop/inventory icons with no Inspector wiring.
+		private void EnsureIcon()
+		{
+			if (iconImage != null)
+			{
+				return;
+			}
+			Transform existing = base.transform.Find("Icon");
+			if (existing != null)
+			{
+				iconImage = existing.GetComponent<Image>();
+				if (iconImage != null)
+				{
+					return;
+				}
+			}
+			GameObject go = new GameObject("Icon", typeof(RectTransform));
+			go.transform.SetParent(base.transform, false);
+			RectTransform rect = go.GetComponent<RectTransform>();
+			rect.anchorMin = new Vector2(0.5f, 0.5f);
+			rect.anchorMax = new Vector2(0.5f, 0.5f);
+			rect.pivot = new Vector2(0.5f, 0.5f);
+			rect.sizeDelta = new Vector2(96f, 96f);
+			rect.anchoredPosition = Vector2.zero;
+			go.transform.SetAsLastSibling();
+			iconImage = go.AddComponent<Image>();
+			iconImage.raycastTarget = false;
+			iconImage.preserveAspect = true;
+		}
+
+		// Loads the item's sprite from Resources (via AssetLoader) and shows it. Hides the Image when there is
+		// no key (empty slot) or the sprite is missing, so no white quad or leftover sprite lingers.
+		private static void SetIcon(Image image, string iconKey)
+		{
+			Sprite sprite = string.IsNullOrEmpty(iconKey) ? null : Common.AssetLoader.Load<Sprite>(iconKey);
+			image.sprite = sprite;
+			image.enabled = sprite != null;
+		}
+
 		[SerializeField]
 		private TMP_Text nameText;
 
 		[SerializeField]
 		private GameObject emptyOverlay;
+
+		[SerializeField]
+		private Image iconImage;
 
 		[SerializeField]
 		private DraggableItem draggable;

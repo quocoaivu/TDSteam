@@ -110,7 +110,9 @@ namespace Gameplay
 			{
 				return;
 			}
-			if (MonoSingleton<GameRecord>.Instance.IsAnyPopupOpen)
+			// While carrying an item, the tap that equips it on a tower must still be processed even though the
+			// shop/inventory popup is open. Every other popup state keeps blocking gameplay input.
+			if (MonoSingleton<GameRecord>.Instance.IsAnyPopupOpen && !Items.ItemCarryController.IsCarryingItem)
 			{
 				return;
 			}
@@ -288,7 +290,11 @@ namespace Gameplay
 			TapInputPhase clickInputPhase = inputData.clickInputPhase;
 			if (clickInputPhase == TapInputPhase.Up)
 			{
-				if (HerosDirector.Instance.HeroIDChoosing != -1)
+				if (Items.ItemCarryController.IsCarryingItem)
+				{
+					OnHandleInput_PlaceCarriedItem(inputData);
+				}
+				else if (HerosDirector.Instance.HeroIDChoosing != -1)
 				{
 					OnHandleInput_ClickMapToMoveHero(inputData);
 				}
@@ -408,6 +414,18 @@ namespace Gameplay
 		public void OnHandleInput_ClickTower(TapInputRecord inputData)
 		{
 			inputData.entityHit.transform.gameObject.GetComponent<TurretEntity>().ChooseTower();
+		}
+
+		// While carrying a shop item, a tap on a tower equips it there instead of opening the tower popup.
+		// Tapping anywhere else does nothing (keep carrying); ESC drops the item.
+		public void OnHandleInput_PlaceCarriedItem(TapInputRecord inputData)
+		{
+			if (!inputData.CompareTag(inputData.entityHit, GeneralVariable.GeneralDefine.TOWER_TAG))
+			{
+				return;
+			}
+			TurretEntity tower = inputData.entityHit.transform.gameObject.GetComponent<TurretEntity>();
+			Items.ItemCarryController.Instance.TryEquipOn(tower);
 		}
 
 		public void OnHandleInput_ClickSelectHero(TapInputRecord inputData)

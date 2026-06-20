@@ -355,6 +355,12 @@ namespace Gameplay
 				{
 					return;
 				}
+				// Carrying an item: ESC drops it instead of opening the settings popup.
+				if (Items.ItemCarryController.IsCarryingItem)
+				{
+					Items.ItemCarryController.Instance.Release();
+					return;
+				}
 				if (MonoSingleton<LifespanSurface>.Instance.NotifyPopupController.isOpen)
 				{
 					MonoSingleton<LifespanSurface>.Instance.NotifyPopupController.Close();

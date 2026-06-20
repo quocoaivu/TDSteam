@@ -30,14 +30,38 @@ namespace Gameplay
 			this.buffHolder = buffHolder;
 		}
 
+		// Why an item can't be equipped here, for player feedback. None = it fits.
+		public enum EquipBlock
+		{
+			None,
+			WrongTower,
+			AlreadyEquipped,
+			NoFreeSlot
+		}
+
+		// Reason this item can't go on this tower (None = it fits). Checked in priority order so the message
+		// is the most relevant one (wrong tower before full, etc.).
+		public EquipBlock GetEquipBlock(TowerItem item)
+		{
+			if (item == null || tower == null || item.towerID != tower.Id)
+			{
+				return EquipBlock.WrongTower;
+			}
+			if (equipped.Contains(item))
+			{
+				return EquipBlock.AlreadyEquipped;
+			}
+			if (equipped.Count >= SLOT_COUNT)
+			{
+				return EquipBlock.NoFreeSlot;
+			}
+			return EquipBlock.None;
+		}
+
 		// True when the item fits this tower, there is a free slot, and it is not already equipped here.
 		public bool CanEquip(TowerItem item)
 		{
-			return item != null
-				&& tower != null
-				&& item.towerID == tower.Id
-				&& equipped.Count < SLOT_COUNT
-				&& !equipped.Contains(item);
+			return GetEquipBlock(item) == EquipBlock.None;
 		}
 
 		public bool Equip(TowerItem item)

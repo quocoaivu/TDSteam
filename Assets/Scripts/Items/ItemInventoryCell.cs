@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Items
 {
@@ -19,10 +20,23 @@ namespace Items
 			{
 				levelText.SetText(string.Format("+{0}% {1}", item.statValue, StatLabel(item.statType)));
 			}
+			if (iconImage != null)
+			{
+				SetIcon(iconImage, item.icon);
+			}
 			if (draggable != null)
 			{
 				draggable.SetInventoryPayload(item);
 			}
+		}
+
+		// Loads the item's sprite from Resources (via AssetLoader) and shows it. Hides the Image when there is
+		// no key or the sprite is missing, so no white quad or leftover sprite lingers.
+		private static void SetIcon(Image image, string iconKey)
+		{
+			Sprite sprite = string.IsNullOrEmpty(iconKey) ? null : Common.AssetLoader.Load<Sprite>(iconKey);
+			image.sprite = sprite;
+			image.enabled = sprite != null;
 		}
 
 		private static string StatLabel(StatType statType)
@@ -43,6 +57,9 @@ namespace Items
 
 		[SerializeField]
 		private TMP_Text levelText;
+
+		[SerializeField]
+		private Image iconImage;
 
 		[SerializeField]
 		private DraggableItem draggable;

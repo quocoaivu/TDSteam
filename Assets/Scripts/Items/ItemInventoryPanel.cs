@@ -1,15 +1,37 @@
 using System.Collections.Generic;
 using Gameplay;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Items
 {
-	// Popup listing every item the player holds this run, one cell per item. Cells are draggable (drag
-	// onto a tower to equip). Also a drop target: dropping a shop offer here buys it, dropping an
-	// equipped item here unequips it. Spawns cells from a prefab into a container and pools them across
-	// opens. Open from a HUD button -> OpenInventory(). Mirrors ItemShopPanel.
-	public class ItemInventoryPanel : GameplayDialogHandler, IItemDropTarget
+	// Popup listing every item the player holds this run, one cell per item. Click a cell to pick it up
+	// (carry it onto a tower to equip). Also a drop target: clicking it while carrying a shop offer buys it
+	// into the bag, carrying an equipped item here unequips it. Spawns cells from a prefab into a container
+	// and pools them across opens. Open from a HUD button -> OpenInventory(). Mirrors ItemShopPanel.
+	public class ItemInventoryPanel : GameplayDialogHandler, IItemDropTarget, IItemPanel, IPointerClickHandler
 	{
+		// Refresh whenever the bag changes (e.g. items returned from a sold tower don't go through this panel).
+		private void OnEnable()
+		{
+			ItemInventory.Instance.OnChanged += RefreshAll;
+			RefreshAll();
+		}
+
+		private void OnDisable()
+		{
+			ItemInventory.Instance.OnChanged -= RefreshAll;
+		}
+
+		// Clicking the panel while carrying drops the item here (clicks on a cell are routed here too).
+		public void OnPointerClick(PointerEventData eventData)
+		{
+			if (ItemCarryController.IsCarryingItem)
+			{
+				ItemCarryController.Instance.DropOnto(this);
+			}
+		}
+
 		// Rebuilds the cell list from the current inventory, then plays the popup open animation.
 		public void OpenInventory()
 		{
@@ -23,27 +45,29 @@ namespace Items
 			RefreshAll();
 		}
 
-		public bool OnItemDropped(DraggableItem dragged)
+		public bool OnItemDropped(ItemCarryController carrier)
 		{
-			TowerItem item = dragged.Payload;
+			TowerItem item = carrier.Carried;
 			if (item == null)
 			{
 				return false;
 			}
-			switch (dragged.Source)
+			switch (carrier.Source)
 			{
 			case DragSource.Shop:
 				// Buying adds the item to the inventory and marks the offer sold.
-				if (dragged.Shop != null && dragged.Shop.TryBuy(dragged.ShopOffer))
+				if (carrier.Shop != null && carrier.Shop.TryBuy(carrier.ShopOffer))
 				{
 					RefreshAll();
 					return true;
 				}
+				// The only way TryBuy fails here (shop ref is set, offer in stock) is too little gold.
+				ItemFeedback.NotEnoughGold();
 				return false;
 			case DragSource.TowerSlot:
-				if (dragged.SourceEquipment != null)
+				if (carrier.SourceEquipment != null)
 				{
-					dragged.SourceEquipment.Unequip(item);
+					carrier.SourceEquipment.Unequip(item);
 					ItemInventory.Instance.Add(item);
 					RefreshAll();
 					return true;

@@ -1,13 +1,12 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Items
 {
 	// Full-screen overlay that draws a single "ghost" of the item being dragged, following the cursor.
-	// Self-builds its canvas + ghost on first use so no scene wiring is required. The ghost never blocks
-	// raycasts, so drop targets underneath still receive the pointer. One ghost, reused (pooled) across
-	// drags per the project's no-Instantiate-in-gameplay rule.
+	// The ghost shows the item's icon sprite. Self-builds its canvas + ghost on first use so no scene
+	// wiring is required. The ghost never blocks raycasts, so drop targets underneath still receive the
+	// pointer. One ghost, reused (pooled) across drags per the project's no-Instantiate-in-gameplay rule.
 	public class DragLayer : MonoBehaviour
 	{
 		public static DragLayer Instance
@@ -27,8 +26,11 @@ namespace Items
 
 		public void BeginDrag(TowerItem item)
 		{
+			Sprite sprite = (item != null && !string.IsNullOrEmpty(item.icon))
+				? Common.AssetLoader.Load<Sprite>(item.icon) : null;
+			ghostImage.sprite = sprite;
+			ghostImage.enabled = sprite != null;
 			ghost.SetActive(true);
-			ghostLabel.SetText(item != null ? item.name : string.Empty);
 		}
 
 		public void MoveTo(Vector2 screenPosition)
@@ -51,22 +53,13 @@ namespace Items
 			ghost = new GameObject("Ghost");
 			ghost.transform.SetParent(base.transform, false);
 			ghostRect = ghost.AddComponent<RectTransform>();
-			ghostRect.sizeDelta = new Vector2(220f, 56f);
+			ghostRect.sizeDelta = new Vector2(100f, 100f);
 
-			Image bg = ghost.AddComponent<Image>();
-			bg.color = new Color(0f, 0f, 0f, 0.6f);
-			bg.raycastTarget = false;
-
-			GameObject labelGo = new GameObject("Label");
-			labelGo.transform.SetParent(ghost.transform, false);
-			RectTransform labelRect = labelGo.AddComponent<RectTransform>();
-			labelRect.anchorMin = Vector2.zero;
-			labelRect.anchorMax = Vector2.one;
-			labelRect.sizeDelta = Vector2.zero;
-			ghostLabel = labelGo.AddComponent<TextMeshProUGUI>();
-			ghostLabel.alignment = TextAlignmentOptions.Center;
-			ghostLabel.fontSize = 24f;
-			ghostLabel.raycastTarget = false;
+			ghostImage = ghost.AddComponent<Image>();
+			ghostImage.raycastTarget = false;
+			ghostImage.preserveAspect = true;
+			// Slightly translucent so it reads as a held "ghost".
+			ghostImage.color = new Color(1f, 1f, 1f, 0.85f);
 
 			ghost.SetActive(false);
 		}
@@ -77,7 +70,7 @@ namespace Items
 
 		private RectTransform ghostRect;
 
-		private TextMeshProUGUI ghostLabel;
+		private Image ghostImage;
 
 		[UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
 		private static void ResetStatics()

@@ -98,12 +98,14 @@ namespace Items
 			if (!ItemCarryController.IsCarryingItem)
 			{
 				Gameplay.TowerHighlight.HighlightClass(offer.towerID);
+				ItemTooltip.Show(offer, transform as RectTransform);
 			}
 		}
 
 		public void OnPointerExit(PointerEventData eventData)
 		{
 			Gameplay.TowerHighlight.ClearAll();
+			ItemTooltip.Hide();
 			if (iconImage == null)
 			{
 				return;

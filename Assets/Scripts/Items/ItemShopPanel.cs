@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using GameCore;
 using Gameplay;
 using TMPro;
@@ -8,17 +9,17 @@ using UnityEngine.UI;
 
 namespace Items
 {
-	// In-match shop to buy tower items with gold. Shows N random offers; buying spends gold and adds the
-	// item to the in-run inventory; reroll spends gold to regenerate the offers. Extends GameplayDialogHandler
-	// like the other gameplay popups. Open it from a gameplay button -> OpenShop(). Mirrors TowerItemPanel.
+	// In-match shop on the HUD: a "tree" button that always shows on the map and blooms its item offers out
+	// in a radial arc when tapped. Tapping the tree again (or clicking the map) collapses the items back into
+	// the tree; the tree itself never hides. Buying an item picks it up onto the cursor (ItemCarryController)
+	// and gold is spent when it's placed on a tower; reroll spends gold to regenerate the offers. It is NOT a
+	// blocking popup (no backdrop, no game pause) — only the items toggle. Mirrors TowerItemPanel.
 	public class ItemShopPanel : GameplayDialogHandler, IItemPanel
 	{
-		// While an item is on the cursor, let clicks fall through the WHOLE shop so a tap reaches a tower on
-		// the map (the shop's window/backdrop images otherwise eat every click). The shop stays fully visible;
-		// only its raycast blocking is turned off. Self-managed via a CanvasGroup so no scene wiring is needed.
+		// While an item is on the cursor, let clicks fall through the tree so a tap reaches a tower on the map.
+		// Otherwise the items are clickable while open. Self-managed via a CanvasGroup so no scene wiring needed.
 		public override void Update()
 		{
-			base.Update();
 			if (canvasGroup == null)
 			{
 				canvasGroup = GetComponent<CanvasGroup>();
@@ -28,52 +29,137 @@ namespace Items
 				}
 			}
 			canvasGroup.blocksRaycasts = !ItemCarryController.IsCarryingItem;
-			UpdateCloseOnClickOutside();
+			if (shopOpen)
+			{
+				UpdateCloseOnClickOutside();
+			}
 		}
 
-		// A click released outside the shop window (on the map or the dim backdrop) closes the shop, like
-		// dismissing a popup. Skipped while carrying an item (those clicks place the item, not dismiss). The
-		// window rect is the offers' shared parent, so no extra scene wiring is needed.
+		// Tree click toggles the items. Ignored while carrying (that click is placing the item on a tower).
+		// Wire the tree Button's OnClick to this.
+		public void ToggleShop()
+		{
+			if (ItemCarryController.IsCarryingItem)
+			{
+				return;
+			}
+			if (shopOpen)
+			{
+				CloseShop();
+			}
+			else
+			{
+				OpenShop();
+			}
+		}
+
+		// Blooms the items out with a fresh set of offers. Kept public so a HUD button can also open it.
+		public void OpenShop()
+		{
+			if (shopOpen)
+			{
+				return;
+			}
+			shopOpen = true;
+			SetChrome(true);
+			RollOffers();
+			PunchTree();
+			if (radialLayout != null)
+			{
+				radialLayout.PlayOpen();
+			}
+		}
+
+		// Collapses the items back into the tree. The tree stays on screen.
+		public void CloseShop()
+		{
+			if (!shopOpen)
+			{
+				return;
+			}
+			shopOpen = false;
+			// Hide the chrome after the items finish collapsing so it doesn't pop out before them.
+			if (radialLayout != null)
+			{
+				radialLayout.PlayClose(() => SetChrome(false));
+			}
+			else
+			{
+				SetChrome(false);
+			}
+		}
+
+		private void SetChrome(bool visible)
+		{
+			if (shopChrome != null)
+			{
+				shopChrome.SetActive(visible);
+			}
+		}
+
+		// Kept so the scene's existing close wiring still collapses the items (the tree is never hidden now).
+		public override void CloseWithScaleAnimation()
+		{
+			CloseShop();
+		}
+
+		// A click released away from the tree and all item slots collapses the open shop, like tapping off a
+		// menu. Skipped while carrying (those clicks place the item). Requires press AND release both off the
+		// shop so the tap that opens it can't immediately close it and a drag off a slot doesn't dismiss it.
 		private void UpdateCloseOnClickOutside()
 		{
 			if (ItemCarryController.IsCarryingItem)
 			{
-				pressedOutsideWindow = false;
+				pressedOutsideShop = false;
 				return;
 			}
 			Pointer pointer = Pointer.current;
-			RectTransform window = WindowRect();
-			if (pointer == null || window == null)
+			if (pointer == null)
 			{
 				return;
 			}
-			Camera cam = CanvasCamera();
 			Vector2 screenPos = pointer.position.ReadValue();
-			// Require the press AND release to both land outside the window so the very click that opened the
-			// shop (its press was on the HUD button, before the shop existed) can't immediately close it, and a
-			// drag started inside the window doesn't dismiss it either.
 			if (pointer.press.wasPressedThisFrame)
 			{
-				pressedOutsideWindow = !RectTransformUtility.RectangleContainsScreenPoint(window, screenPos, cam);
+				pressedOutsideShop = !ShopContainsPoint(screenPos);
 			}
 			if (pointer.press.wasReleasedThisFrame)
 			{
-				if (pressedOutsideWindow && !RectTransformUtility.RectangleContainsScreenPoint(window, screenPos, cam))
+				if (pressedOutsideShop && !ShopContainsPoint(screenPos))
 				{
-					CloseWithScaleAnimation();
+					CloseShop();
 				}
-				pressedOutsideWindow = false;
+				pressedOutsideShop = false;
 			}
 		}
 
-		// The window that holds the offers (their shared parent). Null until the shop is built.
-		private RectTransform WindowRect()
+		// True when the screen point is over the tree, an item slot, or the reroll button (the shop's
+		// interactive area). Clicks anywhere else collapse the shop.
+		private bool ShopContainsPoint(Vector2 screenPos)
 		{
-			if (offerButtons.Count == 0 || offerButtons[0] == null)
+			Camera cam = CanvasCamera();
+			if (RectContains(transform as RectTransform, screenPos, cam))
 			{
-				return null;
+				return true;
 			}
-			return offerButtons[0].transform.parent as RectTransform;
+			if (rerollButton != null && RectContains(rerollButton.transform as RectTransform, screenPos, cam))
+			{
+				return true;
+			}
+			for (int i = 0; i < offerButtons.Count; i++)
+			{
+				RectTransform slot = (offerButtons[i] != null) ? offerButtons[i].transform as RectTransform : null;
+				if (RectContains(slot, screenPos, cam))
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		private static bool RectContains(RectTransform rect, Vector2 screenPos, Camera cam)
+		{
+			return rect != null && RectTransformUtility.RectangleContainsScreenPoint(rect, screenPos, cam);
 		}
 
 		// Camera to use for screen-point hit tests: null for a Screen Space - Overlay canvas, otherwise the
@@ -88,15 +174,16 @@ namespace Items
 			return null;
 		}
 
-		// Opens the shop with a fresh set of offers.
-		public void OpenShop()
+		// Quick squash-and-stretch on the tree when the items bloom. Skipped when no target is assigned.
+		private void PunchTree()
 		{
-			for (int i = 0; i < offerButtons.Count; i++)
+			if (treePunchTarget == null)
 			{
-				offerButtons[i].Init(this);
+				return;
 			}
-			RollOffers();
-			OpenWithScaleAnimation();
+			treePunchTarget.DOKill();
+			treePunchTarget.localScale = Vector3.one;
+			treePunchTarget.DOPunchScale(Vector3.one * 0.12f, 0.2f, 5).SetUpdate(true);
 		}
 
 		// Rebuilds the offer buttons in place (after a purchase elsewhere changed gold/offers).
@@ -219,6 +306,19 @@ namespace Items
 		[SerializeField]
 		private List<ItemShopOfferButton> offerButtons = new List<ItemShopOfferButton>();
 
+		// Radial bloom layout on the ItemContainer that holds the item slots.
+		[SerializeField]
+		private RadialShopLayout radialLayout;
+
+		// The "tree" graphic to punch-scale when the items bloom (usually the tree Image). Optional.
+		[SerializeField]
+		private Transform treePunchTarget;
+
+		// Holder for the shop chrome (reroll + gold) shown only while the shop is open, so a closed tree shows
+		// nothing but the tree. Optional.
+		[SerializeField]
+		private GameObject shopChrome;
+
 		[SerializeField]
 		private int buyCost = 100;
 
@@ -238,6 +338,8 @@ namespace Items
 
 		private CanvasGroup canvasGroup;
 
-		private bool pressedOutsideWindow;
+		private bool shopOpen;
+
+		private bool pressedOutsideShop;
 	}
 }

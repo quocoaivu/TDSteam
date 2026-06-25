@@ -15,8 +15,7 @@ namespace Tutorial
 		protected override bool ShouldShowTutorial()
 		{
 			return !TutorialStore.Instance.GetTutorialStatus(tutorialID)
-				&& MapProgressStore.Instance.GetMapIDUnlocked() >= 2
-				&& PlayerPrefs.GetInt(tutorialID, 0) != 1;
+				&& MapProgressStore.Instance.GetMapIDUnlocked() >= 2;
 		}
 
 		private string tutorialID = TutorialStore.TUTORIAL_ID_GO_HERO_CAMP_2ND;

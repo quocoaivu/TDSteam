@@ -10,8 +10,8 @@ namespace Gameplay
 		{
 			towerSourceId = GameKit.GetTowerSourceId(base.TowerModel.Level, base.TowerModel.Id);
 			sqBulletRadius = bulletRadius * bulletRadius;
-			minMagicDam = base.TowerModel.OriginalParameter.damage_Magic_min;
-			maxMagicDam = base.TowerModel.OriginalParameter.damage_Magic_max;
+			minMagicDam = base.TowerModel.OriginalParameter.damage;
+			maxMagicDam = base.TowerModel.OriginalParameter.damage;
 			CalculateParameter();
 		}
 

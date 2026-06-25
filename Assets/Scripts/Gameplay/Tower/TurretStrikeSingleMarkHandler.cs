@@ -13,37 +13,23 @@ namespace Gameplay
 
 		public abstract event Action<ProjectileEntity, EnemyData> OnFireBullet;
 
-		public int BuffedDamagePhysics
+			public int BuffedDamage
 		{
-			get
-			{
-				return (int)UnityEngine.Random.Range(buffedDamagePhysics_min, buffedDamagePhysics_max);
-			}
+			get { return buffedDamage; }
 		}
 
-		public int BuffedDamageMagic
+		// Legacy aliases for code not yet updated.
+		public int BuffedDamagePhysics => base.TowerModel.OriginalParameter.damageType == Parameter.DamageType.Physical ? buffedDamage : 0;
+		public int BuffedDamageMagic => base.TowerModel.OriginalParameter.damageType == Parameter.DamageType.Magic ? buffedDamage : 0;
+
+		public float BuffedCritChance
 		{
-			get
-			{
-				return (int)UnityEngine.Random.Range(buffedDamageMagic_min, buffedDamageMagic_max);
-			}
+			get { return buffedCritChance; }
 		}
 
-		public float BuffedCriticalStrikeChance
-		{
-			get
-			{
-				return (float)((int)buffedCriticalStrikeChance);
-			}
-		}
+		public float BuffedCriticalStrikeChance => buffedCritChance;
 
-		public int BuffedInstantKillChance
-		{
-			get
-			{
-				return buffedInstantKillChance;
-			}
-		}
+		public int BuffedInstantKillChance => 0;
 
 		public EnemyData Target
 		{
@@ -90,10 +76,6 @@ namespace Gameplay
 			{
 				UpdateDamageDecrement();
 			}
-			if (intstantKillRateIncrementBuffKeys.Contains(buffKey))
-			{
-				UpdateInstantKillRate();
-			}
 		}
 
 		private void UpdateDamageIncrement()
@@ -106,12 +88,6 @@ namespace Gameplay
 			damageDecrementPercentage = base.TowerModel.BuffsHolder.GetBuffsValue(damageDecrementPercentageBuffKeys);
 		}
 
-		private void UpdateInstantKillRate()
-		{
-			float buffsValue = base.TowerModel.BuffsHolder.GetBuffsValue(intstantKillRateIncrementBuffKeys);
-			buffedInstantKillChance = base.TowerModel.OriginalParameter.instantKillChance + (int)buffsValue;
-		}
-
 		private void UpdateCritIncrement()
 		{
 			critIncrementPercentage = base.TowerModel.BuffsHolder.GetBuffsValue(critIncrementBuffKeys);
@@ -119,18 +95,11 @@ namespace Gameplay
 
 		private void UpdateBuffDamage()
 		{
-			float num = 1f + (damageIncrementPercentage - damageDecrementPercentage) / 100f;
-			if (num < 0f)
-			{
-				num = 0f;
-			}
-			buffedDamagePhysics_min = (float)base.TowerModel.finalDamagePhysics_min * num;
-			buffedDamagePhysics_max = (float)base.TowerModel.finalDamagePhysics_max * num;
-			buffedDamageMagic_min = (float)base.TowerModel.finalDamageMagic_min * num;
-			buffedDamageMagic_max = (float)base.TowerModel.finalDamageMagic_max * num;
-			// Flat crit % from equipped items adds on top of the scaled base crit.
-			buffedCriticalStrikeChance = (float)base.TowerModel.finalCriticalStrikeChange * num + critIncrementPercentage;
-			buffedInstantKillChance = base.TowerModel.OriginalParameter.instantKillChance;
+			float multiplier = 1f + (damageIncrementPercentage - damageDecrementPercentage) / 100f;
+			if (multiplier < 0f) multiplier = 0f;
+			buffedDamage = (int)(base.TowerModel.finalDamage * multiplier);
+			// Item crit buff adds flat % on top of base crit.
+			buffedCritChance = base.TowerModel.finalCritChance + critIncrementPercentage;
 		}
 
 		public void StartAttack(EnemyData target)
@@ -158,32 +127,15 @@ namespace Gameplay
 			"DamageDecrementCommon"
 		};
 
-		private List<string> intstantKillRateIncrementBuffKeys = new List<string>
-		{
-			"InstantKillRateIncrementCommon"
-		};
-
 		private List<string> critIncrementBuffKeys = new List<string>
 		{
 			"CritIncrementCommon"
 		};
 
 		private float critIncrementPercentage;
-
 		private float damageIncrementPercentage;
-
 		private float damageDecrementPercentage;
-
-		private float buffedDamagePhysics_min;
-
-		private float buffedDamagePhysics_max;
-
-		private float buffedDamageMagic_min;
-
-		private float buffedDamageMagic_max;
-
-		private float buffedCriticalStrikeChance;
-
-		private int buffedInstantKillChance;
+		private int buffedDamage;
+		private float buffedCritChance;
 	}
 }

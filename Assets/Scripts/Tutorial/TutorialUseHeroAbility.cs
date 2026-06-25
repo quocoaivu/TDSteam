@@ -51,13 +51,9 @@ namespace Tutorial
 
 		protected override bool ShouldShowTutorial()
 		{
-			if (FormatDirector.Instance.gameMode != GameFormat.CampaignMode)
-			{
-				return false;
-			}
 			return !TutorialStore.Instance.GetTutorialStatus(tutorialID)
 				&& !MonoSingleton<GameRecord>.Instance.PlayerKnowHowToUseSkill
-				&& MonoSingleton<GameRecord>.Instance.MapID == 0;
+				&& GameplayTutorialDirector.IsFirstPlayTutorialMap();
 		}
 
 		private static string TUTORIAL_USE_HERO_SKILL = "TutorialUseHeroSkill";

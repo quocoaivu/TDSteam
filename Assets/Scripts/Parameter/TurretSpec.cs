@@ -1,79 +1,52 @@
-using System;
-
 namespace Parameter
 {
 	public struct TurretSpec
 	{
+		// --- Identity ---
 		public int id;
-
 		public string name;
+		public int level; // pool index only; not a gameplay tier
 
-		public int level;
+		// --- Core ---
+		public int damage;            // flat damage per shot
+		public float attackSpeed;     // shots per second
+		public float range;           // attack radius in world units
+		public float projectileSpeed; // world units per second (0 = instant/melee)
+		public DamageType damageType;
 
-		public bool unlockUlti2;
+		// --- Targeting ---
+		public TargetPriority targetPriority;
+		public bool canTargetAir;
+		public int pierceCount;       // how many enemies the projectile passes through
+		public bool isRoundAttack;    // tower seeks all enemies in range simultaneously
 
-		public int price;
+		// --- Economy ---
+		public int buildCost;
+		public int sellValue;
 
-		public int reload;
+		// --- Debuff / Special ---
+		public float slowPercent;    // % speed reduction applied on hit
+		public float slowDuration;   // seconds
+		public float poisonDPS;      // damage per second while poisoned
+		public float poisonDuration; // seconds
+		public float critChance;     // % chance to crit
+		public float critMultiplier; // damage multiplier on crit (e.g. 2.0 = double)
 
-		public int ignoreReloadChance;
+		// --- AoE ---
+		public float aoeRadius; // world units; 0 = single target
 
-		public int attackRangeMax;
-
-		public int goldProduce;
-
-		public int autoCollectTime;
-
-		public int damage_Physics_min;
-
-		public int damage_Physics_max;
-
-		public int damage_Magic_min;
-
-		public int damage_Magic_max;
-
-		public int instantKillChance;
-
-		public int criticalStrikeChance;
-
+		// --- Armor pierce (internal, populated by skill tree) ---
 		public int ignoreArmorChance;
 
+		// --- Barracks units (Knights) ---
 		public int unit_health;
-
-		public int unit_armor_physics;
-
-		public int unit_armor_magic;
-
+		public int unit_armor;
+		public int unit_moveSpeed;
+		public int unit_attackRange;
 		public int unit_attackCooldown;
 
-		public int unit_attack_range_min;
-
-		public int unit_attack_range_average;
-
-		public int unit_attack_range_max;
-
-		public int unit_moveSpeed;
-
-		public int unit_dodge_chance;
-
-		public int unit_ignore_armor_chance;
-
-		public string debuffKey;
-
-		public int debuffEffectValue;
-
-		public int debuffEffectDuration;
-
-		public int debuffChance;
-
-		public bool isRoundAttack;
-
-		public bool isAirAttack;
-
-		public bool isMagicAttack;
-
-		public int bulletAoe;
-
-		public int value;
+		// --- Supporter ---
+		public int goldProduce;
+		public int autoCollectTime; // milliseconds
 	}
 }

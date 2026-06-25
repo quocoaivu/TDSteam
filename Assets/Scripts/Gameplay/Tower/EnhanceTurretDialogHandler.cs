@@ -136,7 +136,7 @@ namespace Gameplay
 			}
 			else
 			{
-				component.SetRangeAttackMax((float)_towerModel.OriginalParameter.attackRangeMax / GameRecord.PIXEL_PER_UNIT);
+				component.SetRangeAttackMax(_towerModel.OriginalParameter.range);
 			}
 		}
 

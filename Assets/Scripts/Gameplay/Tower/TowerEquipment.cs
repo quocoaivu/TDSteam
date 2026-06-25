@@ -71,15 +71,22 @@ namespace Gameplay
 				return false;
 			}
 			equipped.Add(item);
-			RecomputeStat(item.statType);
+			for (int i = 0; i < item.statTypes.Length; i++)
+			{
+				RecomputeStat(item.statTypes[i]);
+			}
 			return true;
 		}
 
 		public void Unequip(TowerItem item)
 		{
-			if (equipped.Remove(item))
+			if (!equipped.Remove(item))
 			{
-				RecomputeStat(item.statType);
+				return;
+			}
+			for (int i = 0; i < item.statTypes.Length; i++)
+			{
+				RecomputeStat(item.statTypes[i]);
 			}
 		}
 
@@ -108,16 +115,21 @@ namespace Gameplay
 			RemoveStatBuff(StatType.Crit);
 		}
 
-		// Sums statValue of every equipped item of this type and writes it once to the shared key.
-		// Remove-then-add so the key holds exactly the new total (AddBuff's stack rules can't lower it).
+		// Sums statValue of every equipped item that contributes to this stat type and writes it once to
+		// the shared key. Remove-then-add so the key holds exactly the new total.
 		private void RecomputeStat(StatType statType)
 		{
 			int total = 0;
 			for (int i = 0; i < equipped.Count; i++)
 			{
-				if (equipped[i].statType == statType)
+				StatType[] types = equipped[i].statTypes;
+				int[] values = equipped[i].statValues;
+				for (int j = 0; j < types.Length; j++)
 				{
-					total += equipped[i].statValue;
+					if (types[j] == statType)
+					{
+						total += values[j];
+					}
 				}
 			}
 			// Clear first so the re-added buff holds exactly the new total (AddBuff's ChooseMax rule

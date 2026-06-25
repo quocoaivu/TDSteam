@@ -72,7 +72,7 @@ namespace Gameplay
 		private void SetParameter()
 		{
 			originalParameter = base.TowerModel.OriginalParameter;
-			AttackRangeMax = (float)base.TowerModel.OriginalParameter.attackRangeMax / GameRecord.PIXEL_PER_UNIT;
+			AttackRangeMax = base.TowerModel.OriginalParameter.range;
 			buffedAttackRangeMax = AttackRangeMax;
 		}
 
@@ -180,30 +180,48 @@ namespace Gameplay
 		{
 			allNewTargets.Clear();
 			List<EnemyData> listActiveEnemy = MonoSingleton<GameRecord>.Instance.ListActiveEnemy;
+			bool canTargetAir = originalParameter.canTargetAir;
 			bool isRoundAttack = originalParameter.isRoundAttack;
-			bool isAirAttack = originalParameter.isAirAttack;
 			float sqrMaxRange = buffedAttackRangeMax * buffedAttackRangeMax;
-			if (isAirAttack && isRoundAttack)
+			for (int i = 0; i < listActiveEnemy.Count; i++)
 			{
-				for (int i = 0; i < listActiveEnemy.Count; i++)
-				{
-					EnemyData enemyModel = listActiveEnemy[i];
-					if (!Targets.Contains(enemyModel) && MonoSingleton<GameRecord>.Instance.IsInRange(base.TowerModel.gameObject, enemyModel.gameObject, sqrMaxRange, 0f) && !enemyModel.IsUnderground && !enemyModel.IsInTunnel)
-					{
-						allNewTargets.Add(enemyModel);
-					}
-				}
+				EnemyData enemy = listActiveEnemy[i];
+				if (Targets.Contains(enemy)) continue;
+				if (enemy.IsUnderground || enemy.IsInTunnel) continue;
+				if (!canTargetAir && enemy.IsAir) continue;
+				if (!MonoSingleton<GameRecord>.Instance.IsInRange(base.TowerModel.gameObject, enemy.gameObject, sqrMaxRange, 0f)) continue;
+				allNewTargets.Add(enemy);
 			}
-			else if (!isAirAttack && isRoundAttack)
+			SortByPriority(allNewTargets, originalParameter.targetPriority);
+		}
+
+		private void SortByPriority(List<EnemyData> list, Parameter.TargetPriority priority)
+		{
+			if (list.Count <= 1) return;
+			Vector3 towerPos = base.TowerModel.CachedPosition;
+			switch (priority)
 			{
-				for (int j = 0; j < listActiveEnemy.Count; j++)
-				{
-					EnemyData enemyModel2 = listActiveEnemy[j];
-					if (!Targets.Contains(enemyModel2) && !enemyModel2.IsAir && MonoSingleton<GameRecord>.Instance.IsInRange(base.TowerModel.gameObject, enemyModel2.gameObject, sqrMaxRange, 0f) && !enemyModel2.IsUnderground)
-					{
-						allNewTargets.Add(enemyModel2);
-					}
-				}
+			case Parameter.TargetPriority.First:
+				list.Sort((a, b) => b.EnemyMovementController.currentTweenPosition
+					.CompareTo(a.EnemyMovementController.currentTweenPosition));
+				break;
+			case Parameter.TargetPriority.Last:
+				list.Sort((a, b) => a.EnemyMovementController.currentTweenPosition
+					.CompareTo(b.EnemyMovementController.currentTweenPosition));
+				break;
+			case Parameter.TargetPriority.Strongest:
+				list.Sort((a, b) => b.EnemyHealthController.OriginHealth
+					.CompareTo(a.EnemyHealthController.OriginHealth));
+				break;
+			case Parameter.TargetPriority.Weakest:
+				list.Sort((a, b) => a.EnemyHealthController.CurrentHealth
+					.CompareTo(b.EnemyHealthController.CurrentHealth));
+				break;
+			case Parameter.TargetPriority.Closest:
+				list.Sort((a, b) =>
+					Vector3.SqrMagnitude(a.transform.position - towerPos)
+					.CompareTo(Vector3.SqrMagnitude(b.transform.position - towerPos)));
+				break;
 			}
 		}
 

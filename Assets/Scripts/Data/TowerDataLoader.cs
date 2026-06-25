@@ -30,10 +30,10 @@ namespace Data
 					spec.itemId = (int)list[i]["item_id"];
 					spec.towerId = (int)list[i]["tower_id"];
 					spec.name = (string)list[i]["name"];
-					spec.statType = ParseStatType(list[i]["stat_type"].ToString());
-					spec.statValue = (int)list[i]["stat_value"];
 					spec.rarity = (int)list[i]["rarity"];
 					spec.icon = list[i].ContainsKey("icon") ? list[i]["icon"].ToString() : string.Empty;
+					spec.statTypes = ParseStatTypes(list[i]);
+					spec.statValues = ParseStatValues(list[i], spec.statTypes.Length);
 					ItemSpecCatalog.Instance.SetParameter(spec);
 				}
 			}
@@ -42,6 +42,37 @@ namespace Data
 				TowerDataLoader.ShowError(text);
 				throw;
 			}
+		}
+
+		// Reads stat_type, stat_type_2, stat_type_3 — skips empty optional columns.
+		private static Items.StatType[] ParseStatTypes(Dictionary<string, object> row)
+		{
+			var result = new System.Collections.Generic.List<Items.StatType>();
+			result.Add(ParseStatType(row["stat_type"].ToString()));
+			if (row.ContainsKey("stat_type_2") && !string.IsNullOrWhiteSpace(row["stat_type_2"]?.ToString()))
+			{
+				result.Add(ParseStatType(row["stat_type_2"].ToString()));
+			}
+			if (row.ContainsKey("stat_type_3") && !string.IsNullOrWhiteSpace(row["stat_type_3"]?.ToString()))
+			{
+				result.Add(ParseStatType(row["stat_type_3"].ToString()));
+			}
+			return result.ToArray();
+		}
+
+		// Reads stat_value, stat_value_2, stat_value_3 matching the number of parsed stat types.
+		private static int[] ParseStatValues(Dictionary<string, object> row, int count)
+		{
+			string[] keys = { "stat_value", "stat_value_2", "stat_value_3" };
+			int[] result = new int[count];
+			for (int i = 0; i < count; i++)
+			{
+				if (row.ContainsKey(keys[i]) && int.TryParse(row[keys[i]]?.ToString(), out int v))
+				{
+					result[i] = v;
+				}
+			}
+			return result;
 		}
 
 		private static Items.StatType ParseStatType(string raw)
@@ -161,45 +192,38 @@ namespace Data
 			string text = "Parameters/tower_parameter";
 			try
 			{
-				List<bool> list = new List<bool>();
 				List<Dictionary<string, object>> list2 = CSVLoader.Read(text);
 				for (int i = 0; i < list2.Count; i++)
 				{
 					TurretSpec towerParameter = default(TurretSpec);
 					towerParameter.id = (int)list2[i]["id"];
 					towerParameter.name = (string)list2[i]["name"];
-					towerParameter.level = (int)list2[i]["level"];
-					towerParameter.price = (int)list2[i]["price"];
-					towerParameter.reload = (int)list2[i]["reload"];
-					towerParameter.ignoreReloadChance = (int)list2[i]["ignore_reload_chance"];
+					towerParameter.level = 0;
+					towerParameter.damage = (int)list2[i]["damage"];
+					towerParameter.attackSpeed = ParseFloat(list2[i]["attack_speed"]);
+					towerParameter.range = ParseFloat(list2[i]["range"]);
+					towerParameter.projectileSpeed = ParseFloat(list2[i]["projectile_speed"]);
+					towerParameter.damageType = ParseDamageType(list2[i]["damage_type"].ToString());
+					towerParameter.targetPriority = ParseTargetPriority(list2[i]["target_priority"].ToString());
+					towerParameter.canTargetAir = list2[i]["can_target_air"].ToString().ToLower() == "true";
+					towerParameter.pierceCount = (int)list2[i]["pierce_count"];
+					towerParameter.buildCost = (int)list2[i]["build_cost"];
+					towerParameter.sellValue = (int)list2[i]["sell_value"];
+					towerParameter.slowPercent = ParseFloat(list2[i]["slow_percent"]);
+					towerParameter.slowDuration = ParseFloat(list2[i]["slow_duration"]);
+					towerParameter.poisonDPS = ParseFloat(list2[i]["poison_dps"]);
+					towerParameter.poisonDuration = ParseFloat(list2[i]["poison_duration"]);
+					towerParameter.critChance = ParseFloat(list2[i]["crit_chance"]);
+					towerParameter.critMultiplier = ParseFloat(list2[i]["crit_multiplier"]);
+					towerParameter.aoeRadius = ParseFloat(list2[i]["aoe_radius"]);
+					towerParameter.isRoundAttack = list2[i]["is_round_attack"].ToString().ToLower() == "true";
+					towerParameter.unit_health = (int)list2[i]["unit_health"];
+					towerParameter.unit_armor = (int)list2[i]["unit_armor"];
+					towerParameter.unit_moveSpeed = (int)list2[i]["unit_move_speed"];
+					towerParameter.unit_attackRange = (int)list2[i]["unit_attack_range"];
+					towerParameter.unit_attackCooldown = (int)list2[i]["unit_attack_cooldown"];
 					towerParameter.goldProduce = (int)list2[i]["gold_produce"];
 					towerParameter.autoCollectTime = (int)list2[i]["auto_collect_time"];
-					towerParameter.attackRangeMax = (int)list2[i]["attack_range"];
-					towerParameter.damage_Physics_min = (int)list2[i]["damage_physics_min"];
-					towerParameter.damage_Physics_max = (int)list2[i]["damage_physics_max"];
-					towerParameter.damage_Magic_min = (int)list2[i]["damage_magic_min"];
-					towerParameter.damage_Magic_max = (int)list2[i]["damage_magic_max"];
-					towerParameter.instantKillChance = (int)list2[i]["instant_kill_chance"];
-					towerParameter.criticalStrikeChance = (int)list2[i]["critical_strike_chance"];
-					towerParameter.ignoreArmorChance = (int)list2[i]["ignore_armor_chance"];
-					towerParameter.unit_health = (int)list2[i]["unit_health"];
-					towerParameter.unit_armor_physics = (int)list2[i]["unit_armor_physics"];
-					towerParameter.unit_armor_magic = (int)list2[i]["unit_armor_magic"];
-					towerParameter.unit_attackCooldown = (int)list2[i]["unit_attackCooldown"];
-					towerParameter.unit_attack_range_min = (int)list2[i]["unit_attack_range_min"];
-					towerParameter.unit_attack_range_average = (int)list2[i]["unit_attack_range_average"];
-					towerParameter.unit_attack_range_max = (int)list2[i]["unit_attack_range_max"];
-					towerParameter.unit_moveSpeed = (int)list2[i]["unit_moveSpeed"];
-					towerParameter.unit_dodge_chance = (int)list2[i]["unit_dodge_chance"];
-					towerParameter.unit_ignore_armor_chance = (int)list2[i]["unit_ignore_armor_chance"];
-					towerParameter.debuffKey = ((string)list2[i]["debuff_effect_key"]).Replace('$', '\n');
-					towerParameter.debuffEffectValue = (int)list2[i]["debuff_effect_value"];
-					towerParameter.debuffEffectDuration = (int)list2[i]["debuff_effect_duration"];
-					towerParameter.debuffChance = (int)list2[i]["debuff_chance"];
-					towerParameter.isAirAttack = ((int)list2[i]["air_attack"] > 0);
-					towerParameter.isRoundAttack = ((int)list2[i]["round_attack"] > 0);
-					towerParameter.bulletAoe = (int)list2[i]["bull_aoe"];
-					towerParameter.value = (int)list2[i]["value"];
 					TowerParameterManager.Instance.SetTowerParameter(towerParameter);
 				}
 			}
@@ -210,9 +234,36 @@ namespace Data
 			}
 		}
 
+		private static float ParseFloat(object value)
+		{
+			if (value == null) return 0f;
+			if (float.TryParse(value.ToString(), System.Globalization.NumberStyles.Float,
+				System.Globalization.CultureInfo.InvariantCulture, out float result))
+			{
+				return result;
+			}
+			return 0f;
+		}
+
+		private static Parameter.DamageType ParseDamageType(string raw)
+		{
+			if (raw == "Magic") return Parameter.DamageType.Magic;
+			if (raw == "True") return Parameter.DamageType.True;
+			return Parameter.DamageType.Physical;
+		}
+
+		private static Parameter.TargetPriority ParseTargetPriority(string raw)
+		{
+			if (raw == "Last") return Parameter.TargetPriority.Last;
+			if (raw == "Strongest") return Parameter.TargetPriority.Strongest;
+			if (raw == "Weakest") return Parameter.TargetPriority.Weakest;
+			if (raw == "Closest") return Parameter.TargetPriority.Closest;
+			return Parameter.TargetPriority.First;
+		}
+
 		private static void ShowError(string filePath)
 		{
-			UnityEngine.Debug.LogError("File " + filePath + ".csv khÃ´ng tá»“n táº¡i hoáº·c dá»¯ liá»‡u trong file khÃ´ng Ä‘Ãºng Ä‘á»‹nh dáº¡ng.");
+			UnityEngine.Debug.LogError("Tower parameter file not found or invalid: " + filePath);
 		}
 	}
 }

@@ -27,7 +27,7 @@ namespace Gameplay
 		{
 			base.OnAppear();
 			// Bullet prefab is pre-pooled in TowerPool.InitTowerPool for towers with this controller,
-			// so it's warm before the first shot â€” no lazy InitBulletsFromTower needed here.
+			// so it's warm before the first shot â€" no lazy InitBulletsFromTower needed here.
 		}
 
 		public override void StopAttack()
@@ -66,23 +66,50 @@ namespace Gameplay
 			TurretSpec originalParameter = base.TowerModel.OriginalParameter;
 			Bullet = MonoSingleton<BulletPool>.Instance.GetForTower(originalParameter.id, originalParameter.level);
 			SharedStrikeDamage commonAttackDamage = new SharedStrikeDamage();
-			commonAttackDamage.physicsDamage = base.BuffedDamagePhysics;
-			commonAttackDamage.magicDamage = base.BuffedDamageMagic;
-			commonAttackDamage.instantKillChance = base.BuffedInstantKillChance;
-			commonAttackDamage.criticalStrikeChance = originalParameter.criticalStrikeChance;
+			int buffedDmg = base.BuffedDamage;
+			if (originalParameter.damageType == Parameter.DamageType.Magic)
+			{
+				commonAttackDamage.physicsDamage = 0;
+				commonAttackDamage.magicDamage = buffedDmg;
+			}
+			else
+			{
+				commonAttackDamage.physicsDamage = buffedDmg;
+				commonAttackDamage.magicDamage = 0;
+			}
+			commonAttackDamage.criticalStrikeChance = (int)base.BuffedCritChance;
+			commonAttackDamage.critMultiplier = originalParameter.critMultiplier;
 			commonAttackDamage.ignoreArmorChance = originalParameter.ignoreArmorChance;
+			commonAttackDamage.projectileSpeed = originalParameter.projectileSpeed;
+			commonAttackDamage.pierceCount = originalParameter.pierceCount;
 			commonAttackDamage.bulletDirection = bulletParameter.bulletDirection;
-			commonAttackDamage.aoeRange = (float)originalParameter.bulletAoe / GameRecord.PIXEL_PER_UNIT;
-			commonAttackDamage.maxRange = (float)originalParameter.attackRangeMax / GameRecord.PIXEL_PER_UNIT;
+			commonAttackDamage.aoeRange = originalParameter.aoeRadius;
+			commonAttackDamage.maxRange = originalParameter.range;
 			if (towerSkillScaleDamageByRange)
 			{
 				commonAttackDamage.physicsDamage = towerSkillScaleDamageByRange.GetScaledDamage(commonAttackDamage.physicsDamage, commonAttackDamage.maxRange, base.Target);
 				commonAttackDamage.magicDamage = towerSkillScaleDamageByRange.GetScaledDamage(commonAttackDamage.magicDamage, commonAttackDamage.maxRange, base.Target);
 			}
-			effectAttack.buffKey = originalParameter.debuffKey;
-			effectAttack.debuffEffectValue = originalParameter.debuffEffectValue;
-			effectAttack.debuffEffectDuration = (float)originalParameter.debuffEffectDuration / 1000f;
-			effectAttack.debuffChance = originalParameter.debuffChance;
+			// Map explicit debuff fields to the existing OnHitStatusApplier system.
+			if (originalParameter.poisonDPS > 0)
+			{
+				effectAttack.buffKey = DamageVfxType.Poison.ToString();
+				effectAttack.debuffEffectValue = (int)originalParameter.poisonDPS;
+				effectAttack.debuffEffectDuration = originalParameter.poisonDuration;
+				effectAttack.debuffChance = 100;
+			}
+			else if (originalParameter.slowPercent > 0)
+			{
+				effectAttack.buffKey = DamageVfxType.Slow.ToString();
+				effectAttack.debuffEffectValue = (int)originalParameter.slowPercent;
+				effectAttack.debuffEffectDuration = originalParameter.slowDuration > 0 ? originalParameter.slowDuration : 2f;
+				effectAttack.debuffChance = 100;
+			}
+			else
+			{
+				effectAttack.buffKey = string.Empty;
+				effectAttack.debuffChance = 0;
+			}
 			Bullet.gameObject.SetActive(true);
 			Bullet.transform.position = bulletParameter.gunBarrel.position;
 			Bullet.transform.eulerAngles = base.TowerModel.gun.transform.eulerAngles;

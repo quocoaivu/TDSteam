@@ -50,7 +50,7 @@ namespace Gameplay
 
 		public ProjectileEntity GetForTower(int towerID, int towerLevel)
 		{
-			if (towerID < 0 || towerLevel < 0 || towerLevel >= TowerParameterManager.Instance.GetNumberOfLevel())
+			if (towerID < 0 || towerLevel < 0 || towerID >= TowerParameterManager.Instance.GetNumberOfTower())
 			{
 				return null;
 			}

@@ -27,7 +27,7 @@ namespace Gameplay
 		public void OnDrawGizmosSelected()
 		{
 			Gizmos.color = Color.red;
-			Gizmos.DrawWireSphere(base.transform.position, (float)base.TowerModel.OriginalParameter.attackRangeMax / GameRecord.PIXEL_PER_UNIT);
+			Gizmos.DrawWireSphere(base.transform.position, base.TowerModel.OriginalParameter.range);
 		}
 
 		private bool ShouldAttack()
@@ -56,7 +56,8 @@ namespace Gameplay
 		public override void OnAppear()
 		{
 			base.OnAppear();
-			originReloadTime = (float)base.TowerModel.OriginalParameter.reload / 1000f;
+			float spd = base.TowerModel.OriginalParameter.attackSpeed;
+			originReloadTime = spd > 0 ? 1f / spd : 999f;
 			currentReloadTime = originReloadTime;
 			reloadTimeTracking = originReloadTime;
 			base.TowerModel.BuffsHolder.OnBuffValueChanged += BuffsHolder_OnBuffValueChanged;

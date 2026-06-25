@@ -15,7 +15,7 @@ namespace Tutorial
 
 		protected override bool ShouldShowTutorial()
 		{
-			return !TutorialStore.Instance.GetTutorialStatus(tutorialID) && MonoSingleton<GameRecord>.Instance.MapID == 0;
+			return !TutorialStore.Instance.GetTutorialStatus(tutorialID) && GameplayTutorialDirector.IsFirstPlayTutorialMap();
 		}
 
 		private string tutorialID = TutorialStore.TUTORIAL_ID_CALL_ENEMY;

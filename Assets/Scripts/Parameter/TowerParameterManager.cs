@@ -1,6 +1,6 @@
-﻿using System;
 using System.Collections.Generic;
 using Data;
+using Gameplay;
 using UnityEngine;
 
 namespace Parameter
@@ -11,52 +11,47 @@ namespace Parameter
 		{
 			get
 			{
-				if (TowerParameterManager.instance == null)
+				if (instance == null)
 				{
-					TowerParameterManager.instance = new TowerParameterManager();
+					instance = new TowerParameterManager();
 				}
-				return TowerParameterManager.instance;
+				return instance;
 			}
 		}
 
 		public void SetTowerParameter(TurretSpec tower)
 		{
 			tower = ApplyBuff(tower);
-			int count = listTower.Count;
-			if (count <= tower.id)
+			while (towers.Count <= tower.id)
 			{
-				List<TurretSpec> list = new List<TurretSpec>();
-				list.Insert(tower.level, tower);
-				listTower.Insert(tower.id, list);
+				towers.Add(default(TurretSpec));
 			}
-			else
-			{
-				List<TurretSpec> list2 = listTower[tower.id];
-				list2.Insert(tower.level, tower);
-			}
+			towers[tower.id] = tower;
 		}
 
-		public TurretSpec GetTowerParameter(int id, int level)
+		// Returns spec for this tower. Level parameter is ignored (all towers are single-tier now).
+		public TurretSpec GetTowerParameter(int id, int level = 0)
 		{
-			if (CheckParameter(id, level))
+			if (id >= 0 && id < towers.Count)
 			{
-				return listTower[id][level];
+				return towers[id];
 			}
 			return default(TurretSpec);
 		}
 
-		public void ModifyTowerParameter(int id, int level, TurretSpec newParameter)
+		public void ModifyTowerParameter(int id, TurretSpec newParameter)
 		{
-			listTower[id][level] = newParameter;
+			if (id >= 0 && id < towers.Count)
+			{
+				towers[id] = newParameter;
+			}
 		}
 
-		// Roguelite stat source that replaces per-level upgrades: the tower's base (level 0) spec
-		// with every permanently-unlocked skill-tree node delta added on top. Not yet wired into
-		// the build path (that swap happens in a later phase).
+		// Base spec with all permanently-unlocked skill-tree node deltas applied.
 		public TurretSpec GetStatWithTree(int id)
 		{
-			TurretSpec spec = GetTowerParameter(id, 0);
-			List<int> unlockedNodes = Data.TowerSkillTreeStore.Instance.GetUnlockedNodes(id);
+			TurretSpec spec = GetTowerParameter(id);
+			List<int> unlockedNodes = TowerSkillTreeStore.Instance.GetUnlockedNodes(id);
 			for (int i = 0; i < unlockedNodes.Count; i++)
 			{
 				TowerSkillNode node;
@@ -64,363 +59,190 @@ namespace Parameter
 				{
 					continue;
 				}
-				// Damage delta applies to whichever damage type the tower actually uses.
-				if (spec.damage_Physics_max > 0)
-				{
-					spec.damage_Physics_min += node.dmgAdd;
-					spec.damage_Physics_max += node.dmgAdd;
-				}
-				else
-				{
-					spec.damage_Magic_min += node.dmgAdd;
-					spec.damage_Magic_max += node.dmgAdd;
-				}
-				spec.attackRangeMax += node.rangeAdd;
-				spec.reload -= node.reloadReduce;
-				spec.criticalStrikeChance += node.critAdd;
+				spec.damage += node.dmgAdd;
+				spec.range += node.rangeAdd / GameRecord.PIXEL_PER_UNIT;
+				spec.critChance += node.critAdd;
 				spec.ignoreArmorChance += node.pierceAdd;
-				// Barracks units (Knights) read these from the tower spec at spawn.
 				spec.unit_health += node.healthAdd;
-				spec.unit_armor_physics += node.armorAdd;
-				// Gold tower (Supporter): more gold per cycle, faster auto-collect.
+				spec.unit_armor += node.armorAdd;
 				spec.goldProduce += node.goldAdd;
-				spec.autoCollectTime -= node.autocollectReduce;
-			}
-			// Safety floor so stacked reload reductions can't reach 0 (cooldown = reload/1000).
-			if (spec.reload < 100)
-			{
-				spec.reload = 100;
-			}
-			// Same floor for auto-collect so stacked reductions stay positive.
-			if (spec.autoCollectTime < 100)
-			{
-				spec.autoCollectTime = 100;
+				if (node.autocollectReduce > 0)
+				{
+					spec.autoCollectTime = Mathf.Max(100, spec.autoCollectTime - node.autocollectReduce);
+				}
+				// reload reduction → convert to attackSpeed increase
+				if (node.reloadReduce > 0 && spec.attackSpeed > 0)
+				{
+					float reloadMs = 1000f / spec.attackSpeed;
+					reloadMs -= node.reloadReduce;
+					if (reloadMs < 100f) reloadMs = 100f;
+					spec.attackSpeed = 1000f / reloadMs;
+				}
 			}
 			return spec;
 		}
 
-		private bool CheckParameter(int id, int level)
+		// Returns reload time in ms for legacy callers (AbilityRankDescriber expects ms int).
+		public int GetAttackSpeed(int id, int level = 0)
 		{
-			return id >= 0 && level >= 0 && id < GetNumberOfTower() && level < GetNumberOfLevel();
+			float spd = GetTowerParameter(id).attackSpeed;
+			return spd > 0 ? (int)(1000f / spd) : 0;
 		}
 
-		public int GetMinDamage(int towerID, int towerLevel)
+		// Always 1 level per tower now; kept so BulletPool guard still compiles.
+		public int GetNumberOfLevel()
 		{
-			int result;
-			if (CheckParameter(towerID, towerLevel))
-			{
-				if (listTower[towerID][towerLevel].damage_Physics_min == 0)
-				{
-					result = listTower[towerID][towerLevel].damage_Magic_min;
-				}
-				else
-				{
-					result = listTower[towerID][towerLevel].damage_Physics_min;
-				}
-			}
-			else
-			{
-				result = -1;
-			}
-			return result;
+			return towers.Count > 0 ? 1 : 0;
 		}
 
-		public int GetMaxDamage(int towerID, int towerLevel)
+		public int GetNumberOfTower()
 		{
-			int result;
-			if (CheckParameter(towerID, towerLevel))
-			{
-				if (listTower[towerID][towerLevel].damage_Physics_max == 0)
-				{
-					result = listTower[towerID][towerLevel].damage_Magic_max;
-				}
-				else
-				{
-					result = listTower[towerID][towerLevel].damage_Physics_max;
-				}
-			}
-			else
-			{
-				result = -1;
-			}
-			return result;
+			return towers.Count;
 		}
 
-		public bool isPhysicsAttack(int towerID)
+		public int GetPrice(int id, int level = 0)
 		{
-			return listTower[towerID][0].damage_Physics_max > 0;
+			return GetTowerParameter(id).buildCost;
 		}
 
-		public float GetCooldownTime(int id, int level)
+		public int GetRangeMax(int id, int level = 0)
 		{
-			if (CheckParameter(id, level))
-			{
-				return (float)listTower[id][level].reload / 1000f;
-			}
-			return -1f;
+			// Return in pixels for legacy callers that divide by PIXEL_PER_UNIT themselves.
+			return (int)(GetTowerParameter(id).range * GameRecord.PIXEL_PER_UNIT);
 		}
 
-		public int GetAttackSpeed(int id, int level)
+		public int GetMinDamage(int id, int level = 0)
 		{
-			if (CheckParameter(id, level))
-			{
-				return listTower[id][level].reload;
-			}
-			return -1;
+			return GetTowerParameter(id).damage;
 		}
 
-		public int GetRangeMax(int id, int level)
+		public int GetMaxDamage(int id, int level = 0)
 		{
-			if (CheckParameter(id, level))
-			{
-				return listTower[id][level].attackRangeMax;
-			}
-			return -1;
+			return GetTowerParameter(id).damage;
 		}
 
-		public int GetUnitHealth(int id, int level)
+		public float GetCooldownTime(int id, int level = 0)
 		{
-			if (CheckParameter(id, level))
-			{
-				return listTower[id][level].unit_health;
-			}
-			return -1;
+			float spd = GetTowerParameter(id).attackSpeed;
+			return spd > 0 ? 1f / spd : 999f;
 		}
 
-		public int GetUnitArmor(int id, int level)
+		public int GetUnitHealth(int id, int level = 0)
 		{
-			if (CheckParameter(id, level))
-			{
-				return listTower[id][level].unit_armor_physics;
-			}
-			return -1;
+			return GetTowerParameter(id).unit_health;
 		}
 
-		public int GetPrice(int id, int level)
+		public int GetUnitArmor(int id, int level = 0)
 		{
-			if (CheckParameter(id, level))
-			{
-				return listTower[id][level].price;
-			}
-			return -1;
+			return GetTowerParameter(id).unit_armor;
 		}
 
-		// Tower level scheme (single source of truth, shared by upgrade + UI):
-		//   levels 0..MAX_BASE_LEVEL : linear base tiers; the ultimate branch is always 0 here.
-		//   at MAX_BASE_LEVEL the player picks an ultimate branch, which forks into two terminal levels:
-		//     branch 0 -> ULTIMATE_LEVEL_BRANCH_0, branch 1 -> ULTIMATE_LEVEL_BRANCH_1.
-		public const int MAX_BASE_LEVEL = 2;
+		public bool GetIsAirAttack(int id)
+		{
+			return GetTowerParameter(id).canTargetAir;
+		}
 
-		public const int ULTIMATE_LEVEL_BRANCH_0 = 3;
+		public int GetGoldProduce(int id, int level = 0)
+		{
+			return GetTowerParameter(id).goldProduce;
+		}
 
-		public const int ULTIMATE_LEVEL_BRANCH_1 = 4;
+		public float GetAutoCollectProduceGoldTime(int id, int level = 0)
+		{
+			return GetTowerParameter(id).autoCollectTime / 1000f;
+		}
 
-		// The level a tower becomes after one upgrade from currentLevel. For base tiers pass
-		// ultimateBranch = 0 (=> currentLevel + 1); at MAX_BASE_LEVEL pass the chosen branch (0 or 1)
-		// to reach ULTIMATE_LEVEL_BRANCH_0 / _BRANCH_1.
+		// Kept for callers that haven't been updated yet; same as GetPrice.
 		public int GetUpgradeTargetLevel(int currentLevel, int ultimateBranch)
 		{
 			return currentLevel + 1 + ultimateBranch;
 		}
 
-		// Which ultimate branch a tower already sitting at this level belongs to (-1 = not an ultimate level).
 		public int GetUltimateBranchByLevel(int level)
 		{
-			if (level == ULTIMATE_LEVEL_BRANCH_0)
-			{
-				return 0;
-			}
-			if (level == ULTIMATE_LEVEL_BRANCH_1)
-			{
-				return 1;
-			}
+			if (level == ULTIMATE_LEVEL_BRANCH_0) return 0;
+			if (level == ULTIMATE_LEVEL_BRANCH_1) return 1;
 			return -1;
 		}
 
-		public int GetNumberOfTower()
+		public bool isPhysicsAttack(int id)
 		{
-			return listTower.Count;
+			return GetTowerParameter(id).damageType == DamageType.Physical;
 		}
 
-		public int GetNumberOfLevel()
-		{
-			if (GetNumberOfTower() > 0)
-			{
-				return listTower[0].Count;
-			}
-			return 0;
-		}
-
-		public bool GetIsAirAttack(int id)
-		{
-			return listTower[id][0].isAirAttack;
-		}
-
-		public int GetGoldProduce(int id, int level)
-		{
-			if (CheckParameter(id, level))
-			{
-				return listTower[id][level].goldProduce;
-			}
-			return -1;
-		}
-
-		public float GetAutoCollectProduceGoldTime(int id, int level)
-		{
-			if (CheckParameter(id, level))
-			{
-				return (float)listTower[id][level].autoCollectTime / 1000f;
-			}
-			return -1f;
-		}
+		public const int MAX_BASE_LEVEL = 2;
+		public const int ULTIMATE_LEVEL_BRANCH_0 = 3;
+		public const int ULTIMATE_LEVEL_BRANCH_1 = 4;
 
 		private TurretSpec ApplyBuff(TurretSpec tower)
 		{
-			if (tower.id == 0)
+			int id = tower.id;
+			int upgradeLevel = GlobalUpgradeStore.Instance.GetCurrentUpgradeLevel(id);
+
+			for (int i = 0; i <= upgradeLevel; i++)
 			{
-				int currentUpgradeLevel = GlobalUpgradeStore.Instance.GetCurrentUpgradeLevel(0);
-				for (int i = 0; i <= currentUpgradeLevel; i++)
+				if (i == 0)
 				{
-					if (i == 0)
-					{
-						int num = 100 - GlobalUpgradeStore.Instance.GetUpgradeValue(0, 0);
-						tower.price = (int)((float)(tower.price * num) / 100f);
-					}
+					int discount = 100 - GlobalUpgradeStore.Instance.GetUpgradeValue(0, id);
+					tower.buildCost = (int)(tower.buildCost * discount / 100f);
+				}
+				if (id == 0)
+				{
+					if (i == 1) tower.range += GlobalUpgradeStore.Instance.GetUpgradeValue(1, id) / GameRecord.PIXEL_PER_UNIT;
+					if (i == 2) tower.ignoreArmorChance += GlobalUpgradeStore.Instance.GetUpgradeValue(7, id);
+					if (i == 3) tower.range += GlobalUpgradeStore.Instance.GetUpgradeValue(2, id) / GameRecord.PIXEL_PER_UNIT;
+					if (i == 4) tower.critChance += GlobalUpgradeStore.Instance.GetUpgradeValue(6, id);
+				}
+				else if (id == 1)
+				{
+					if (i == 1) tower.unit_armor += GlobalUpgradeStore.Instance.GetUpgradeValue(12, id);
+					if (i == 2) tower.range += GlobalUpgradeStore.Instance.GetUpgradeValue(1, id) / GameRecord.PIXEL_PER_UNIT;
+					if (i == 3) tower.unit_health += GlobalUpgradeStore.Instance.GetUpgradeValue(13, id);
+				}
+				else if (id == 2)
+				{
 					if (i == 1)
 					{
-						int upgradeValue = GlobalUpgradeStore.Instance.GetUpgradeValue(1, 0);
-						tower.attackRangeMax += upgradeValue;
+						int reloadReduce = GlobalUpgradeStore.Instance.GetUpgradeValue(3, id);
+						if (tower.attackSpeed > 0)
+						{
+							float ms = 1000f / tower.attackSpeed - reloadReduce;
+							if (ms < 100f) ms = 100f;
+							tower.attackSpeed = 1000f / ms;
+						}
 					}
-					if (i == 2)
-					{
-						int upgradeValue2 = GlobalUpgradeStore.Instance.GetUpgradeValue(7, 0);
-						tower.ignoreArmorChance += upgradeValue2;
-					}
-					if (i == 3)
-					{
-						int upgradeValue3 = GlobalUpgradeStore.Instance.GetUpgradeValue(2, 0);
-						tower.attackRangeMax += upgradeValue3;
-					}
+					if (i == 2) tower.damage += GlobalUpgradeStore.Instance.GetUpgradeValue(8, id);
+					if (i == 3) tower.range += GlobalUpgradeStore.Instance.GetUpgradeValue(1, id) / GameRecord.PIXEL_PER_UNIT;
 					if (i == 4)
 					{
-						int upgradeValue4 = GlobalUpgradeStore.Instance.GetUpgradeValue(6, 0);
-						tower.criticalStrikeChance += upgradeValue4;
+						int reloadReduce2 = GlobalUpgradeStore.Instance.GetUpgradeValue(4, id);
+						if (tower.attackSpeed > 0)
+						{
+							float ms = 1000f / tower.attackSpeed - reloadReduce2;
+							if (ms < 100f) ms = 100f;
+							tower.attackSpeed = 1000f / ms;
+						}
 					}
 				}
-			}
-			if (tower.id == 1)
-			{
-				int currentUpgradeLevel2 = GlobalUpgradeStore.Instance.GetCurrentUpgradeLevel(1);
-				for (int j = 0; j <= currentUpgradeLevel2; j++)
+				else if (id == 3)
 				{
-					if (j == 0)
+					if (i == 1) tower.range += GlobalUpgradeStore.Instance.GetUpgradeValue(1, id) / GameRecord.PIXEL_PER_UNIT;
+					if (i == 2) tower.damage += GlobalUpgradeStore.Instance.GetUpgradeValue(8, id);
+					if (i == 3) tower.critChance += GlobalUpgradeStore.Instance.GetUpgradeValue(6, id);
+					if (i == 4)
 					{
-						int num = 100 - GlobalUpgradeStore.Instance.GetUpgradeValue(0, 1);
-						tower.price = (int)((float)(tower.price * num) / 100f);
-					}
-					if (j == 1)
-					{
-						int upgradeValue5 = GlobalUpgradeStore.Instance.GetUpgradeValue(12, 1);
-						tower.unit_armor_physics += upgradeValue5;
-					}
-					if (j == 2)
-					{
-						int upgradeValue = GlobalUpgradeStore.Instance.GetUpgradeValue(1, 1);
-						tower.attackRangeMax += upgradeValue;
-						int upgradeValue6 = GlobalUpgradeStore.Instance.GetUpgradeValue(3, 1);
-						tower.reload -= upgradeValue6;
-					}
-					if (j == 3)
-					{
-						int upgradeValue7 = GlobalUpgradeStore.Instance.GetUpgradeValue(13, 1);
-						tower.unit_health += upgradeValue7;
-					}
-					if (j == 4)
-					{
-						int upgradeValue8 = GlobalUpgradeStore.Instance.GetUpgradeValue(5, 1);
-						tower.ignoreReloadChance += upgradeValue8;
-					}
-				}
-			}
-			if (tower.id == 2)
-			{
-				int currentUpgradeLevel3 = GlobalUpgradeStore.Instance.GetCurrentUpgradeLevel(2);
-				for (int k = 0; k <= currentUpgradeLevel3; k++)
-				{
-					if (k == 0)
-					{
-						int num = 100 - GlobalUpgradeStore.Instance.GetUpgradeValue(0, 2);
-						tower.price = (int)((float)(tower.price * num) / 100f);
-					}
-					if (k == 1)
-					{
-						UnityEngine.Debug.Log("nang cap 1: giam thoi gian reload!");
-						int upgradeValue6 = GlobalUpgradeStore.Instance.GetUpgradeValue(3, 2);
-						tower.reload -= upgradeValue6;
-					}
-					if (k == 2)
-					{
-						int upgradeValue9 = GlobalUpgradeStore.Instance.GetUpgradeValue(8, 2);
-						tower.damage_Physics_min += upgradeValue9;
-						tower.damage_Physics_max += upgradeValue9;
-					}
-					if (k == 3)
-					{
-						int upgradeValue = GlobalUpgradeStore.Instance.GetUpgradeValue(1, 2);
-						tower.attackRangeMax += upgradeValue;
-					}
-					if (k == 4)
-					{
-						int upgradeValue10 = GlobalUpgradeStore.Instance.GetUpgradeValue(4, 2);
-						tower.reload -= upgradeValue10;
-					}
-				}
-			}
-			if (tower.id == 3)
-			{
-				int currentUpgradeLevel4 = GlobalUpgradeStore.Instance.GetCurrentUpgradeLevel(3);
-				for (int l = 0; l <= currentUpgradeLevel4; l++)
-				{
-					if (l == 0)
-					{
-						int num = 100 - GlobalUpgradeStore.Instance.GetUpgradeValue(0, 3);
-						tower.price = (int)((float)(tower.price * num) / 100f);
-					}
-					if (l == 1)
-					{
-						int upgradeValue = GlobalUpgradeStore.Instance.GetUpgradeValue(1, 3);
-						tower.attackRangeMax += upgradeValue;
-					}
-					if (l == 2)
-					{
-						int upgradeValue9 = GlobalUpgradeStore.Instance.GetUpgradeValue(8, 3);
-						tower.damage_Magic_min += upgradeValue9;
-						tower.damage_Magic_max += upgradeValue9;
-					}
-					if (l == 3)
-					{
-						int upgradeValue4 = GlobalUpgradeStore.Instance.GetUpgradeValue(6, 3);
-						tower.criticalStrikeChance += upgradeValue4;
-					}
-					if (l == 4)
-					{
-						string debuffKey = DamageVfxType.Slow.ToString();
-						int upgradeValue11 = GlobalUpgradeStore.Instance.GetUpgradeValue(9, 3);
-						int upgradeValue12 = GlobalUpgradeStore.Instance.GetUpgradeValue(11, 3);
-						int upgradeValue13 = GlobalUpgradeStore.Instance.GetUpgradeValue(10, 3);
-						tower.debuffKey = debuffKey;
-						tower.debuffChance = upgradeValue11;
-						tower.debuffEffectDuration = upgradeValue12;
-						tower.debuffEffectValue = upgradeValue13;
+						tower.slowPercent = GlobalUpgradeStore.Instance.GetUpgradeValue(10, id);
+						tower.slowDuration = GlobalUpgradeStore.Instance.GetUpgradeValue(11, id) / 1000f;
 					}
 				}
 			}
 			return tower;
 		}
 
-		private List<List<TurretSpec>> listTower = new List<List<TurretSpec>>();
+		private List<TurretSpec> towers = new List<TurretSpec>();
 
 		private static TowerParameterManager instance;
+
 		[UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
 		private static void ResetStatics()
 		{

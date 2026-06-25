@@ -60,7 +60,7 @@ namespace Gameplay
 				TurretSpec originalParameter = towerModel.OriginalParameter;
 				ProjectileEntity bulletByName = MonoSingleton<BulletPool>.Instance.GetBulletByName(bulletName);
 				Vector3 position = towerModel.gunBarrel.position;
-				float num = (float)originalParameter.attackRangeMax;
+				float num = originalParameter.range;
 				bulletByName.transform.position = position;
 				bulletByName.gameObject.SetActive(true);
 				EnemyData target = towerModel.towerFindEnemyController.Targets[0];

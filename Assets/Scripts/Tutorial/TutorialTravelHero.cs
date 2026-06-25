@@ -34,12 +34,8 @@ namespace Tutorial
 
 		protected override bool ShouldShowTutorial()
 		{
-			if (FormatDirector.Instance.gameMode != GameFormat.CampaignMode)
-			{
-				return false;
-			}
 			return !TutorialStore.Instance.GetTutorialStatus(tutorialID)
-				&& GameplayTutorialDirector.Instance.IsTutorialMap();
+				&& GameplayTutorialDirector.IsFirstPlayTutorialMap();
 		}
 
 	}

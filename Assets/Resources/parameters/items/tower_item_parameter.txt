@@ -1,16 +1,21 @@
-item_id,tower_id,name,stat_type,stat_value,rarity,icon
-0,0,Keen Arrowhead,Damage,15,0,parameters/items/icons/item_0_0
-1,0,Hawk Feather,AttackSpeed,12,0,parameters/items/icons/item_0_0
-2,0,Hunter's Eye,Crit,8,1,parameters/items/icons/item_0_0
-3,1,Whetstone,Damage,15,0,parameters/items/icons/item_0_0
-4,1,War Drum,AttackSpeed,12,0,parameters/items/icons/item_0_0
-5,1,Berserker Charm,Crit,8,1,parameters/items/icons/item_0_0
-6,2,Heavy Shot,Damage,18,0,parameters/items/icons/item_0_0
-7,2,Counterweight,AttackSpeed,10,0,parameters/items/icons/item_0_0
-8,2,Fault Line,Crit,8,1,parameters/items/icons/item_0_0
-9,3,Mana Crystal,Damage,16,0,parameters/items/icons/item_0_0
-10,3,Quick Incant,AttackSpeed,12,0,parameters/items/icons/item_0_0
-11,3,Arcane Focus,Crit,8,1,parameters/items/icons/item_0_0
-12,4,Blessed Coin,Damage,12,0,parameters/items/icons/item_0_0
-13,4,Swift Blessing,AttackSpeed,12,0,parameters/items/icons/item_0_0
-14,4,Lucky Charm,Crit,8,1,parameters/items/icons/item_0_0
+item_id,tower_id,name,stat_type,stat_value,stat_type_2,stat_value_2,stat_type_3,stat_value_3,rarity,icon
+0,0,Keen Arrowhead,Damage,15,,,,,0,parameters/items/icons/item_0_0
+1,0,Hawk Feather,AttackSpeed,12,,,,,0,parameters/items/icons/item_0_0
+2,0,Hunter's Eye,Crit,8,,,,,1,parameters/items/icons/item_0_0
+3,1,Whetstone,Damage,15,,,,,0,parameters/items/icons/item_0_0
+4,1,War Drum,AttackSpeed,12,,,,,0,parameters/items/icons/item_0_0
+5,1,Berserker Charm,Crit,8,,,,,1,parameters/items/icons/item_0_0
+6,2,Heavy Shot,Damage,18,,,,,0,parameters/items/icons/item_0_0
+7,2,Counterweight,AttackSpeed,10,,,,,0,parameters/items/icons/item_0_0
+8,2,Fault Line,Crit,8,,,,,1,parameters/items/icons/item_0_0
+9,3,Mana Crystal,Damage,16,,,,,0,parameters/items/icons/item_0_0
+10,3,Quick Incant,AttackSpeed,12,,,,,0,parameters/items/icons/item_0_0
+11,3,Arcane Focus,Crit,8,,,,,1,parameters/items/icons/item_0_0
+12,4,Blessed Coin,Damage,12,,,,,0,parameters/items/icons/item_0_0
+13,4,Swift Blessing,AttackSpeed,12,,,,,0,parameters/items/icons/item_0_0
+14,4,Lucky Charm,Crit,8,,,,,1,parameters/items/icons/item_0_0
+15,0,Ranger's Kit,Damage,10,Crit,6,,,1,parameters/items/icons/item_0_0
+16,1,Warlord's Seal,Damage,10,AttackSpeed,8,,,1,parameters/items/icons/item_0_0
+17,2,Siege Relic,Damage,14,Crit,6,AttackSpeed,8,2,parameters/items/icons/item_0_0
+18,3,Archmage Tome,Damage,12,AttackSpeed,10,Crit,6,2,parameters/items/icons/item_0_0
+19,4,Sacred Talisman,AttackSpeed,10,Crit,6,,,1,parameters/items/icons/item_0_0

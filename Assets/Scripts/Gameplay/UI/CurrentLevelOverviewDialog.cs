@@ -106,9 +106,9 @@ namespace Gameplay
 			}
 			nameText.text = Singleton<TurretSynopsis>.Instance.GetTowerName(towerModel.Id);
 			typeText.text = Singleton<TurretSynopsis>.Instance.GetTowerType(towerModel.Id);
-			currentLevelDamage_min = ((towerModel.OriginalParameter.damage_Physics_min <= 0) ? towerModel.OriginalParameter.damage_Magic_min : towerModel.OriginalParameter.damage_Physics_min);
-			currentLevelDamage_max = ((towerModel.OriginalParameter.damage_Physics_max <= 0) ? towerModel.OriginalParameter.damage_Magic_max : towerModel.OriginalParameter.damage_Physics_max);
-			damageText.text = currentLevelDamage_min.ToString() + "-" + currentLevelDamage_max.ToString();
+			currentLevelDamage_min = towerModel.OriginalParameter.damage;
+			currentLevelDamage_max = towerModel.OriginalParameter.damage;
+			damageText.text = currentLevelDamage_min.ToString();
 			if (TowerParameterManager.Instance.isPhysicsAttack(towerModel.Id))
 			{
 				iconDamage.sprite = physicsDamageIcon;
@@ -118,11 +118,13 @@ namespace Gameplay
 				iconDamage.sprite = magicDamageIcon;
 			}
 			healthText.text = towerModel.OriginalParameter.unit_health.ToString();
-			armorText.text = AbilityRankDescriber.Instance.GetArmorDescriptionByValue(towerModel.OriginalParameter.unit_armor_physics);
-			reloadText.text = AbilityRankDescriber.Instance.GetAttackSpeedDescriptionByValue(towerModel.OriginalParameter.reload);
-			attackRangeText.text = AbilityRankDescriber.Instance.GetAttackRangeDescriptionByValue(towerModel.OriginalParameter.attackRangeMax);
+			armorText.text = AbilityRankDescriber.Instance.GetArmorDescriptionByValue(towerModel.OriginalParameter.unit_armor);
+			float reloadMs = towerModel.OriginalParameter.attackSpeed > 0 ? 1000f / towerModel.OriginalParameter.attackSpeed : 0f;
+			reloadText.text = AbilityRankDescriber.Instance.GetAttackSpeedDescriptionByValue((int)reloadMs);
+			int rangePixels = (int)(towerModel.OriginalParameter.range * GameRecord.PIXEL_PER_UNIT);
+			attackRangeText.text = AbilityRankDescriber.Instance.GetAttackRangeDescriptionByValue(rangePixels);
 			goldProduceText.text = towerModel.OriginalParameter.goldProduce.ToString();
-			timeProduceText.text = ((float)towerModel.OriginalParameter.reload / 1000f).ToString() + "s";
+			timeProduceText.text = (reloadMs / 1000f).ToString("F2") + "s";
 			autoCollectGoldText.text = ((float)towerModel.OriginalParameter.autoCollectTime / 1000f).ToString() + "s";
 			HideAll();
 			if (towerModel.Id == 1)

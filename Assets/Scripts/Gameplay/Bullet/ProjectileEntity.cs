@@ -137,8 +137,8 @@ namespace Gameplay
 			if (commonAttackDamage.criticalStrikeChance > 0 && UnityEngine.Random.Range(0, 100) < commonAttackDamage.criticalStrikeChance)
 			{
 				commonAttackDamage.isCrit = true;
-				commonAttackDamage.physicsDamage *= 2;
-				commonAttackDamage.magicDamage *= 2;
+				commonAttackDamage.physicsDamage = (int)(commonAttackDamage.physicsDamage * commonAttackDamage.critMultiplier);
+				commonAttackDamage.magicDamage = (int)(commonAttackDamage.magicDamage * commonAttackDamage.critMultiplier);
 			}
 			commonAttackDamage.isIgnoreArmor = false;
 			if (commonAttackDamage.ignoreArmorChance > 0 && UnityEngine.Random.Range(0, 100) < commonAttackDamage.ignoreArmorChance)
@@ -167,8 +167,8 @@ namespace Gameplay
 			if (commonAttackDamage.criticalStrikeChance > 0 && UnityEngine.Random.Range(0, 100) < commonAttackDamage.criticalStrikeChance)
 			{
 				commonAttackDamage.isCrit = true;
-				commonAttackDamage.physicsDamage *= 2;
-				commonAttackDamage.magicDamage *= 2;
+				commonAttackDamage.physicsDamage = (int)(commonAttackDamage.physicsDamage * commonAttackDamage.critMultiplier);
+				commonAttackDamage.magicDamage = (int)(commonAttackDamage.magicDamage * commonAttackDamage.critMultiplier);
 			}
 			commonAttackDamage.isIgnoreArmor = false;
 			if (commonAttackDamage.ignoreArmorChance > 0 && UnityEngine.Random.Range(0, 100) < commonAttackDamage.ignoreArmorChance)
@@ -204,8 +204,8 @@ namespace Gameplay
 			if (commonAttackDamage.criticalStrikeChance > 0 && UnityEngine.Random.Range(0, 100) < commonAttackDamage.criticalStrikeChance)
 			{
 				commonAttackDamage.isCrit = true;
-				commonAttackDamage.physicsDamage *= 2;
-				commonAttackDamage.magicDamage *= 2;
+				commonAttackDamage.physicsDamage = (int)(commonAttackDamage.physicsDamage * commonAttackDamage.critMultiplier);
+				commonAttackDamage.magicDamage = (int)(commonAttackDamage.magicDamage * commonAttackDamage.critMultiplier);
 			}
 			commonAttackDamage.isIgnoreArmor = false;
 			if (commonAttackDamage.ignoreArmorChance > 0 && UnityEngine.Random.Range(0, 100) < commonAttackDamage.ignoreArmorChance)
@@ -230,8 +230,8 @@ namespace Gameplay
 			if (commonAttackDamage.criticalStrikeChance > 0 && UnityEngine.Random.Range(0, 100) < commonAttackDamage.criticalStrikeChance)
 			{
 				commonAttackDamage.isCrit = true;
-				commonAttackDamage.physicsDamage *= 2;
-				commonAttackDamage.magicDamage *= 2;
+				commonAttackDamage.physicsDamage = (int)(commonAttackDamage.physicsDamage * commonAttackDamage.critMultiplier);
+				commonAttackDamage.magicDamage = (int)(commonAttackDamage.magicDamage * commonAttackDamage.critMultiplier);
 			}
 			commonAttackDamage.isIgnoreArmor = false;
 			if (commonAttackDamage.ignoreArmorChance > 0 && UnityEngine.Random.Range(0, 100) < commonAttackDamage.ignoreArmorChance)

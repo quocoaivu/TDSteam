@@ -112,7 +112,7 @@ namespace Gameplay
 			towerModel.StartBuild(towerID, 0, Setup.Instance.currentTowerRegionIDSelected);
 			towerModel.Appear();
 			towerModel.transform.position = MonoSingleton<ConstructSectorDirector>.Instance.listRegions[Setup.Instance.currentTowerRegionIDSelected].transform.position;
-			MonoSingleton<GameRecord>.Instance.DecreaseMoney(towerModel.OriginalParameter.price);
+			MonoSingleton<GameRecord>.Instance.DecreaseMoney(towerModel.OriginalParameter.buildCost);
 			MonoSingleton<TurretControlSfxHandler>.Instance.PlayBuild(towerID);
 			MonoSingleton<UIRootHandler>.Instance.BuyTowerPopupController.Close();
 			MonoSingleton<ConstructSectorDirector>.Instance.listRegions[Setup.Instance.currentTowerRegionIDSelected].DisplayNotBuildable();

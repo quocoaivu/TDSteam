@@ -8,22 +8,28 @@ using UnityEngine.UI;
 
 namespace ItemsEditor
 {
-	// One-click builder for the in-match item shop UI. Select the GameObject that has an ItemShopPanel
-	// component, then run Tools > Tower Item > Build Item Shop. It creates 3 offer buttons + a reroll
-	// button + a gold label, wires every reference (and the reroll button's OnClick), and registers them
-	// in the panel. Fully undoable. Mirrors ItemSlotBuilder. You still wire a gameplay button's OnClick
-	// to ItemShopPanel.OpenShop() by hand to open the shop.
+	// One-click builder for the in-match "tree" item shop. Select the GameObject that has an ItemShopPanel
+	// component (it becomes the always-on tree button), then run Tools > Tower Item > Build Item Shop. It
+	// turns the root into the tree button and creates TreeImage + ItemContainer (5 radial item slots) +
+	// reroll + a gold label, wiring every reference (the tree's OnClick -> ToggleShop, reroll -> OnReroll).
+	// Fully undoable. The tree stays on the HUD; tapping it blooms/collapses the items. Assign a tree sprite
+	// to the TreeImage after building and position the root where you want it on the HUD.
 	public static class ItemShopBuilder
 	{
-		private const int OFFER_COUNT = 3;
+		private const int OFFER_COUNT = 5;
 
-		// Fixed window size (canvas reference units) so the shop is a contained popup, not full-screen.
-		private static readonly Vector2 WindowSize = new Vector2(700f, 520f);
+		// The tree button's rect (keep its on-screen position; only the size is normalized).
+		private static readonly Vector2 TreeSize = new Vector2(160f, 200f);
 
-		private static readonly Vector2 OfferSize = new Vector2(180f, 220f);
+		// Compact radial slots: just an icon + a price label below it.
+		private static readonly Vector2 OfferSize = new Vector2(72f, 72f);
 
-		// Anchored x for the three offers (centered row).
-		private static readonly float[] OfferX = { -200f, 0f, 200f };
+		// Radial arc params (must match RadialShopLayout defaults so edit-time and runtime positions agree).
+		private const float RADIUS = 110f;
+
+		private const float START_ANGLE = 20f;
+
+		private const float END_ANGLE = 160f;
 
 		[MenuItem("Tools/Tower Item/Build Item Shop")]
 		private static void BuildItemShop()
@@ -43,16 +49,16 @@ namespace ItemsEditor
 				return;
 			}
 
-			Transform existing = selected.transform.Find("ShopContent");
+			Transform existing = selected.transform.Find("ItemContainer");
 			if (existing != null)
 			{
 				EditorUtility.DisplayDialog("Item Shop Builder",
-					"Đã tồn tại 'ShopContent'. Xóa nó trước nếu muốn dựng lại.", "OK");
+					"Đã tồn tại 'ItemContainer'. Xóa các con cũ (TreeImage / ItemContainer / RerollButton / Gold) " +
+					"nếu muốn dựng lại.", "OK");
 				return;
 			}
 
-			// The panel is a UI dialog (GameplayDialogHandler) so its root must be a RectTransform under a
-			// Canvas. A plain GameObject (only Transform) means it wasn't created as a UI element.
+			// The root must be a UI object (RectTransform under a Canvas) since it becomes the tree button.
 			RectTransform rootRect = selected.GetComponent<RectTransform>();
 			if (rootRect == null)
 			{
@@ -62,60 +68,82 @@ namespace ItemsEditor
 				return;
 			}
 
-			// Normalize the panel root so it exactly covers the canvas; otherwise a mis-sized root (or a
-			// non-1 localScale) makes the whole shop look huge relative to the map.
-			StretchFull(rootRect);
+			// The root IS the always-on tree button. Give it a fixed centered rect of tree size (anchored to a
+			// point so the size is absolute, not stretched). Designer repositions it on the HUD afterwards. It
+			// needs a CanvasGroup so clicks can fall through to a tower while an item is being carried.
 			rootRect.localScale = Vector3.one;
+			rootRect.anchorMin = new Vector2(0.5f, 0.5f);
+			rootRect.anchorMax = new Vector2(0.5f, 0.5f);
+			rootRect.pivot = new Vector2(0.5f, 0.5f);
+			rootRect.sizeDelta = TreeSize;
+			if (selected.GetComponent<CanvasGroup>() == null)
+			{
+				selected.AddComponent<CanvasGroup>();
+			}
 
-			GameObject container = NewUIObject("ShopContent", selected.transform);
-			Undo.RegisterCreatedObjectUndo(container, "Build Item Shop");
-			StretchFull(container.GetComponent<RectTransform>());
+			// Tree art = the visible tree and the Button's raycast target. Assign your tree sprite here.
+			GameObject treeImage = NewUIObject("TreeImage", selected.transform);
+			Undo.RegisterCreatedObjectUndo(treeImage, "Build Item Shop");
+			StretchFull(treeImage.GetComponent<RectTransform>());
+			Image treeImg = treeImage.AddComponent<Image>();
+			treeImg.color = new Color(0.20f, 0.45f, 0.22f, 1f);
 
-			// Dim full-screen backdrop (also blocks clicks on the map behind the shop).
-			GameObject backdrop = NewUIObject("Backdrop", container.transform);
-			StretchFull(backdrop.GetComponent<RectTransform>());
-			Image backdropImg = backdrop.AddComponent<Image>();
-			backdropImg.color = new Color(0f, 0f, 0f, 0.6f);
+			Button treeButton = selected.GetComponent<Button>();
+			if (treeButton == null)
+			{
+				treeButton = selected.AddComponent<Button>();
+			}
+			treeButton.targetGraphic = treeImg;
+			// Tapping the tree toggles the items (persistent listener, like a designer would wire it).
+			UnityEventTools.AddPersistentListener(treeButton.onClick, panel.ToggleShop);
 
-			// Fixed-size centered window that holds everything visible.
-			GameObject window = NewUIObject("Window", container.transform);
-			RectTransform windowRect = window.GetComponent<RectTransform>();
-			windowRect.anchorMin = new Vector2(0.5f, 0.5f);
-			windowRect.anchorMax = new Vector2(0.5f, 0.5f);
-			windowRect.pivot = new Vector2(0.5f, 0.5f);
-			windowRect.sizeDelta = WindowSize;
-			windowRect.anchoredPosition = Vector2.zero;
-			Image windowImg = window.AddComponent<Image>();
-			windowImg.color = new Color(0.12f, 0.13f, 0.17f, 1f);
+			// Centered container that holds the radial slots and carries the bloom animation. Nudged up so the
+			// upper arc of items sits over the top of the tree.
+			GameObject itemContainer = NewUIObject("ItemContainer", selected.transform);
+			Undo.RegisterCreatedObjectUndo(itemContainer, "Build Item Shop");
+			RectTransform containerRect = itemContainer.GetComponent<RectTransform>();
+			containerRect.anchorMin = new Vector2(0.5f, 0.5f);
+			containerRect.anchorMax = new Vector2(0.5f, 0.5f);
+			containerRect.pivot = new Vector2(0.5f, 0.5f);
+			containerRect.sizeDelta = Vector2.zero;
+			containerRect.anchoredPosition = new Vector2(0f, 40f);
+			RadialShopLayout radialLayout = itemContainer.AddComponent<RadialShopLayout>();
 
 			List<ItemShopOfferButton> offers = new List<ItemShopOfferButton>();
 			for (int i = 0; i < OFFER_COUNT; i++)
 			{
-				offers.Add(BuildOffer(i, window.transform));
+				offers.Add(BuildOffer(i, itemContainer.transform));
 			}
 
-			TMP_Text goldText = NewText(window.transform, "Gold", "0", 24f, TextAlignmentOptions.Right);
-			RectTransform goldRect = goldText.rectTransform;
-			goldRect.anchoredPosition = new Vector2(0f, 200f);
-			goldRect.sizeDelta = new Vector2(300f, 40f);
+			// Chrome holder (reroll + gold) shown only while the shop is open. Stretched over the root so its
+			// children anchor relative to the tree; starts inactive so a closed tree shows nothing but the tree.
+			GameObject chrome = NewUIObject("ShopChrome", selected.transform);
+			Undo.RegisterCreatedObjectUndo(chrome, "Build Item Shop");
+			StretchFull(chrome.GetComponent<RectTransform>());
 
+			// Small gold readout above the tree.
+			TMP_Text goldText = NewText(chrome.transform, "Gold", "0", 20f, TextAlignmentOptions.Center);
+			RectTransform goldRect = goldText.rectTransform;
+			goldRect.anchorMin = new Vector2(0.5f, 1f);
+			goldRect.anchorMax = new Vector2(0.5f, 1f);
+			goldRect.pivot = new Vector2(0.5f, 0f);
+			goldRect.anchoredPosition = new Vector2(0f, 6f);
+			goldRect.sizeDelta = new Vector2(140f, 28f);
+
+			// Reroll node at the tree base.
 			Button rerollButton;
 			TMP_Text rerollCostText;
-			BuildReroll(window.transform, panel, out rerollButton, out rerollCostText);
+			BuildReroll(chrome.transform, panel, out rerollButton, out rerollCostText);
 
-			BuildClose(window.transform, panel);
+			chrome.SetActive(false);
 
-			WirePanel(panel, offers, rerollButton, rerollCostText, goldText, window);
-
-			// Start hidden: the panel's full-screen backdrop would otherwise eat all clicks on the HUD.
-			// OpenShop() reactivates it on demand.
-			selected.SetActive(false);
+			WirePanel(panel, offers, rerollButton, rerollCostText, goldText, radialLayout, treeImage.transform, chrome);
 
 			EditorUtility.SetDirty(panel);
 			EditorSceneMarkDirty();
-			Debug.Log("ItemShopBuilder: dựng xong 3 offer + reroll + close + gold, wire vào panel. Panel đã được TẮT " +
-				"(inactive) để không chặn click HUD. Nhớ Save scene. " +
-				"Còn lại THỦ CÔNG: 1 nút gameplay trên HUD OnClick -> ItemShopPanel.OpenShop().");
+			Debug.Log("ItemShopBuilder: dựng xong cây shop (" + OFFER_COUNT + " item radial + reroll + gold). Root đã thành " +
+				"tree button (OnClick -> ToggleShop), LUÔN hiển thị. Gán tree sprite cho 'TreeImage', đặt vị trí cây trên HUD, " +
+				"rồi Save scene. Không cần nút mở riêng nữa.");
 		}
 
 		private static ItemShopOfferButton BuildOffer(int index, Transform parent)
@@ -123,33 +151,41 @@ namespace ItemsEditor
 			GameObject offerGo = NewUIObject("Offer_" + index, parent);
 			Undo.RegisterCreatedObjectUndo(offerGo, "Build Item Shop");
 			RectTransform rect = offerGo.GetComponent<RectTransform>();
+			rect.anchorMin = new Vector2(0.5f, 0.5f);
+			rect.anchorMax = new Vector2(0.5f, 0.5f);
+			rect.pivot = new Vector2(0.5f, 0.5f);
 			rect.sizeDelta = OfferSize;
-			rect.anchoredPosition = new Vector2(OfferX[index], 0f);
+			// Edit-time position on the arc (runtime PlayOpen re-drives this from the same formula).
+			rect.anchoredPosition = RadialPos(index, OFFER_COUNT);
+
+			// CanvasGroup so the bloom animation can fade the whole slot in/out.
+			offerGo.AddComponent<CanvasGroup>();
 
 			Image bg = offerGo.AddComponent<Image>();
 			bg.color = new Color(0.20f, 0.22f, 0.28f, 1f);
 			Button button = offerGo.AddComponent<Button>();
 			button.targetGraphic = bg;
 
-			// Item name (runtime fills it; "Sold" once bought).
-			TMP_Text nameText = NewText(offerGo.transform, "Name", "—", 18f, TextAlignmentOptions.Top);
-			StretchFull(nameText.rectTransform);
-
-			// Item icon (runtime loads the sprite from the spec's icon key; hidden when sold).
+			// Item icon (runtime loads the sprite from the spec's icon key; hidden when sold). 60x60 per spec.
 			GameObject iconGo = NewUIObject("Icon", offerGo.transform);
 			RectTransform iconRect = iconGo.GetComponent<RectTransform>();
 			iconRect.anchorMin = new Vector2(0.5f, 0.5f);
 			iconRect.anchorMax = new Vector2(0.5f, 0.5f);
 			iconRect.pivot = new Vector2(0.5f, 0.5f);
-			iconRect.sizeDelta = new Vector2(120f, 120f);
+			iconRect.sizeDelta = new Vector2(60f, 60f);
 			iconRect.anchoredPosition = Vector2.zero;
 			Image iconImage = iconGo.AddComponent<Image>();
 			iconImage.raycastTarget = false;
 			iconImage.preserveAspect = true;
 
-			// Gold cost (hidden once sold).
-			TMP_Text costText = NewText(offerGo.transform, "Cost", "0", 22f, TextAlignmentOptions.Bottom);
-			StretchFull(costText.rectTransform);
+			// Price label centered just below the icon (runtime fills it; hidden once sold).
+			TMP_Text costText = NewText(offerGo.transform, "Price", "0", 18f, TextAlignmentOptions.Center);
+			RectTransform costRect = costText.rectTransform;
+			costRect.anchorMin = new Vector2(0.5f, 0f);
+			costRect.anchorMax = new Vector2(0.5f, 0f);
+			costRect.pivot = new Vector2(0.5f, 1f);
+			costRect.sizeDelta = new Vector2(80f, 24f);
+			costRect.anchoredPosition = new Vector2(0f, -2f);
 
 			// Sold overlay: dim cover shown after purchase.
 			GameObject sold = NewUIObject("Sold", offerGo.transform);
@@ -159,10 +195,11 @@ namespace ItemsEditor
 			soldImg.raycastTarget = false;
 			sold.SetActive(false);
 
+			// nameText is intentionally left unwired: the hover tooltip shows the item name, so the compact
+			// slot only needs an icon + price. ItemShopOfferButton.Refresh null-checks nameText.
 			ItemShopOfferButton offer = offerGo.AddComponent<ItemShopOfferButton>();
 			SerializedObject so = new SerializedObject(offer);
 			so.FindProperty("button").objectReferenceValue = button;
-			so.FindProperty("nameText").objectReferenceValue = nameText;
 			so.FindProperty("costText").objectReferenceValue = costText;
 			so.FindProperty("iconImage").objectReferenceValue = iconImage;
 			so.FindProperty("soldOverlay").objectReferenceValue = sold;
@@ -171,13 +208,24 @@ namespace ItemsEditor
 			return offer;
 		}
 
+		// Radial position for slot i of count, matching RadialShopLayout.SlotPosition.
+		private static Vector2 RadialPos(int i, int count)
+		{
+			float t = (count <= 1) ? 0f : (float)i / (count - 1);
+			float angle = Mathf.Lerp(START_ANGLE, END_ANGLE, t) * Mathf.Deg2Rad;
+			return new Vector2(Mathf.Cos(angle) * RADIUS, Mathf.Sin(angle) * RADIUS);
+		}
+
 		private static void BuildReroll(Transform parent, ItemShopPanel panel, out Button button, out TMP_Text costText)
 		{
 			GameObject rerollGo = NewUIObject("RerollButton", parent);
 			Undo.RegisterCreatedObjectUndo(rerollGo, "Build Item Shop");
 			RectTransform rect = rerollGo.GetComponent<RectTransform>();
-			rect.sizeDelta = new Vector2(220f, 60f);
-			rect.anchoredPosition = new Vector2(0f, -200f);
+			rect.anchorMin = new Vector2(0.5f, 0f);
+			rect.anchorMax = new Vector2(0.5f, 0f);
+			rect.pivot = new Vector2(0.5f, 1f);
+			rect.sizeDelta = new Vector2(150f, 44f);
+			rect.anchoredPosition = new Vector2(0f, -4f);
 
 			Image bg = rerollGo.AddComponent<Image>();
 			bg.color = new Color(0.30f, 0.26f, 0.18f, 1f);
@@ -194,31 +242,7 @@ namespace ItemsEditor
 			UnityEventTools.AddPersistentListener(button.onClick, panel.OnReroll);
 		}
 
-		private static void BuildClose(Transform parent, ItemShopPanel panel)
-		{
-			GameObject closeGo = NewUIObject("CloseButton", parent);
-			Undo.RegisterCreatedObjectUndo(closeGo, "Build Item Shop");
-			RectTransform rect = closeGo.GetComponent<RectTransform>();
-			// Top-right corner of the panel.
-			rect.anchorMin = Vector2.one;
-			rect.anchorMax = Vector2.one;
-			rect.pivot = Vector2.one;
-			rect.sizeDelta = new Vector2(56f, 56f);
-			rect.anchoredPosition = new Vector2(-10f, -10f);
-
-			Image bg = closeGo.AddComponent<Image>();
-			bg.color = new Color(0.55f, 0.18f, 0.18f, 1f);
-			Button button = closeGo.AddComponent<Button>();
-			button.targetGraphic = bg;
-
-			TMP_Text label = NewText(closeGo.transform, "X", "X", 28f, TextAlignmentOptions.Center);
-			StretchFull(label.rectTransform);
-
-			// Wire to the inherited close animation like a designer would.
-			UnityEventTools.AddPersistentListener(button.onClick, panel.CloseWithScaleAnimation);
-		}
-
-		private static void WirePanel(ItemShopPanel panel, List<ItemShopOfferButton> offers, Button rerollButton, TMP_Text rerollCostText, TMP_Text goldText, GameObject contentHolder)
+		private static void WirePanel(ItemShopPanel panel, List<ItemShopOfferButton> offers, Button rerollButton, TMP_Text rerollCostText, TMP_Text goldText, RadialShopLayout radialLayout, Transform treePunchTarget, GameObject shopChrome)
 		{
 			SerializedObject so = new SerializedObject(panel);
 			SerializedProperty list = so.FindProperty("offerButtons");
@@ -231,12 +255,9 @@ namespace ItemsEditor
 			so.FindProperty("rerollButton").objectReferenceValue = rerollButton;
 			so.FindProperty("rerollCostText").objectReferenceValue = rerollCostText;
 			so.FindProperty("goldText").objectReferenceValue = goldText;
-			// contentHolder is the centered window GameplayDialogHandler scales for the open/close animation.
-			SerializedProperty content = so.FindProperty("contentHolder");
-			if (content != null)
-			{
-				content.objectReferenceValue = contentHolder;
-			}
+			so.FindProperty("radialLayout").objectReferenceValue = radialLayout;
+			so.FindProperty("treePunchTarget").objectReferenceValue = treePunchTarget;
+			so.FindProperty("shopChrome").objectReferenceValue = shopChrome;
 			so.ApplyModifiedPropertiesWithoutUndo();
 		}
 

@@ -11,9 +11,10 @@ namespace Parameter
 
 		public string name;
 
-		public Items.StatType statType;
+		// Up to 3 stats per item (stat_type / stat_type_2 / stat_type_3 columns in CSV).
+		public Items.StatType[] statTypes;
 
-		public int statValue;
+		public int[] statValues;
 
 		public int rarity;
 

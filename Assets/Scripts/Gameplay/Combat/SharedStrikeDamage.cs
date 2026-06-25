@@ -59,6 +59,12 @@ public class SharedStrikeDamage
 
 	public int criticalStrikeChance;
 
+	public float critMultiplier = 2f; // applied when isCrit is true; default 2x matches old behaviour
+
+	public float projectileSpeed; // world units/s; 0 = use prefab default
+
+	public int pierceCount; // number of enemies the projectile passes through (0 = single target)
+
 	public bool isCrit;
 
 	public int instantKillChance;

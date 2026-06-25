@@ -108,6 +108,8 @@ namespace Gameplay
 
         private float lineShotDuration;
 
+        private int pierceHitCount;
+
         private Vector3 rootPositionLineShot;
 
         private Vector3 targetPositionLineShot;
@@ -246,6 +248,18 @@ namespace Gameplay
 
 		private void BulletModel_OnInitialized()
 		{
+			pierceHitCount = 0;
+
+			// Override per-prefab speed with tower spec value when provided.
+			float specSpeed = bulletModel.commonAttackDamage.projectileSpeed;
+			if (specSpeed > 0f)
+			{
+				originSpeed = specSpeed;
+				directShotSpeed = specSpeed;
+				lineShotSpeed = specSpeed;
+				maxSpeed = specSpeed;
+			}
+
 			switch (moveType)
 			{
 			case ProjectileTravelHandler.MoveType.ParabolShot:
@@ -339,7 +353,13 @@ namespace Gameplay
 				EnemyData component = coll.gameObject.GetComponent<EnemyData>();
 				if (GameKit.IsValidEnemy(component) && !component.IsUnderground)
 				{
+					// pierceCount = 0 → single target only; N → passes through N extra enemies.
+					if (pierceHitCount > bulletModel.commonAttackDamage.pierceCount)
+					{
+						return;
+					}
 					bulletModel.AttackEnemy(component);
+					pierceHitCount++;
 				}
 			}
 		}

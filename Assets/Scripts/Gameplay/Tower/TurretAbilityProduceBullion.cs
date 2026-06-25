@@ -27,7 +27,8 @@ namespace Gameplay
 			// towers read. The Supporter tree buffs goldProduce / reload / autoCollectTime here.
 			TurretSpec spec = base.TowerModel.OriginalParameter;
 			goldProduce = spec.goldProduce;
-			cooldownTimeProduce = (float)spec.reload / 1000f;
+			float prodSpd = spec.attackSpeed;
+			cooldownTimeProduce = prodSpd > 0 ? 1f / prodSpd : 999f;
 			cooldownTimeProduceTracking = cooldownTimeProduce;
 			cooldownTimeAutoCollect = (float)spec.autoCollectTime / 1000f;
 			cooldownTimeAutoCollectTracking = cooldownTimeAutoCollect;

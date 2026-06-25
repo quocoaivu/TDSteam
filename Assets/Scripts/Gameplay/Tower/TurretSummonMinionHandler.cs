@@ -25,8 +25,9 @@ namespace Gameplay
 		{
 			base.Initialize();
 			MonoSingleton<AllyPool>.Instance.PushAlliesToPool(base.TowerModel.Id, base.TowerModel.Level, 2);
-			timeTracking = (float)base.TowerModel.OriginalParameter.reload / 1000f;
-			ignoreReloadChance = base.TowerModel.OriginalParameter.ignoreReloadChance;
+			float spd = base.TowerModel.OriginalParameter.attackSpeed;
+			timeTracking = spd > 0 ? 1f / spd : 999f;
+			ignoreReloadChance = 0;
 			base.TowerModel.BuffsHolder.OnBuffValueChanged += BuffsHolder_OnBuffValueChanged;
 		}
 
@@ -167,7 +168,7 @@ namespace Gameplay
 			if (inputTowerModel.GetEntityId() == base.TowerModel.GetEntityId())
 			{
 				float num = Vector2.Distance(targetPosition, base.transform.position);
-				if (num < (float)base.TowerModel.OriginalParameter.attackRangeMax / GameRecord.PIXEL_PER_UNIT)
+				if (num < base.TowerModel.OriginalParameter.range)
 				{
 					SetAlliesToAssignedPosition(targetPosition);
 					if (effectCaster)
@@ -193,7 +194,8 @@ namespace Gameplay
 			{
 				SpawnAllies(desiredAlliesNumber - GetNumberOfLivingAllies());
 			}
-			timeTracking = (float)base.TowerModel.OriginalParameter.reload / 1000f;
+			float spd2 = base.TowerModel.OriginalParameter.attackSpeed;
+			timeTracking = spd2 > 0 ? 1f / spd2 : 999f;
 		}
 
 		private int GetNumberOfLivingAllies()

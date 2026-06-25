@@ -101,5 +101,20 @@ namespace Tutorial
 		{
 			return FormatDirector.Instance.gameMode == GameFormat.CampaignMode && MonoSingleton<GameRecord>.Instance.MapID == 0;
 		}
+
+		// True only during the VERY FIRST play of the campaign tutorial map (Map 0). playCount is bumped at
+		// end-game (GameRuleHandler victory/defeat), so it stays 0 for the whole first match and becomes >= 1
+		// afterwards. Every in-match tutorial step gates on this so none of them replay when Map 0 is played
+		// again, even if a step's own "passed" flag was never saved (e.g. the first run was abandoned). Static
+		// so steps can call it from Start() without depending on this director's Instance being ready, and it
+		// only uses already-initialised singletons. Note: IsTutorialMap() above is deliberately left WITHOUT
+		// this playCount guard — it gates end-game UI (e.g. the open-chest tutorial) that must still run on the
+		// first play, where playCount has already become 1 by the time the end-game popup opens.
+		public static bool IsFirstPlayTutorialMap()
+		{
+			return FormatDirector.Instance.gameMode == GameFormat.CampaignMode
+				&& MonoSingleton<GameRecord>.Instance.MapID == 0
+				&& Data.MapProgressStore.Instance.GetCurrentPlayCount(0) == 0;
+		}
 	}
 }

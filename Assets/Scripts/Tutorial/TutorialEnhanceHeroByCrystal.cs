@@ -15,7 +15,8 @@ namespace Tutorial
 		protected override bool ShouldShowTutorial()
 		{
 			return !TutorialStore.Instance.GetTutorialStatus(tutorialID)
-				&& (HeroStore.Instance.IsHeroOwned(1) & HeroStore.Instance.GetCurrentHeroLevel(1) <= 1)
+				&& HeroStore.Instance.IsHeroOwned(1)
+				&& HeroStore.Instance.GetCurrentHeroLevel(1) <= 1
 				&& MapProgressStore.Instance.GetMapIDUnlocked() < 2;
 		}
 

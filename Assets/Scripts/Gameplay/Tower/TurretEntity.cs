@@ -25,45 +25,30 @@ namespace Gameplay
 
 		public CanEnhanceStanding CanUpgradeStatus { get; set; }
 
-		internal int finalDamagePhysics_min
+		internal int finalDamage
 		{
 			get
 			{
-				return (int)((float)OriginalParameter.damage_Physics_min * (1f + (float)bonusDmgPercent / 100f));
+				return (int)(OriginalParameter.damage * (1f + bonusDmgPercent / 100f));
 			}
 		}
 
-		internal int finalDamagePhysics_max
+		// Legacy aliases so handlers that haven't been updated still compile.
+		internal int finalDamagePhysics_min => OriginalParameter.damageType == Parameter.DamageType.Physical ? finalDamage : 0;
+		internal int finalDamagePhysics_max => finalDamagePhysics_min;
+		internal int finalDamageMagic_min => OriginalParameter.damageType == Parameter.DamageType.Magic ? finalDamage : 0;
+		internal int finalDamageMagic_max => finalDamageMagic_min;
+
+		internal float finalCritChance
 		{
 			get
 			{
-				return (int)((float)OriginalParameter.damage_Physics_max * (1f + (float)bonusDmgPercent / 100f));
+				return OriginalParameter.critChance * (1f + bonusCriticalStrikeChange / 100f);
 			}
 		}
 
-		internal int finalDamageMagic_min
-		{
-			get
-			{
-				return (int)((float)OriginalParameter.damage_Magic_min * (1f + (float)bonusDmgPercent / 100f));
-			}
-		}
-
-		internal int finalDamageMagic_max
-		{
-			get
-			{
-				return (int)((float)OriginalParameter.damage_Magic_max * (1f + (float)bonusDmgPercent / 100f));
-			}
-		}
-
-		internal int finalCriticalStrikeChange
-		{
-			get
-			{
-				return (int)((float)OriginalParameter.criticalStrikeChance * (1f + (float)bonusCriticalStrikeChange / 100f));
-			}
-		}
+		// Legacy alias.
+		internal int finalCriticalStrikeChange => (int)finalCritChance;
 
 		public BuffHolder BuffsHolder
 		{
@@ -225,7 +210,7 @@ namespace Gameplay
 			{
 				Equipment.ReturnAllToInventory();
 			}
-			MonoSingleton<GameRecord>.Instance.IncreaseMoney(OriginalParameter.value);
+			MonoSingleton<GameRecord>.Instance.IncreaseMoney(OriginalParameter.sellValue);
 			MonoSingleton<TurretControlSfxHandler>.Instance.PlaySell();
 			MonoSingleton<ConstructSectorDirector>.Instance.listRegions[RegionID].DisplayBuildable();
 			if (OnSell != null)

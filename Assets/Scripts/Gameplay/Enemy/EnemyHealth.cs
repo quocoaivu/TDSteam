@@ -292,9 +292,15 @@ namespace Gameplay
 			}
 			if (damageInfo.magicDamage > 0)
 			{
-				if (CurrentMagicArmor > 0f)
+				// magicPenetration ignores part of the enemy's magic resistance for this hit.
+				float effectiveMagicArmor = CurrentMagicArmor;
+				if (damageInfo.magicPenetration > 0)
 				{
-					damageInfo.magicDamage -= (int)((float)damageInfo.magicDamage * CurrentMagicArmor);
+					effectiveMagicArmor *= 1f - Mathf.Clamp01(damageInfo.magicPenetration / 100f);
+				}
+				if (effectiveMagicArmor > 0f)
+				{
+					damageInfo.magicDamage -= (int)((float)damageInfo.magicDamage * effectiveMagicArmor);
 					damageInfo.magicDamage = Mathf.Clamp(damageInfo.magicDamage, 1, 999999);
 				}
 				if (damageInfo.magicDamage > 0)

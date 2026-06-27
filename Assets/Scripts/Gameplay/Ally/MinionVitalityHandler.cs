@@ -24,6 +24,10 @@ namespace Gameplay
 
         private int dodgeChance;
 
+        private int currentShield;
+
+        private float regenAccumulator;
+
         private BuffHolder buffsHolder;
 
         [SerializeField]
@@ -133,6 +137,8 @@ namespace Gameplay
 			OriginMagicArmor = (float)base.MinionEntity.MagicArmor / 100f;
 			CurrentMagicArmor = OriginMagicArmor;
 			dodgeChance = base.MinionEntity.GetDodgeChance();
+			currentShield = base.MinionEntity.Shield;
+			regenAccumulator = 0f;
 			SetupHealthBar();
 		}
 
@@ -156,6 +162,45 @@ namespace Gameplay
 		public override void Update()
 		{
 			base.Update();
+			RegenTick(Time.deltaTime);
+		}
+
+		// Restores unit_hp_regen HP per second while alive and below max health.
+		private void RegenTick(float dt)
+		{
+			int regen = base.MinionEntity.HpRegen;
+			if (regen <= 0 || currentHealth <= 0 || currentHealth >= OriginHealth)
+			{
+				return;
+			}
+			regenAccumulator += regen * dt;
+			if (regenAccumulator >= 1f)
+			{
+				int whole = (int)regenAccumulator;
+				regenAccumulator -= whole;
+				AddHealth(whole);
+			}
+		}
+
+		// Shield (unit_shield) soaks damage before HP; falls through to HP once depleted.
+		private void ApplyHealthLoss(int amount)
+		{
+			if (amount <= 0)
+			{
+				return;
+			}
+			if (currentShield > 0)
+			{
+				int absorbed = Mathf.Min(currentShield, amount);
+				currentShield -= absorbed;
+				amount -= absorbed;
+			}
+			if (amount > 0)
+			{
+				CurrentHealth -= amount;
+				onHealthChangeEvent.Dispatch();
+				UpdateHealthView();
+			}
 		}
 
 		public void RestoreHealth()
@@ -192,12 +237,7 @@ namespace Gameplay
 					num -= (int)((float)damageInfor.physicsDamage * CurrentPhysicsArmor);
 					num = Mathf.Clamp(num, 1, 999999);
 				}
-				if (num > 0)
-				{
-					CurrentHealth -= num;
-					onHealthChangeEvent.Dispatch();
-					UpdateHealthView();
-				}
+				ApplyHealthLoss(num);
 			}
 			if (damageInfor.magicDamage > 0)
 			{
@@ -207,12 +247,7 @@ namespace Gameplay
 					num2 -= (int)((float)damageInfor.magicDamage * CurrentMagicArmor);
 					num2 = Mathf.Clamp(num2, 1, 999999);
 				}
-				if (num2 > 0)
-				{
-					CurrentHealth -= num2;
-					onHealthChangeEvent.Dispatch();
-					UpdateHealthView();
-				}
+				ApplyHealthLoss(num2);
 			}
 		}
 

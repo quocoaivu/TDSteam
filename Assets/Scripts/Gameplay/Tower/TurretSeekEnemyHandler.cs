@@ -157,10 +157,12 @@ namespace Gameplay
 			{
 				return;
 			}
+			float sqrMinRange = originalParameter.minRange * originalParameter.minRange;
 			for (int i = Targets.Count - 1; i >= 0; i--)
 			{
 				EnemyData enemyModel = Targets[i];
-				if (MonoSingleton<GameRecord>.Instance.SqrDistance(base.TowerModel.gameObject, enemyModel.gameObject) > buffedAttackRangeMax * buffedAttackRangeMax || !enemyModel.gameObject.activeSelf || !enemyModel.IsAlive || enemyModel.IsInTunnel)
+				float sqrDist = MonoSingleton<GameRecord>.Instance.SqrDistance(base.TowerModel.gameObject, enemyModel.gameObject);
+				if (sqrDist > buffedAttackRangeMax * buffedAttackRangeMax || sqrDist < sqrMinRange || !enemyModel.gameObject.activeSelf || !enemyModel.IsAlive || enemyModel.IsInTunnel)
 				{
 					RemoveTarget(enemyModel);
 				}
@@ -183,16 +185,44 @@ namespace Gameplay
 			bool canTargetAir = originalParameter.canTargetAir;
 			bool isRoundAttack = originalParameter.isRoundAttack;
 			float sqrMaxRange = buffedAttackRangeMax * buffedAttackRangeMax;
+			float sqrMinRange = originalParameter.minRange * originalParameter.minRange;
 			for (int i = 0; i < listActiveEnemy.Count; i++)
 			{
 				EnemyData enemy = listActiveEnemy[i];
 				if (Targets.Contains(enemy)) continue;
 				if (enemy.IsUnderground || enemy.IsInTunnel) continue;
 				if (!canTargetAir && enemy.IsAir) continue;
-				if (!MonoSingleton<GameRecord>.Instance.IsInRange(base.TowerModel.gameObject, enemy.gameObject, sqrMaxRange, 0f)) continue;
+				if (!MonoSingleton<GameRecord>.Instance.IsInRange(base.TowerModel.gameObject, enemy.gameObject, sqrMaxRange, sqrMinRange)) continue;
 				allNewTargets.Add(enemy);
 			}
-			SortByPriority(allNewTargets, originalParameter.targetPriority);
+			// splashTargeting overrides the priority sort: pick the enemy in the densest cluster.
+			if (originalParameter.splashTargeting && originalParameter.aoeRadius > 0f)
+			{
+				SortByClusterDensity(allNewTargets, originalParameter.aoeRadius);
+			}
+			else
+			{
+				SortByPriority(allNewTargets, originalParameter.targetPriority);
+			}
+		}
+
+		// Sorts candidates so the enemy with the most neighbours within one blast radius comes first.
+		private void SortByClusterDensity(List<EnemyData> list, float aoeRadius)
+		{
+			if (list.Count <= 1) return;
+			float sqrAoe = aoeRadius * aoeRadius;
+			list.Sort((a, b) => CountNeighbours(b, list, sqrAoe).CompareTo(CountNeighbours(a, list, sqrAoe)));
+		}
+
+		private int CountNeighbours(EnemyData enemy, List<EnemyData> list, float sqrAoe)
+		{
+			int count = 0;
+			Vector3 pos = enemy.transform.position;
+			for (int i = 0; i < list.Count; i++)
+			{
+				if ((list[i].transform.position - pos).sqrMagnitude <= sqrAoe) count++;
+			}
+			return count;
 		}
 
 		private void SortByPriority(List<EnemyData> list, Parameter.TargetPriority priority)

@@ -27,8 +27,9 @@ namespace Gameplay
 			// towers read. The Supporter tree buffs goldProduce / reload / autoCollectTime here.
 			TurretSpec spec = base.TowerModel.OriginalParameter;
 			goldProduce = spec.goldProduce;
+			// Prefer the explicit goldInterval; fall back to attackSpeed for older data.
 			float prodSpd = spec.attackSpeed;
-			cooldownTimeProduce = prodSpd > 0 ? 1f / prodSpd : 999f;
+			cooldownTimeProduce = spec.goldInterval > 0f ? spec.goldInterval : (prodSpd > 0 ? 1f / prodSpd : 999f);
 			cooldownTimeProduceTracking = cooldownTimeProduce;
 			cooldownTimeAutoCollect = (float)spec.autoCollectTime / 1000f;
 			cooldownTimeAutoCollectTracking = cooldownTimeAutoCollect;
@@ -73,10 +74,21 @@ namespace Gameplay
 
 		private void ProduceGold()
 		{
-			producedGoldController.Init(goldProduce);
+			producedGoldController.Init(goldProduce + GetItemGoldBonus());
 			ResetCooldownProduce();
 			onProduceGold.Dispatch();
 			isProducingGold = true;
+		}
+
+		// Flat gold per tick from equipped GoldProduce items. Read live each tick.
+		private int GetItemGoldBonus()
+		{
+			float bonus;
+			if (base.TowerModel.BuffsHolder.TryGetBuffValue(BuffKeysToTurret.ITEM_GOLD_PRODUCE_FLAT, out bonus))
+			{
+				return (int)bonus;
+			}
+			return 0;
 		}
 
 		private bool IsCooldownAutoCollectDone()

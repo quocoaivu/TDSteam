@@ -60,7 +60,8 @@ public class PinchMagnifyView : TouchRule
 	private void TryToMove()
 	{
 		float z = Camera.main.transform.position.z;
-		Vector2 deltaWorldPosition = GetDeltaWorldPosition(UnityEngine.Input.GetTouch(0).deltaPosition, Camera.main);
+		// Delta comes from InputFilterDirector, which fills it from touch or mouse.
+		Vector2 deltaWorldPosition = GetDeltaWorldPosition(InputFilterDirector.Instance.DragDeltaScreen, Camera.main);
 		Camera.main.transform.Translate(deltaWorldPosition * Time.unscaledDeltaTime * z / movementSesitivity);
 	}
 
@@ -179,8 +180,12 @@ public class PinchMagnifyView : TouchRule
 
 	private float yMax;
 
+	// Pan limits = the map's world size. Set these to match map_campaign_* or the camera
+	// won't reach the map edges (too small) / overshoots into empty space (too big).
+	[SerializeField]
 	private float mapHeight = 9.6f;
 
+	[SerializeField]
 	private float mapWidth = 12.8f;
 
 	private float ratioScreen;

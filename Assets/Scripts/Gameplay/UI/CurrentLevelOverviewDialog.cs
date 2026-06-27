@@ -1,4 +1,5 @@
-﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using Data;
 using GameCore;
 using Parameter;
@@ -11,79 +12,13 @@ namespace Gameplay
 	{
         private TurretEntity towerModel;
 
-        [Header("UI Text")]
+        [Header("Header")]
         [SerializeField]
         private Text nameText;
 
-        [Header("UI Text")]
         [SerializeField]
         private Text typeText;
 
-        [Header("UI Text")]
-        [SerializeField]
-        private Text damageText;
-
-        [Header("UI Text")]
-        [SerializeField]
-        private Text healthText;
-
-        [Header("UI Text")]
-        [SerializeField]
-        private Text armorText;
-
-        [Header("UI Text")]
-        [SerializeField]
-        private Text reloadText;
-
-        [Header("UI Text")]
-        [SerializeField]
-        private Text attackRangeText;
-
-        [Header("UI Text")]
-        [SerializeField]
-        private Text goldProduceText;
-
-        [Header("UI Text")]
-        [SerializeField]
-        private Text timeProduceText;
-
-        [Header("UI Text")]
-        [SerializeField]
-        private Text autoCollectGoldText;
-
-        [Header("Holder")]
-        [SerializeField]
-        private GameObject damageHolder;
-
-        [Header("Holder")]
-        [SerializeField]
-        private GameObject healthHolder;
-
-        [Header("Holder")]
-        [SerializeField]
-        private GameObject armorHolder;
-
-        [Header("Holder")]
-        [SerializeField]
-        private GameObject reloadHolder;
-
-        [Header("Holder")]
-        [SerializeField]
-        private GameObject attackRangeHolder;
-
-        [Header("Holder")]
-        [SerializeField]
-        private GameObject goldProduceHolder;
-
-        [Header("Holder")]
-        [SerializeField]
-        private GameObject timeProduceHolder;
-
-        [Header("Holder")]
-        [SerializeField]
-        private GameObject autoCollectGoldHolder;
-
-        [Space]
         [SerializeField]
         private Image iconDamage;
 
@@ -93,11 +28,16 @@ namespace Gameplay
         [SerializeField]
         private Sprite magicDamageIcon;
 
-        private int currentLevelDamage_min;
+        [Header("Stat list")]
+        [SerializeField]
+        private Transform statContainer;
 
+        [SerializeField]
+        private StatRowView statRowTemplate;
 
-        private int currentLevelDamage_max;
-        public void Init()
+        private List<StatRowView> spawnedRows = new List<StatRowView>();
+
+		public void Init()
 		{
 			Open();
 			if (MonoSingleton<UIRootHandler>.Instance.UpgradeTowerPopupController.towerModel)
@@ -106,72 +46,116 @@ namespace Gameplay
 			}
 			nameText.text = Singleton<TurretSynopsis>.Instance.GetTowerName(towerModel.Id);
 			typeText.text = Singleton<TurretSynopsis>.Instance.GetTowerType(towerModel.Id);
-			currentLevelDamage_min = towerModel.OriginalParameter.damage;
-			currentLevelDamage_max = towerModel.OriginalParameter.damage;
-			damageText.text = currentLevelDamage_min.ToString();
-			if (TowerParameterManager.Instance.isPhysicsAttack(towerModel.Id))
-			{
-				iconDamage.sprite = physicsDamageIcon;
-			}
-			else
-			{
-				iconDamage.sprite = magicDamageIcon;
-			}
-			healthText.text = towerModel.OriginalParameter.unit_health.ToString();
-			armorText.text = AbilityRankDescriber.Instance.GetArmorDescriptionByValue(towerModel.OriginalParameter.unit_armor);
-			float reloadMs = towerModel.OriginalParameter.attackSpeed > 0 ? 1000f / towerModel.OriginalParameter.attackSpeed : 0f;
-			reloadText.text = AbilityRankDescriber.Instance.GetAttackSpeedDescriptionByValue((int)reloadMs);
-			int rangePixels = (int)(towerModel.OriginalParameter.range * GameRecord.PIXEL_PER_UNIT);
-			attackRangeText.text = AbilityRankDescriber.Instance.GetAttackRangeDescriptionByValue(rangePixels);
-			goldProduceText.text = towerModel.OriginalParameter.goldProduce.ToString();
-			timeProduceText.text = (reloadMs / 1000f).ToString("F2") + "s";
-			autoCollectGoldText.text = ((float)towerModel.OriginalParameter.autoCollectTime / 1000f).ToString() + "s";
-			HideAll();
-			if (towerModel.Id == 1)
-			{
-				ShowBarrackTowerAbility();
-			}
-			else if (towerModel.Id == 4)
-			{
-				ShowSupportTowerAbility();
-			}
-			else
-			{
-				ShowNormalTowerAbility();
-			}
+			iconDamage.sprite = TowerParameterManager.Instance.isPhysicsAttack(towerModel.Id) ? physicsDamageIcon : magicDamageIcon;
+			PopulateStats(towerModel.OriginalParameter, towerModel.Id);
 		}
 
-		public void HideAll()
+		// Builds the stat list for this tower. Each tower type shows the stats that matter
+		// for it (mirrors the per-tower stat schema in tower_parameter.txt). Economy is shared.
+		private void PopulateStats(TurretSpec spec, int id)
 		{
-			damageHolder.gameObject.SetActive(false);
-			reloadHolder.gameObject.SetActive(false);
-			attackRangeHolder.gameObject.SetActive(false);
-			healthHolder.gameObject.SetActive(false);
-			armorHolder.gameObject.SetActive(false);
-			goldProduceHolder.gameObject.SetActive(false);
-			timeProduceHolder.gameObject.SetActive(false);
-			autoCollectGoldHolder.gameObject.SetActive(false);
+			ClearRows();
+			switch (id)
+			{
+			case 1: // Knights (barracks)
+				AddRow("Damage", spec.damage.ToString());
+				AddRow("Attack Speed", PerSecond(spec.attackSpeed));
+				AddRow("Attack Range", Units(spec.unit_attackRange / GameRecord.PIXEL_PER_UNIT));
+				AddRow("Move Speed", spec.unit_moveSpeed.ToString());
+				AddRow("HP", spec.unit_health.ToString());
+				AddRow("HP Regen", spec.unit_hpRegen + "/s");
+				AddRow("Armor", spec.unit_armor + "%");
+				AddRow("Shield", spec.unit_shield.ToString());
+				AddRow("Max Units", spec.unit_maxUnits.ToString());
+				AddRow("Respawn Time", Seconds(spec.unit_respawnTime / 1000f));
+				AddRow("Deploy Range", Units(spec.unit_deployRange / GameRecord.PIXEL_PER_UNIT));
+				break;
+			case 2: // Stone God (AoE)
+				AddRow("Damage", spec.damage.ToString());
+				AddRow("Attack Speed", PerSecond(spec.attackSpeed));
+				AddRow("Range", Units(spec.range));
+				AddRow("AoE Radius", Units(spec.aoeRadius));
+				AddRow("Projectile Speed", spec.projectileSpeed.ToString("0.#", CultureInfo.InvariantCulture));
+				AddRow("Damage Falloff", spec.damageFalloff + "%");
+				AddRow("Min Range", Units(spec.minRange));
+				AddRow("Splash Targeting", Bool(spec.splashTargeting));
+				AddRow("Target Priority", spec.targetPriority.ToString());
+				break;
+			case 3: // Magic Dragon
+				AddRow("Magic Damage", spec.damage.ToString());
+				AddRow("Attack Speed", PerSecond(spec.attackSpeed));
+				AddRow("Range", Units(spec.range));
+				AddRow("Projectile Speed", spec.projectileSpeed.ToString("0.#", CultureInfo.InvariantCulture));
+				AddRow("Element", spec.magicElement.ToString());
+				AddRow("Magic Penetration", spec.magicPenetration + "%");
+				AddRow("Target Air", Bool(spec.canTargetAir));
+				AddRow("Target Priority", spec.targetPriority.ToString());
+				break;
+			case 4: // Supporter
+				AddRow("Gold / Tick", spec.goldProduce.ToString());
+				AddRow("Gold Interval", Seconds(spec.goldInterval));
+				AddRow("Gold On Kill", spec.goldOnKill.ToString());
+				AddRow("Gold Multiplier", spec.goldMultiplier.ToString("0.0#", CultureInfo.InvariantCulture) + "x");
+				AddRow("Interest Rate", spec.interestRate + "%");
+				AddRow("Aura Radius", Units(spec.auraRadius));
+				AddRow("Damage Amp", spec.damageAmp + "%");
+				AddRow("Atk Speed Bonus", spec.attackSpeedBonus + "%");
+				AddRow("Range Bonus", spec.rangeBonus + "%");
+				AddRow("Cooldown Reduction", spec.cooldownReduction + "%");
+				break;
+			default: // Archer and other single-target projectile towers
+				AddRow("Damage", spec.damage.ToString());
+				AddRow("Attack Speed", PerSecond(spec.attackSpeed));
+				AddRow("Range", Units(spec.range));
+				AddRow("Projectile Speed", spec.projectileSpeed.ToString("0.#", CultureInfo.InvariantCulture));
+				if (spec.pierceCount > 0) AddRow("Pierce", spec.pierceCount.ToString());
+				if (spec.critChance > 0) AddRow("Crit Chance", spec.critChance + "%");
+				AddRow("Target Air", Bool(spec.canTargetAir));
+				AddRow("Target Priority", spec.targetPriority.ToString());
+				break;
+			}
+			AddRow("Build Cost", spec.buildCost.ToString());
+			AddRow("Sell Value", spec.sellValue.ToString());
 		}
 
-		private void ShowNormalTowerAbility()
+		private void AddRow(string label, string value)
 		{
-			damageHolder.gameObject.SetActive(true);
-			reloadHolder.gameObject.SetActive(true);
-			attackRangeHolder.gameObject.SetActive(true);
+			StatRowView row = Object.Instantiate(statRowTemplate, statContainer);
+			row.gameObject.SetActive(true);
+			row.Set(label, value);
+			spawnedRows.Add(row);
 		}
 
-		private void ShowBarrackTowerAbility()
+		private void ClearRows()
 		{
-			damageHolder.gameObject.SetActive(true);
-			healthHolder.gameObject.SetActive(true);
-			armorHolder.gameObject.SetActive(true);
+			for (int i = 0; i < spawnedRows.Count; i++)
+			{
+				if (spawnedRows[i] != null)
+				{
+					Object.Destroy(spawnedRows[i].gameObject);
+				}
+			}
+			spawnedRows.Clear();
 		}
 
-		private void ShowSupportTowerAbility()
+		private static string PerSecond(float attackSpeed)
 		{
-			goldProduceHolder.gameObject.SetActive(true);
-			timeProduceHolder.gameObject.SetActive(true);
-			autoCollectGoldHolder.gameObject.SetActive(true);
+			return attackSpeed.ToString("0.0#", CultureInfo.InvariantCulture) + "/s";
+		}
+
+		private static string Units(float units)
+		{
+			return units.ToString("0.00", CultureInfo.InvariantCulture);
+		}
+
+		private static string Seconds(float seconds)
+		{
+			return seconds.ToString("0.0#", CultureInfo.InvariantCulture) + "s";
+		}
+
+		private static string Bool(bool value)
+		{
+			return value ? "Yes" : "No";
 		}
 
 		public void Open()

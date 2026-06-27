@@ -93,6 +93,10 @@ namespace Gameplay
 
         private int currentIgnoreArmorChance;
 
+        private int hpRegen;
+
+        private int shield;
+
         private TurretSummonMinionHandler towerSpawnAllyController;
 
 
@@ -372,6 +376,30 @@ namespace Gameplay
 			}
 		}
 
+		public int HpRegen
+		{
+			get
+			{
+				return hpRegen;
+			}
+			private set
+			{
+				hpRegen = value;
+			}
+		}
+
+		public int Shield
+		{
+			get
+			{
+				return shield;
+			}
+			private set
+			{
+				shield = value;
+			}
+		}
+
 		public TurretSummonMinionHandler TowerSpawnAllyController
 		{
 			get
@@ -445,6 +473,8 @@ namespace Gameplay
 			moveSpeed = towerParameter.unit_moveSpeed;
 			DodgeChance = 0;
 			IgnoreArmorChance = towerParameter.ignoreArmorChance;
+			HpRegen = towerParameter.unit_hpRegen;
+			Shield = towerParameter.unit_shield;
 			MonoSingleton<GameRecord>.Instance.ListActiveAlly.Add(this);
 			TurnOnCollider();
 			IsAlive = true;
@@ -471,6 +501,8 @@ namespace Gameplay
 			AttackRangeMax = (float)heroParameter.attack_range_max / GameRecord.PIXEL_PER_UNIT;
 			CurrentAttackRangeMax = AttackRangeMax;
 			moveSpeed = (float)heroParameter.speed;
+			HpRegen = 0;
+			Shield = 0;
 			MonoSingleton<GameRecord>.Instance.ListActiveAlly.Add(this);
 			TurnOnCollider();
 			IsAlive = true;

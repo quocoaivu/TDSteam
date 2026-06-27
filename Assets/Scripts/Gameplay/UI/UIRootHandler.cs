@@ -263,7 +263,7 @@ namespace Gameplay
 
 		private void Start()
 		{
-			if (GameplayTutorialDirector.Instance.IsTutorialDone() || !GameplayTutorialDirector.Instance.IsTutorialMap())
+			if (GameplayTutorialDirector.Instance.IsTutorialDone() || !GameplayTutorialDirector.IsFirstPlayTutorialMap())
 			{
 				buttonSpeed.SetActive(true);
 			}

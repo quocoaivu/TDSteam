@@ -101,29 +101,24 @@ namespace Data
 			return tierParameters[upgradeID].Value[towerID];
 		}
 
+		// One default upgrade entry per tower id (currentUpgradeLevel -1 = not upgraded). Keep this in sync
+		// with the tower count in tower_parameter.txt so new towers (e.g. the Supporter, id 4) get an entry.
+		private const int TOWER_COUNT = 5;
+
 		private void SaveDefaultData()
 		{
 			if (!File.Exists(Application.persistentDataPath + GlobalUpgradeStore.DB_NAME))
 			{
 				FileStream fileStream = File.Create(Application.persistentDataPath + GlobalUpgradeStore.DB_NAME);
 				BinaryFormatter binaryFormatter = new BinaryFormatter { Binder = new Common.SaveTypeCompatBinder() };
-				GlobalUpgradeStore.UpgradeData upgradeData = new GlobalUpgradeStore.UpgradeData();
-				upgradeData.towerID = 0;
-				upgradeData.currentUpgradeLevel = -1;
-				GlobalUpgradeStore.UpgradeData upgradeData2 = new GlobalUpgradeStore.UpgradeData();
-				upgradeData2.towerID = 1;
-				upgradeData2.currentUpgradeLevel = -1;
-				GlobalUpgradeStore.UpgradeData upgradeData3 = new GlobalUpgradeStore.UpgradeData();
-				upgradeData3.towerID = 2;
-				upgradeData3.currentUpgradeLevel = -1;
-				GlobalUpgradeStore.UpgradeData upgradeData4 = new GlobalUpgradeStore.UpgradeData();
-				upgradeData4.towerID = 2;
-				upgradeData4.currentUpgradeLevel = -1;
 				data.ListUpgradeData = new Dictionary<int, GlobalUpgradeStore.UpgradeData>();
-				data.ListUpgradeData.Add(0, upgradeData);
-				data.ListUpgradeData.Add(1, upgradeData2);
-				data.ListUpgradeData.Add(2, upgradeData3);
-				data.ListUpgradeData.Add(3, upgradeData4);
+				for (int towerID = 0; towerID < TOWER_COUNT; towerID++)
+				{
+					GlobalUpgradeStore.UpgradeData upgradeData = new GlobalUpgradeStore.UpgradeData();
+					upgradeData.towerID = towerID;
+					upgradeData.currentUpgradeLevel = -1;
+					data.ListUpgradeData.Add(towerID, upgradeData);
+				}
 				binaryFormatter.Serialize(fileStream, data);
 				fileStream.Close();
 			}
@@ -174,7 +169,14 @@ namespace Data
 		public int GetCurrentUpgradeLevel(int _towerID)
 		{
 			LoadData();
-			return data.ListUpgradeData[_towerID].currentUpgradeLevel;
+			// Towers added after a save was written (e.g. the Supporter) have no upgrade entry yet.
+			// Treat a missing tower as "not upgraded" (-1) instead of throwing KeyNotFoundException,
+			// which would otherwise abort TowerDataLoader.Awake and skip every later loader (items, skills).
+			if (data.ListUpgradeData.TryGetValue(_towerID, out UpgradeData upgrade))
+			{
+				return upgrade.currentUpgradeLevel;
+			}
+			return -1;
 		}
 
 		public void RestoreDataFromCloud(PlayerRecord_GlobalEnhance restoredData)

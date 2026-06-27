@@ -75,11 +75,15 @@ public class SharedStrikeDamage
 
 	public bool isIgnoreArmor;
 
+	public int magicPenetration; // % of enemy magic resistance ignored on this hit
+
 	public bool isNotPlayIgnoreArmorEffect;
 
 	public float cooldown;
 
 	public float aoeRange;
+
+	public int aoeDamageFalloff; // % damage reduction from blast center to edge (0 = flat)
 
 	public float maxRange;
 

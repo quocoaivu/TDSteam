@@ -52,7 +52,17 @@ namespace Gameplay
         private int lastTouchCount;
 
         private GameInput input;
-        
+
+        // Per-frame screen-space drag delta, set for both touch and mouse so the camera
+        // controller (PinchMagnifyView) can pan from one shared source.
+        private Vector2 dragDeltaScreen;
+
+        public Vector2 DragDeltaScreen => dragDeltaScreen;
+
+        private Vector2 lastPointerPosition;
+
+        private bool mouseDragStartedOverUI;
+
 		public event Action onMouseStayEvent;
 
 		public event Action onMouseClickEvent;
@@ -141,10 +151,12 @@ namespace Gameplay
 
 			if (activeTouches == 1 && primaryTouch.phase.ReadValue() == TouchPhase.Moved && GameplayTutorialDirector.Instance.IsTutorialDone())
 			{
-				Vector2 deltaWorldPosition = GetDeltaWorldPosition(primaryTouch.delta.ReadValue(), Camera.main);
+				Vector2 deltaScreen = primaryTouch.delta.ReadValue();
+				Vector2 deltaWorldPosition = GetDeltaWorldPosition(deltaScreen, Camera.main);
 				if (Mathf.Abs(deltaWorldPosition.x) > movementThresHole || Mathf.Abs(deltaWorldPosition.y) > movementThresHole)
 				{
 					isMovingCamera = true;
+					dragDeltaScreen = deltaScreen;
 					if (onMoveCamera != null)
 					{
 						onMoveCamera();
@@ -157,6 +169,10 @@ namespace Gameplay
 				onZoomCamera();
 				SetIsClickingUI();
 				return;
+			}
+			else if (activeTouches == 0 && Mouse.current != null && GameplayTutorialDirector.Instance.IsTutorialDone())
+			{
+				UpdateMouseDrag();
 			}
 
 			if (input.Gameplay.Click.WasPressedThisFrame() && InputFilterDirector.IsPointerOverUI())
@@ -258,6 +274,35 @@ namespace Gameplay
 			Vector2 screenPosition = input.Gameplay.Point.ReadValue<Vector2>();
 			Vector3 vector = Camera.main.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, 0f));
 			return new Vector2(vector.x, vector.y);
+		}
+
+		// Mouse drag-to-pan for desktop/Steam: while the left button is held and the pointer
+		// moves past the threshold, fire onMoveCamera with the same delta source touch uses.
+		private void UpdateMouseDrag()
+		{
+			Vector2 pointer = input.Gameplay.Point.ReadValue<Vector2>();
+			if (input.Gameplay.Click.WasPressedThisFrame())
+			{
+				lastPointerPosition = pointer;
+				mouseDragStartedOverUI = InputFilterDirector.IsPointerOverUI();
+				return;
+			}
+			if (!input.Gameplay.Click.IsPressed() || mouseDragStartedOverUI)
+			{
+				return;
+			}
+			Vector2 deltaScreen = pointer - lastPointerPosition;
+			lastPointerPosition = pointer;
+			Vector2 deltaWorldPosition = GetDeltaWorldPosition(deltaScreen, Camera.main);
+			if (Mathf.Abs(deltaWorldPosition.x) > movementThresHole || Mathf.Abs(deltaWorldPosition.y) > movementThresHole)
+			{
+				isMovingCamera = true;
+				dragDeltaScreen = deltaScreen;
+				if (onMoveCamera != null)
+				{
+					onMoveCamera();
+				}
+			}
 		}
 
 		private Vector2 GetDeltaWorldPosition(Vector2 deltaScreen, Camera camera)

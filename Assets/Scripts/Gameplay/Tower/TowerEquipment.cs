@@ -110,9 +110,10 @@ namespace Gameplay
 		public void ClearAll()
 		{
 			equipped.Clear();
-			RemoveStatBuff(StatType.Damage);
-			RemoveStatBuff(StatType.AttackSpeed);
-			RemoveStatBuff(StatType.Crit);
+			foreach (StatType statType in System.Enum.GetValues(typeof(StatType)))
+			{
+				RemoveStatBuff(statType);
+			}
 		}
 
 		// Sums statValue of every equipped item that contributes to this stat type and writes it once to
@@ -159,6 +160,32 @@ namespace Gameplay
 				return BuffKeysToTurret.INCREASE_ATTACK_SPEED_BY_PERCENTAGE;
 			case StatType.Crit:
 				return BuffKeysToTurret.CritIncrementCommon;
+			case StatType.Range:
+				return BuffKeysToTurret.AttackRangeIncrementCommon;
+			case StatType.Health:
+				return BuffKeysToTurret.ITEM_MINION_HEALTH_PERCENT;
+			case StatType.Armor:
+				return BuffKeysToTurret.ITEM_MINION_ARMOR_FLAT;
+			case StatType.GoldProduce:
+				return BuffKeysToTurret.ITEM_GOLD_PRODUCE_FLAT;
+			case StatType.Slow:
+				return BuffKeysToTurret.SlowOnHitIncrementCommon;
+			case StatType.Pierce:
+				return BuffKeysToTurret.PierceCountIncrementCommon;
+			case StatType.Poison:
+				return BuffKeysToTurret.PoisonDpsIncrementCommon;
+			case StatType.AirDamage:
+				return BuffKeysToTurret.AirDamageIncrementCommon;
+			case StatType.CritDamage:
+				return BuffKeysToTurret.CritDamageIncrementCommon;
+			case StatType.AoeRadius:
+				return BuffKeysToTurret.AoeRadiusIncrementCommon;
+			case StatType.MagicPen:
+				return BuffKeysToTurret.MagicPenIncrementCommon;
+			case StatType.HpRegen:
+				return BuffKeysToTurret.ITEM_MINION_HP_REGEN_FLAT;
+			case StatType.AuraDamage:
+				return BuffKeysToTurret.ITEM_AURA_DAMAGE_AMP_FLAT;
 			default:
 				return BuffKeysToTurret.DamageIncrementCommon;
 			}

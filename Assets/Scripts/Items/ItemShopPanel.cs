@@ -211,7 +211,7 @@ namespace Items
 			{
 				return false;
 			}
-			if (!TrySpendGold(buyCost))
+			if (!TrySpendGold(CostFor(item)))
 			{
 				return false;
 			}
@@ -235,7 +235,7 @@ namespace Items
 			{
 				return false;
 			}
-			if (!TrySpendGold(buyCost))
+			if (!TrySpendGold(CostFor(offerButton.Offer)))
 			{
 				return false;
 			}
@@ -276,7 +276,8 @@ namespace Items
 			for (int i = 0; i < offerButtons.Count; i++)
 			{
 				TowerItem offer = (i < offers.Count) ? offers[i] : null;
-				offerButtons[i].Refresh(offer, buyCost, money >= buyCost);
+				int cost = CostFor(offer);
+				offerButtons[i].Refresh(offer, cost, money >= cost);
 			}
 			if (rerollButton != null)
 			{
@@ -289,6 +290,25 @@ namespace Items
 			if (goldText != null)
 			{
 				goldText.SetText("{0}", money);
+			}
+		}
+
+		// Buy price scales with rarity off the inspector base cost (buyCost = rarity 0): r1 = 1.5x, r2+ = 2.5x.
+		// So with the default base of 100 the prices are 100 / 150 / 250.
+		private int CostFor(TowerItem item)
+		{
+			if (item == null)
+			{
+				return buyCost;
+			}
+			switch (item.rarity)
+			{
+			case 0:
+				return buyCost;
+			case 1:
+				return buyCost * 3 / 2;
+			default:
+				return buyCost * 5 / 2;
 			}
 		}
 

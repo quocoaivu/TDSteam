@@ -1,0 +1,85 @@
+============================================================
+ CAN BANG TOWER - BASE STAT + TRAN SKILL TREE
+ Nguon: tower_parameter.txt + tower_skilltree_parameter.txt
+ PIXEL_PER_UNIT = 80 (range_add px / 80 = world unit)
+ Co che moi: moi tower 1 cap, nang cap qua Skill Tree + Item
+============================================================
+
+
+------------------------------------------------------------
+ BANG 1 - BASE STAT 5 TOWER (luc moi build)
+------------------------------------------------------------
+Stat                | T0 Archer | T1 Knights | T2 StoneGod | T3 MagicDragon | T4 Supporter
+--------------------+-----------+------------+-------------+----------------+-------------
+damage              | 5         | 2          | 10          | 8              | 0
+attack_speed (/s)   | 1.2       | 0.1        | 0.33        | 0.5            | 0
+range (unit)        | 1.75      | 2.0        | 1.94        | 1.75           | 1.75
+damage_type         | Physical  | Physical   | Physical    | Magic          | -
+target              | First     | Closest    | Strongest   | First          | First
+danh air            | Co        | Khong      | Khong       | Co             | Khong
+crit_chance / mult  | 5% / 2.0  | 0 / 2.0    | 0 / 2.0     | 0 / 2.0        | -
+AoE                 | -         | -          | r0.875 splash| -             | -
+build_cost / sell   | 70 / 21   | 70 / 21    | 125 / 38    | 100 / 30       | 100 / 21
+base DPS (dmg*spd)  | 6.0       | barracks(1)| 3.3         | 4.0            | 0 (kinh te)
+
+(1) Knights = BARRACKS (linh can chien): unit_health 50, unit_max_units 3,
+    unit_respawn 10s, unit_attack_range 50, unit_attack_cooldown 1000,
+    deploy/leash 160.
+    Supporter = tower KINH TE/AURA: gold_produce 20, auto_collect_time 1000ms,
+    gold_interval 5, aura_radius 2.0, damage_amp 10, attack_speed_bonus 10.
+
+
+------------------------------------------------------------
+ BANG 2 - TRAN SKILL TREE (cong don tat ca 14 node/tower)
+ Tong cost = 35 diem moi cay
+------------------------------------------------------------
+Cong tu tree        | T0 Archer | T1 Knights | T2 StoneGod | T3 MagicDragon | T4 Supporter
+--------------------+-----------+------------+-------------+----------------+-------------
++damage             | +26       | +12        | +38         | +31            | 0
++range (px -> unit) | +120=+1.5 | 0          | +1.5        | +1.5           | 0
+-reload (ms)        | -530      | -9500      | -2100       | -1300          | -6300 (!)
++crit %             | +35       | +25        | +25         | +35            | 0
++pierce % (bo giap) | +20       | +20        | +30         | +20            | 0
++unit_health        | -         | +200       | -           | -              | -
++unit_armor         | -         | +40        | -           | -              | -
++gold_produce       | -         | -          | -           | -              | +50
+-autocollect (ms)   | -         | -          | -           | -              | -850
+
+
+------------------------------------------------------------
+ BANG 3 - TRAN THUC TE SAU CONG THUC (GetStatWithTree)
+------------------------------------------------------------
+                    | Archer    | StoneGod   | MagicDragon | Knights        | Supporter
+--------------------+-----------+------------+-------------+----------------+-------------
+damage              | 5 -> 31   | 10 -> 48   | 8 -> 39     | 2 -> 14        | 0
+attack_speed        | 1.2->3.3/s| 0.33->1.08 | 0.5->1.43/s | 0.1->2.0/s     | 0
+range               | 1.75->3.25| 1.94->3.44 | 1.75->3.25  | 2.0            | 1.75
+crit                | 5->40%    | 0->25%     | 0->25%      | 0->25%         | -
+pierce              | 20%       | 30%        | 20%         | 20%            | -
+DPS tho (dmg*spd)   | 102       | 52 (AoE)   | 56 (magic)  | unit           | -
+DPS co crit (2)     | ~143      | ~64        | ~75         | -              | -
+unit_health         | -         | -          | -           | 50 -> 250      | -
+gold_produce        | -         | -          | -           | -              | 20 -> 70
+auto_collect        | -         | -          | -           | -              | 1000->150ms
+
+(2) DPS co crit = dmg * spd * (1 + crit*(mult-1)), mult = 2.0.
+    Chua tinh pierce (bo % giap dich) va Item.
+
+
+------------------------------------------------------------
+ CANH BAO KHI CAN BANG
+------------------------------------------------------------
+1. SUPPORTER MAT 6/14 NODE:
+   Cac node Industrious I/II, Gold Rush, Merchant Guild, Golden Age,
+   Midas Touch de gia tri o cot reload_reduce (tong -6300ms). Nhung code
+   chi ap reload_reduce khi attack_speed > 0 (TowerParameterManager.cs:74).
+   Supporter co attack_speed = 0 nen 6 node nay HIEN KHONG CO TAC DUNG GI.
+   -> Can sua: doi sang cot tac dong len gold_interval/gold_produce,
+      hoac them nhanh xu ly rieng cho tower kinh te.
+
+2. Archer = tower DPS don muc tieu manh nhat sau full tree (~143 DPS co crit).
+   StoneGod bu bang AoE+splash, MagicDragon bu bang sat thuong phep
+   (bo qua giap vat ly).
+
+3. Day moi la BASE + SKILL TREE. Item (tower_item_parameter.txt) con cong
+   them len tren tran nay -> can tinh tiep de ra power ceiling cuoi cung.

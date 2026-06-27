@@ -25,10 +25,28 @@ namespace Gameplay
 		{
 			base.Initialize();
 			MonoSingleton<AllyPool>.Instance.PushAlliesToPool(base.TowerModel.Id, base.TowerModel.Level, 2);
-			float spd = base.TowerModel.OriginalParameter.attackSpeed;
-			timeTracking = spd > 0 ? 1f / spd : 999f;
+			ApplyUnitCountFromParameter();
+			timeTracking = GetRespawnInterval();
 			ignoreReloadChance = 0;
 			base.TowerModel.BuffsHolder.OnBuffValueChanged += BuffsHolder_OnBuffValueChanged;
+		}
+
+		// desiredAlliesNumber comes from the tower parameter (unit_max_units).
+		// Ready positions/arrays are sized for 3, so clamp to avoid indexing past them.
+		private void ApplyUnitCountFromParameter()
+		{
+			int maxUnits = base.TowerModel.OriginalParameter.unit_maxUnits;
+			if (maxUnits > 0)
+			{
+				desiredAlliesNumber = Mathf.Min(maxUnits, ListAllyControl.Length);
+			}
+		}
+
+		// Seconds before a dead unit respawns, from unit_respawn_time (ms).
+		private float GetRespawnInterval()
+		{
+			int ms = base.TowerModel.OriginalParameter.unit_respawnTime;
+			return ms > 0 ? ms / 1000f : 1f;
 		}
 
 		private void BuffsHolder_OnBuffValueChanged(string buffKey, bool added)
@@ -168,7 +186,12 @@ namespace Gameplay
 			if (inputTowerModel.GetEntityId() == base.TowerModel.GetEntityId())
 			{
 				float num = Vector2.Distance(targetPosition, base.transform.position);
-				if (num < base.TowerModel.OriginalParameter.range)
+				float deployRange = base.TowerModel.OriginalParameter.unit_deployRange / GameRecord.PIXEL_PER_UNIT;
+				if (deployRange <= 0f)
+				{
+					deployRange = base.TowerModel.OriginalParameter.range;
+				}
+				if (num < deployRange)
 				{
 					SetAlliesToAssignedPosition(targetPosition);
 					if (effectCaster)
@@ -194,8 +217,7 @@ namespace Gameplay
 			{
 				SpawnAllies(desiredAlliesNumber - GetNumberOfLivingAllies());
 			}
-			float spd2 = base.TowerModel.OriginalParameter.attackSpeed;
-			timeTracking = spd2 > 0 ? 1f / spd2 : 999f;
+			timeTracking = GetRespawnInterval();
 		}
 
 		private int GetNumberOfLivingAllies()
@@ -235,15 +257,40 @@ namespace Gameplay
 				sequence.SetLink(door);
 				sequence.Play<Sequence>();
 			}
+			TurretSpec spawnSpec = BuildSpawnSpec();
 			for (int i = 0; i < amount; i++)
 			{
 				MinionEntity allyModel = MonoSingleton<AllyPool>.Instance.GetAlly(base.TowerModel.Id, base.TowerModel.Level);
-				allyModel.InitFromTower(originalParameter, this);
+				allyModel.InitFromTower(spawnSpec, this);
 				allyModel.transform.position = spawnPosition.position;
 				allyModel.gameObject.SetActive(true);
 				AddAllyToListControl(allyModel);
 			}
 			OnSpawnAllies.Invoke();
+		}
+
+		// Base spec plus any equipped-item bonuses for spawned units (Health %, Armor flat).
+		// Read at spawn time so newly respawned units pick up item changes live.
+		private TurretSpec BuildSpawnSpec()
+		{
+			TurretSpec spec = originalParameter;
+			BuffHolder buffs = base.TowerModel.BuffsHolder;
+			float healthPercent;
+			if (buffs.TryGetBuffValue(BuffKeysToTurret.ITEM_MINION_HEALTH_PERCENT, out healthPercent) && healthPercent > 0f)
+			{
+				spec.unit_health += (int)(spec.unit_health * healthPercent / 100f);
+			}
+			float armorFlat;
+			if (buffs.TryGetBuffValue(BuffKeysToTurret.ITEM_MINION_ARMOR_FLAT, out armorFlat) && armorFlat > 0f)
+			{
+				spec.unit_armor += (int)armorFlat;
+			}
+			float hpRegenFlat;
+			if (buffs.TryGetBuffValue(BuffKeysToTurret.ITEM_MINION_HP_REGEN_FLAT, out hpRegenFlat) && hpRegenFlat > 0f)
+			{
+				spec.unit_hpRegen += (int)hpRegenFlat;
+			}
+			return spec;
 		}
 
 		private void AddAllyToListControl(MinionEntity ally)

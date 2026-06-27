@@ -1,6 +1,6 @@
-id,name,damage,attack_speed,range,projectile_speed,damage_type,target_priority,can_target_air,pierce_count,build_cost,sell_value,slow_percent,slow_duration,poison_dps,poison_duration,crit_chance,crit_multiplier,aoe_radius,is_round_attack,unit_health,unit_armor,unit_move_speed,unit_attack_range,unit_attack_cooldown,gold_produce,auto_collect_time
-0,Archer,5,1.2,1.75,12.0,Physical,First,true,0,70,21,0,0,0,0,5,2.0,0,true,0,0,0,0,0,0,0
-1,Knights,2,0.1,2.0,0,Physical,Closest,false,0,70,21,0,0,0,0,0,2.0,0,true,50,0,60,50,1000,0,0
-2,StoneGod,10,0.33,1.94,5.0,Physical,Strongest,false,0,125,38,0,0,0,0,0,2.0,0.875,false,0,0,0,0,0,0,0
-3,MagicDragon,8,0.5,1.75,8.0,Magic,First,true,0,100,30,0,0,0,0,0,2.0,0,true,0,0,0,0,0,0,0
-4,Supporter,0,0,1.75,0,Physical,First,false,0,100,21,0,0,0,0,0,0,0,false,0,0,0,0,0,20,1000
+id,name,damage,attack_speed,range,projectile_speed,damage_type,target_priority,can_target_air,pierce_count,build_cost,sell_value,slow_percent,slow_duration,poison_dps,poison_duration,crit_chance,crit_multiplier,aoe_radius,aoe_damage_falloff,self_damage,min_range,splash_targeting,is_round_attack,unit_health,unit_armor,unit_move_speed,unit_attack_range,unit_attack_cooldown,unit_hp_regen,unit_shield,unit_max_units,unit_respawn_time,unit_deploy_range,unit_aggro_range,unit_leash_range,magic_element,magic_penetration,arcane_bounce,beam_duration,gold_produce,auto_collect_time,gold_interval,gold_on_kill,gold_multiplier,interest_rate,aura_radius,damage_amp,attack_speed_bonus,range_bonus,cooldown_reduction
+0,Archer,3,1.2,1.75,12.0,Physical,First,true,0,70,21,0,0,0,0,5,2.0,0,0,false,0,false,true,0,0,0,0,0,0,0,0,0,0,0,0,Arcane,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,Knights,2,0.1,2.0,0,Physical,Closest,false,0,70,21,0,0,0,0,0,2.0,0,0,false,0,false,true,50,0,60,50,1000,0,0,3,10000,160,50,160,Arcane,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2,StoneGod,5,0.33,1.94,5.0,Physical,Strongest,false,0,125,38,0,0,0,0,0,2.0,0.7,0,false,0,true,false,0,0,0,0,0,0,0,0,0,0,0,0,Arcane,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+3,MagicDragon,4,0.5,1.75,8.0,Magic,First,true,0,100,30,0,0,0,0,0,2.0,0,0,false,0,false,true,0,0,0,0,0,0,0,0,0,0,0,0,Arcane,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+4,Supporter,0,0,1.75,0,Physical,First,false,0,100,21,0,0,0,0,0,0,0,0,false,0,false,false,0,0,0,0,0,0,0,0,0,0,0,0,Arcane,0,0,0,20,1000,5,0,1,0,2.0,10,10,0,0

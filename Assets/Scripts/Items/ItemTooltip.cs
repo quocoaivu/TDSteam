@@ -140,8 +140,47 @@ namespace Items
 				case StatType.Crit:
 					sb.AppendFormat("+{0}% Crit", item.statValues[i]);
 					break;
+				case StatType.Range:
+					sb.AppendFormat("+{0}% Range", item.statValues[i]);
+					break;
+				case StatType.Health:
+					sb.AppendFormat("+{0}% Unit HP", item.statValues[i]);
+					break;
+				case StatType.Armor:
+					sb.AppendFormat("+{0} Unit Armor", item.statValues[i]);
+					break;
+				case StatType.GoldProduce:
+					sb.AppendFormat("+{0} Gold/tick", item.statValues[i]);
+					break;
+				case StatType.Slow:
+					sb.AppendFormat("Slow {0}% on hit", item.statValues[i]);
+					break;
+				case StatType.Pierce:
+					sb.AppendFormat("Pierces +{0} targets", item.statValues[i]);
+					break;
+				case StatType.Poison:
+					sb.AppendFormat("Poison {0} DPS on hit", item.statValues[i]);
+					break;
+				case StatType.AirDamage:
+					sb.AppendFormat("+{0}% Damage vs Air", item.statValues[i]);
+					break;
+				case StatType.CritDamage:
+					sb.AppendFormat("+{0}% Crit Damage", item.statValues[i]);
+					break;
+				case StatType.AoeRadius:
+					sb.AppendFormat("+{0}% AoE Radius", item.statValues[i]);
+					break;
+				case StatType.MagicPen:
+					sb.AppendFormat("+{0}% Magic Penetration", item.statValues[i]);
+					break;
+				case StatType.HpRegen:
+					sb.AppendFormat("+{0} Unit HP Regen/s", item.statValues[i]);
+					break;
+				case StatType.AuraDamage:
+					sb.AppendFormat("+{0}% Aura Damage Buff", item.statValues[i]);
+					break;
 				default:
-					sb.AppendFormat("+{0} Damage", item.statValues[i]);
+					sb.AppendFormat("+{0}% Damage", item.statValues[i]);
 					break;
 				}
 			}

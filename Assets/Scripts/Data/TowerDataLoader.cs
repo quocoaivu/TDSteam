@@ -83,6 +83,32 @@ namespace Data
 				return Items.StatType.AttackSpeed;
 			case "Crit":
 				return Items.StatType.Crit;
+			case "Range":
+				return Items.StatType.Range;
+			case "Health":
+				return Items.StatType.Health;
+			case "Armor":
+				return Items.StatType.Armor;
+			case "GoldProduce":
+				return Items.StatType.GoldProduce;
+			case "Slow":
+				return Items.StatType.Slow;
+			case "Pierce":
+				return Items.StatType.Pierce;
+			case "Poison":
+				return Items.StatType.Poison;
+			case "AirDamage":
+				return Items.StatType.AirDamage;
+			case "CritDamage":
+				return Items.StatType.CritDamage;
+			case "AoeRadius":
+				return Items.StatType.AoeRadius;
+			case "MagicPen":
+				return Items.StatType.MagicPen;
+			case "HpRegen":
+				return Items.StatType.HpRegen;
+			case "AuraDamage":
+				return Items.StatType.AuraDamage;
 			default:
 				return Items.StatType.Damage;
 			}
@@ -216,14 +242,38 @@ namespace Data
 					towerParameter.critChance = ParseFloat(list2[i]["crit_chance"]);
 					towerParameter.critMultiplier = ParseFloat(list2[i]["crit_multiplier"]);
 					towerParameter.aoeRadius = ParseFloat(list2[i]["aoe_radius"]);
+					towerParameter.damageFalloff = (int)list2[i]["aoe_damage_falloff"];
+					towerParameter.selfDamage = list2[i]["self_damage"].ToString().ToLower() == "true";
+					towerParameter.minRange = ParseFloat(list2[i]["min_range"]);
+					towerParameter.splashTargeting = list2[i]["splash_targeting"].ToString().ToLower() == "true";
 					towerParameter.isRoundAttack = list2[i]["is_round_attack"].ToString().ToLower() == "true";
 					towerParameter.unit_health = (int)list2[i]["unit_health"];
 					towerParameter.unit_armor = (int)list2[i]["unit_armor"];
 					towerParameter.unit_moveSpeed = (int)list2[i]["unit_move_speed"];
 					towerParameter.unit_attackRange = (int)list2[i]["unit_attack_range"];
 					towerParameter.unit_attackCooldown = (int)list2[i]["unit_attack_cooldown"];
+					towerParameter.unit_hpRegen = (int)list2[i]["unit_hp_regen"];
+					towerParameter.unit_shield = (int)list2[i]["unit_shield"];
+					towerParameter.unit_maxUnits = (int)list2[i]["unit_max_units"];
+					towerParameter.unit_respawnTime = (int)list2[i]["unit_respawn_time"];
+					towerParameter.unit_deployRange = (int)list2[i]["unit_deploy_range"];
+					towerParameter.unit_aggroRange = (int)list2[i]["unit_aggro_range"];
+					towerParameter.unit_leashRange = (int)list2[i]["unit_leash_range"];
+					towerParameter.magicElement = ParseMagicElement(list2[i]["magic_element"].ToString());
+					towerParameter.magicPenetration = (int)list2[i]["magic_penetration"];
+					towerParameter.arcaneBounce = (int)list2[i]["arcane_bounce"];
+					towerParameter.beamDuration = ParseFloat(list2[i]["beam_duration"]);
 					towerParameter.goldProduce = (int)list2[i]["gold_produce"];
 					towerParameter.autoCollectTime = (int)list2[i]["auto_collect_time"];
+					towerParameter.goldInterval = ParseFloat(list2[i]["gold_interval"]);
+					towerParameter.goldOnKill = (int)list2[i]["gold_on_kill"];
+					towerParameter.goldMultiplier = ParseFloat(list2[i]["gold_multiplier"]);
+					towerParameter.interestRate = (int)list2[i]["interest_rate"];
+					towerParameter.auraRadius = ParseFloat(list2[i]["aura_radius"]);
+					towerParameter.damageAmp = (int)list2[i]["damage_amp"];
+					towerParameter.attackSpeedBonus = (int)list2[i]["attack_speed_bonus"];
+					towerParameter.rangeBonus = (int)list2[i]["range_bonus"];
+					towerParameter.cooldownReduction = (int)list2[i]["cooldown_reduction"];
 					TowerParameterManager.Instance.SetTowerParameter(towerParameter);
 				}
 			}
@@ -250,6 +300,14 @@ namespace Data
 			if (raw == "Magic") return Parameter.DamageType.Magic;
 			if (raw == "True") return Parameter.DamageType.True;
 			return Parameter.DamageType.Physical;
+		}
+
+		private static Parameter.MagicElement ParseMagicElement(string raw)
+		{
+			if (raw == "Fire") return Parameter.MagicElement.Fire;
+			if (raw == "Ice") return Parameter.MagicElement.Ice;
+			if (raw == "Lightning") return Parameter.MagicElement.Lightning;
+			return Parameter.MagicElement.Arcane;
 		}
 
 		private static Parameter.TargetPriority ParseTargetPriority(string raw)

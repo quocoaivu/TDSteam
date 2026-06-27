@@ -19,7 +19,7 @@ namespace Gameplay
 				{
 					continue;
 				}
-				// Towers no longer level up in-run: pool only the canonical highest-tier prefab.
+				// Towers no longer level up in-run: pool only the canonical base-tier prefab.
 				int level = CanonicalLevel(i);
 				string arg = PoolNames.Tower(i, level);
 				TurretEntity prefab = Common.AssetLoader.Load<TurretEntity>(string.Format("Towers/{0}", arg));
@@ -45,12 +45,13 @@ namespace Gameplay
 			}
 		}
 
-		// Highest-tier prefab per tower = the canonical in-match visual. Towers no longer level up
-		// in-run, so we always spawn this single prefab regardless of the requested level.
-		private int CanonicalLevel(int towerId)
+		// Base-tier prefab per tower = the canonical in-match visual. Towers no longer level up
+		// in-run, so we always spawn this single prefab regardless of the requested level. Public so the
+		// firing controller fetches its bullet at the same level the pool was warmed at (InitTowerPool).
+		public int CanonicalLevel(int towerId)
 		{
-			// Priest (id 4) has no L4 prefab; its top tier is L3.
-			return towerId == 4 ? 3 : 4;
+			// All towers use their base "_0" prefab/bullet; stats come from skill tree + items.
+			return 0;
 		}
 
 		// Max upgrade level allowed for tower `towerIndex` in the current game mode.
@@ -90,7 +91,7 @@ namespace Gameplay
 
 		public TurretEntity GetTower(int id, int level)
 		{
-			// Towers no longer vary by level in-run; always spawn the canonical highest-tier prefab.
+			// Towers no longer vary by level in-run; always spawn the canonical base-tier prefab.
 			// The `level` arg is kept for now because callers still pass it (removed in a later phase).
 			string gameObjectName = PoolNames.Clone(PoolNames.Tower(id, CanonicalLevel(id)));
 			GameObject gameObject = Common.GameObjectPool.Spawn(gameObjectName, default(Vector3), default(Quaternion));

@@ -204,6 +204,15 @@ namespace Gameplay
 					p2 = midPoint + (aimPoint - midPoint) * num;
 					finalPos = p1 + (p2 - p1) * num;
 					base.transform.position = finalPos;
+					// Rotate the arrow to follow its arc. For a quadratic bezier the tangent is parallel to
+					// (p2 - p1); without this the bullet keeps its launch angle the whole flight and points
+					// every which way. Arrow sprite faces +x, matching the homing-missile rotation above.
+					Vector3 trajectoryTangent = p2 - p1;
+					if (trajectoryTangent.sqrMagnitude > 0.0001f)
+					{
+						float trajectoryAngle = Mathf.Atan2(trajectoryTangent.y, trajectoryTangent.x) * Mathf.Rad2Deg;
+						base.transform.rotation = Quaternion.Euler(0f, 0f, trajectoryAngle);
+					}
 					if (num >= 1f)
 					{
 						if (targetEnemy != null && targetEnemy.IsAlive)
@@ -385,7 +394,6 @@ namespace Gameplay
 			{
 				Vector3 from = target.transform.position - source.transform.position;
 				float num = Vector3.Angle(from, Vector3.right);
-				UnityEngine.Debug.Log("angle1 = " + num);
 				float newX = maxRange * Mathf.Cos(num * 3.14159274f / 180f);
 				float newY = maxRange * Mathf.Cos((90f - num) * 3.14159274f / 180f);
 				zero.Set(newX, newY, 0f);
@@ -394,7 +402,6 @@ namespace Gameplay
 			{
 				Vector3 from2 = target.transform.position - source.transform.position;
 				float num = Vector3.Angle(from2, Vector3.right);
-				UnityEngine.Debug.Log("angle2 = " + num);
 				float newX2 = maxRange * Mathf.Cos(num * 3.14159274f / 180f);
 				float newY2 = -maxRange * Mathf.Cos((90f - num) * 3.14159274f / 180f);
 				zero.Set(newX2, newY2, 0f);
@@ -403,7 +410,6 @@ namespace Gameplay
 			{
 				Vector3 from3 = target.transform.position - source.transform.position;
 				float num = Vector3.Angle(from3, Vector3.left);
-				UnityEngine.Debug.Log("angle3 = " + num);
 				float newX3 = -maxRange * Mathf.Cos(num * 3.14159274f / 180f);
 				float newY3 = -maxRange * Mathf.Cos((90f - num) * 3.14159274f / 180f);
 				zero.Set(newX3, newY3, 0f);
@@ -412,7 +418,6 @@ namespace Gameplay
 			{
 				Vector3 from4 = target.transform.position - source.transform.position;
 				float num = Vector3.Angle(from4, Vector3.left);
-				UnityEngine.Debug.Log("angle4 = " + num);
 				float newX4 = -maxRange * Mathf.Cos(num * 3.14159274f / 180f);
 				float newY4 = maxRange * Mathf.Cos((90f - num) * 3.14159274f / 180f);
 				zero.Set(newX4, newY4, 0f);

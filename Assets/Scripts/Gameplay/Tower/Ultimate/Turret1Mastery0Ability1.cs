@@ -26,8 +26,8 @@ namespace Gameplay
 
 		private void ReadParameter(int currentSkillLevel)
 		{
-			bonusArmorPhysics = (float)TurretAbilitySpec.Instance.GetParamBySkillLevel(towerID, ultimateBranch, skillID, currentSkillLevel, 0);
-			bonusArmorMagic = (float)TurretAbilitySpec.Instance.GetParamBySkillLevel(towerID, ultimateBranch, skillID, currentSkillLevel, 1);
+			bonusArmorPhysics = (float)TurretAbilitySpec.Instance.GetParamWithTree(towerID, ultimateBranch, skillID, currentSkillLevel, 0);
+			bonusArmorMagic = (float)TurretAbilitySpec.Instance.GetParamWithTree(towerID, ultimateBranch, skillID, currentSkillLevel, 1);
 		}
 
 		public void TryToAddPassiveArmor()

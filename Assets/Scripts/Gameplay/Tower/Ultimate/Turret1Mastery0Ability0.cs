@@ -28,7 +28,7 @@ namespace Gameplay
 
 		private void ReadParameter(int currentSkillLevel)
 		{
-			attackRangeFar = (float)TurretAbilitySpec.Instance.GetParamBySkillLevel(towerID, ultimateBranch, skillID, currentSkillLevel, 0) / GameRecord.PIXEL_PER_UNIT;
+			attackRangeFar = (float)TurretAbilitySpec.Instance.GetParamWithTree(towerID, ultimateBranch, skillID, currentSkillLevel, 0) / GameRecord.PIXEL_PER_UNIT;
 		}
 
 		public void TryToUnlockRangeAttackAbility()

@@ -24,5 +24,11 @@ namespace Parameter
 		// Anchored position (UI units, y up) where the panel places this node's button at runtime.
 		public int posX;
 		public int posY;
+		// Skill this node amplifies (Hệ B ability), -1/-1 = a plain base-stat node. When set, skillParamAdd[k]
+		// is added onto param k of that skill (branch+id), read via TurretAbilitySpec.GetParamWithTree.
+		// Values may be negative (trade-off). Length 5 = param_0..param_4 of a skill.
+		public int skillBranch;
+		public int skillId;
+		public int[] skillParamAdd;
 	}
 }

@@ -4,6 +4,7 @@ using Gameplay;
 using Parameter;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Upgrade
@@ -13,13 +14,14 @@ namespace Upgrade
 	// and connecting lines at runtime by cloning the inactive templates, reading each node's id,
 	// name, cost, prerequisites and position from the CSV (TowerSkillTreeSpec). Rebuilds only when
 	// the tower changes.
-	public class TowerSkillTreePanel : GameplayDialogHandler
+	public class TowerSkillTreePanel : GameplayDialogHandler, IDragHandler
 	{
 		// Opens the panel for a specific tower's tree.
 		public void Init(int towerID)
 		{
 			currentTowerID = towerID;
 			BuildTreeIfNeeded(towerID);
+			ResetPan();
 			if (resetButton != null)
 			{
 				resetButton.onClick.RemoveListener(OnResetClicked); // tránh trùng listener mỗi lần mở
@@ -235,6 +237,38 @@ namespace Upgrade
 			return false;
 		}
 
+		// Drag anywhere on the panel to pan the whole tree (nodes + lines move together). Dragging on a
+		// node still pans, because Button doesn't consume drag events — they bubble up to here; a plain
+		// click (no movement) still triggers the node. Needs a raycast-target background covering the area.
+		public void OnDrag(PointerEventData eventData)
+		{
+			if (nodeContainer == null || lineContainer == null)
+			{
+				return;
+			}
+			if (panCanvas == null)
+			{
+				panCanvas = GetComponentInParent<Canvas>();
+			}
+			float scale = (panCanvas != null && panCanvas.scaleFactor > 0f) ? panCanvas.scaleFactor : 1f;
+			Vector2 move = eventData.delta / scale;
+			nodeContainer.anchoredPosition += move;
+			lineContainer.anchoredPosition += move;
+		}
+
+		// Re-centres the tree to the home offset each time the panel opens (root sits at panHome).
+		private void ResetPan()
+		{
+			if (nodeContainer != null)
+			{
+				nodeContainer.anchoredPosition = panHome;
+			}
+			if (lineContainer != null)
+			{
+				lineContainer.anchoredPosition = panHome;
+			}
+		}
+
 		[Header("Templates (inactive) + containers")]
 		[SerializeField]
 		private SkillTreeNodeButton nodeTemplate;
@@ -255,6 +289,13 @@ namespace Upgrade
 
 		[SerializeField]
 		private Button resetButton;
+
+		[Space]
+		[Header("Pan (drag to move tree)")]
+		[SerializeField]
+		private Vector2 panHome = Vector2.zero;
+
+		private Canvas panCanvas;
 
 		private readonly List<SkillTreeNodeButton> nodeButtons = new List<SkillTreeNodeButton>();
 

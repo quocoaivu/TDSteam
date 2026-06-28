@@ -154,6 +154,17 @@ namespace Data
 					node.autocollectReduce = (int)list[i]["autocollect_reduce"];
 					node.posX = (int)list[i]["pos_x"];
 					node.posY = (int)list[i]["pos_y"];
+					// Skill-amplify columns (optional; absent on plain base-stat nodes -> -1/-1 + zero deltas).
+					node.skillBranch = ParseIntOrDefault(list[i], "skill_branch", -1);
+					node.skillId = ParseIntOrDefault(list[i], "skill_id", -1);
+					node.skillParamAdd = new int[5]
+					{
+						ParseIntOrDefault(list[i], "skill_p0", 0),
+						ParseIntOrDefault(list[i], "skill_p1", 0),
+						ParseIntOrDefault(list[i], "skill_p2", 0),
+						ParseIntOrDefault(list[i], "skill_p3", 0),
+						ParseIntOrDefault(list[i], "skill_p4", 0)
+					};
 					TowerSkillTreeSpec.Instance.SetParameter(node);
 				}
 			}

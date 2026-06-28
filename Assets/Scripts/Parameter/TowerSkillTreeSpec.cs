@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Data;
 
 namespace Parameter
 {
@@ -82,6 +83,32 @@ namespace Parameter
 				list.Add(int.Parse(s));
 			}
 			return list;
+		}
+
+		// Sum of skill-param deltas from this tower's UNLOCKED nodes that target a given skill's param.
+		// Lets the skill tree amplify (or trade off, via negatives) a specific ability param. paramIndex
+		// is 0..4 (param_0..param_4 of the skill). Returns 0 when no unlocked node targets it.
+		public int GetSkillParamBonus(int towerID, int ultimateBranch, int skillID, int paramIndex)
+		{
+			if (paramIndex < 0 || paramIndex > 4)
+			{
+				return 0;
+			}
+			int bonus = 0;
+			List<int> unlocked = TowerSkillTreeStore.Instance.GetUnlockedNodes(towerID);
+			for (int i = 0; i < unlocked.Count; i++)
+			{
+				TowerSkillNode node;
+				if (!TryGetNode(towerID, unlocked[i], out node))
+				{
+					continue;
+				}
+				if (node.skillBranch == ultimateBranch && node.skillId == skillID && node.skillParamAdd != null)
+				{
+					bonus += node.skillParamAdd[paramIndex];
+				}
+			}
+			return bonus;
 		}
 
 		private List<TowerSkillNode> listNodes = new List<TowerSkillNode>();

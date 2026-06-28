@@ -25,8 +25,8 @@ namespace Gameplay
 
 		private void ReadParameter(int currentSkillLevel)
 		{
-			dodgeChance = TurretAbilitySpec.Instance.GetParamBySkillLevel(towerID, ultimateBranch, skillID, currentSkillLevel, 0);
-			ignoreArmorChance = TurretAbilitySpec.Instance.GetParamBySkillLevel(towerID, ultimateBranch, skillID, currentSkillLevel, 1);
+			dodgeChance = TurretAbilitySpec.Instance.GetParamWithTree(towerID, ultimateBranch, skillID, currentSkillLevel, 0);
+			ignoreArmorChance = TurretAbilitySpec.Instance.GetParamWithTree(towerID, ultimateBranch, skillID, currentSkillLevel, 1);
 			unlock = true;
 		}
 

@@ -68,6 +68,16 @@ namespace Parameter
 			return result;
 		}
 
+		// Skill param at the equipped tier PLUS the permanent skill-tree bonus (nodes targeting this skill's
+		// param). Negative tree deltas (trade-off) are allowed; the final value is floored at 0 so a param
+		// like arrow-count or proc-chance never goes negative. Abilities read params through this.
+		public int GetParamWithTree(int towerID, int ultimateBranch, int skillID, int skillLevel, int paramID)
+		{
+			int result = GetParamBySkillLevel(towerID, ultimateBranch, skillID, skillLevel, paramID);
+			result += TowerSkillTreeSpec.Instance.GetSkillParamBonus(towerID, ultimateBranch, skillID, paramID);
+			return result < 0 ? 0 : result;
+		}
+
 		public int GetParamBySkillLevel(int towerID, int ultimateBranch, int skillID, int skillLevel, int paramID)
 		{
 			int result = -1;

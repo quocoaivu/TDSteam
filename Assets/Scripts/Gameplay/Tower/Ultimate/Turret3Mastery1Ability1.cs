@@ -47,8 +47,8 @@ namespace Gameplay
 
 		private void ReadParameter(int currentSkillLevel)
 		{
-			magicArmorDecrease = TurretAbilitySpec.Instance.GetParamBySkillLevel(towerID, ultimateBranch, skillID, currentSkillLevel, 0);
-			skillRange = (float)TurretAbilitySpec.Instance.GetParamBySkillLevel(towerID, ultimateBranch, skillID, currentSkillLevel, 1) / GameRecord.PIXEL_PER_UNIT;
+			magicArmorDecrease = TurretAbilitySpec.Instance.GetParamWithTree(towerID, ultimateBranch, skillID, currentSkillLevel, 0);
+			skillRange = (float)TurretAbilitySpec.Instance.GetParamWithTree(towerID, ultimateBranch, skillID, currentSkillLevel, 1) / GameRecord.PIXEL_PER_UNIT;
 			unlock = true;
 			effectAttack.buffKey = buffKey;
 			effectAttack.debuffChance = 100;

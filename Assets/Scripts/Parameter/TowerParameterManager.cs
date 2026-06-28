@@ -52,6 +52,10 @@ namespace Parameter
 		{
 			TurretSpec spec = GetTowerParameter(id);
 			List<int> unlockedNodes = TowerSkillTreeStore.Instance.GetUnlockedNodes(id);
+			// Sum reload/autocollect across all nodes and apply once below, so trade-off nodes combine
+			// linearly and order-independently (sequential per-node application compounds non-linearly).
+			int totalReloadReduce = 0;
+			int totalAutocollectReduce = 0;
 			for (int i = 0; i < unlockedNodes.Count; i++)
 			{
 				TowerSkillNode node;
@@ -66,19 +70,28 @@ namespace Parameter
 				spec.unit_health += node.healthAdd;
 				spec.unit_armor += node.armorAdd;
 				spec.goldProduce += node.goldAdd;
-				if (node.autocollectReduce > 0)
-				{
-					spec.autoCollectTime = Mathf.Max(100, spec.autoCollectTime - node.autocollectReduce);
-				}
-				// reload reduction → convert to attackSpeed increase
-				if (node.reloadReduce > 0 && spec.attackSpeed > 0)
-				{
-					float reloadMs = 1000f / spec.attackSpeed;
-					reloadMs -= node.reloadReduce;
-					if (reloadMs < 100f) reloadMs = 100f;
-					spec.attackSpeed = 1000f / reloadMs;
-				}
+				totalReloadReduce += node.reloadReduce;
+				totalAutocollectReduce += node.autocollectReduce;
 			}
+			// Positive total = faster / quicker collect; negative total = trade-off slow-down. Applied once.
+			if (spec.attackSpeed > 0 && totalReloadReduce != 0)
+			{
+				float reloadMs = 1000f / spec.attackSpeed - totalReloadReduce;
+				if (reloadMs < 100f) reloadMs = 100f;
+				spec.attackSpeed = 1000f / reloadMs;
+			}
+			if (totalAutocollectReduce != 0)
+			{
+				spec.autoCollectTime = Mathf.Max(100, spec.autoCollectTime - totalAutocollectReduce);
+			}
+			// Clamp so trade-off (negative) nodes can't push a stat below zero.
+			if (spec.damage < 0) spec.damage = 0;
+			if (spec.range < 0f) spec.range = 0f;
+			if (spec.critChance < 0) spec.critChance = 0;
+			if (spec.ignoreArmorChance < 0) spec.ignoreArmorChance = 0;
+			if (spec.unit_health < 0) spec.unit_health = 0;
+			if (spec.unit_armor < 0) spec.unit_armor = 0;
+			if (spec.goldProduce < 0) spec.goldProduce = 0;
 			return spec;
 		}
 
@@ -158,21 +171,12 @@ namespace Parameter
 			return currentLevel + 1 + ultimateBranch;
 		}
 
-		public int GetUltimateBranchByLevel(int level)
-		{
-			if (level == ULTIMATE_LEVEL_BRANCH_0) return 0;
-			if (level == ULTIMATE_LEVEL_BRANCH_1) return 1;
-			return -1;
-		}
-
 		public bool isPhysicsAttack(int id)
 		{
 			return GetTowerParameter(id).damageType == DamageType.Physical;
 		}
 
 		public const int MAX_BASE_LEVEL = 2;
-		public const int ULTIMATE_LEVEL_BRANCH_0 = 3;
-		public const int ULTIMATE_LEVEL_BRANCH_1 = 4;
 
 		private TurretSpec ApplyBuff(TurretSpec tower)
 		{

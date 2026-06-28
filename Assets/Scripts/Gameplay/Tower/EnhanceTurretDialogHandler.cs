@@ -229,8 +229,6 @@ namespace Gameplay
 					HideIfPresent(ultimateUpgradeButtonController[i]);
 				}
 			}
-			HideIfPresent(upgradeUltimate0ButtonController);
-			HideIfPresent(upgradeUltimate1ButtonController);
 			HideIfPresent(ultimateInforButtonController);
 		}
 
@@ -346,12 +344,6 @@ namespace Gameplay
 
 		[SerializeField]
 		private EnhanceSwitchHandler[] ultimateUpgradeButtonController;
-
-		[SerializeField]
-		private TurretAbilityEnhanceSwitchHandler upgradeUltimate0ButtonController;
-
-		[SerializeField]
-		private TurretAbilityEnhanceSwitchHandler upgradeUltimate1ButtonController;
 
 		[Space]
 		[Header("Ultimate Upgrade")]

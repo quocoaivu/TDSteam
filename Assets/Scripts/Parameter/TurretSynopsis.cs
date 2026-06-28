@@ -117,10 +117,9 @@ namespace Parameter
 		public string GetTowerUltimateName(int towerId, int towerLevel, int skillID)
 		{
 			string result = string.Empty;
-			int ultimateBranchByLevel = TowerParameterManager.Instance.GetUltimateBranchByLevel(towerLevel);
 			foreach (TurretAbilityBrief towerSkillDes in listTowerSkillDes)
 			{
-				if (towerSkillDes.id == towerId && towerSkillDes.level == towerLevel && towerSkillDes.ultimateBranch == ultimateBranchByLevel && towerSkillDes.skillID == skillID)
+				if (towerSkillDes.id == towerId && towerSkillDes.level == towerLevel && towerSkillDes.skillID == skillID)
 				{
 					result = towerSkillDes.ultimateName;
 				}
@@ -131,11 +130,11 @@ namespace Parameter
 		public string GetTowerUltimateDescription(int towerId, int towerLevel, int skillID)
 		{
 			string result = string.Empty;
-			int ultimateBranchByLevel = TowerParameterManager.Instance.GetUltimateBranchByLevel(towerLevel);
 			foreach (TurretAbilityBrief towerSkillDes in listTowerSkillDes)
 			{
-				if (towerSkillDes.id == towerId && towerSkillDes.level == towerLevel && towerSkillDes.ultimateBranch == ultimateBranchByLevel && towerSkillDes.skillID == skillID)
+				if (towerSkillDes.id == towerId && towerSkillDes.level == towerLevel && towerSkillDes.skillID == skillID)
 				{
+					int ultimateBranchByLevel = towerSkillDes.ultimateBranch;
 					List<int> listParamNumber = TurretAbilitySpec.Instance.GetListParamNumber(towerId, ultimateBranchByLevel, skillID, 0);
 					switch (listParamNumber.Count)
 					{

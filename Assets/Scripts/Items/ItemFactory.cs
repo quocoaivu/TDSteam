@@ -49,7 +49,7 @@ namespace Items
 
 		public static TowerItem Create(ItemSpec spec)
 		{
-			return new TowerItem(spec.itemId, spec.towerId, spec.name, spec.statTypes, spec.statValues, spec.rarity, spec.icon);
+			return new TowerItem(spec.itemId, spec.towerId, spec.name, spec.statTypes, spec.statValues, spec.rarity, spec.icon, spec.skillBranch, spec.skillId);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Items
@@ -8,7 +9,7 @@ namespace Items
 	// out (to a tower / equip area). Spawned per item by ItemInventoryPanel. The serialized field names
 	// (nameText, levelText) are kept so the existing ItemCell.prefab wiring still binds; levelText now
 	// shows the stat line instead of a level.
-	public class ItemInventoryCell : MonoBehaviour
+	public class ItemInventoryCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
 		// The cell's own background frame (Image on this GameObject). Cached so empty slots can be dimmed.
 		private void Awake()
@@ -22,6 +23,7 @@ namespace Items
 
 		public void Bind(TowerItem item)
 		{
+			boundItem = item;
 			SetSlotDimmed(false);
 			// Icon-only cells: hide the name/stat text and show just the item icon.
 			if (nameText != null)
@@ -46,6 +48,7 @@ namespace Items
 		// picked up. It still works as a drop target via DraggableItem (drops route to the parent panel).
 		public void Clear()
 		{
+			boundItem = null;
 			SetSlotDimmed(true);
 			if (iconImage != null)
 			{
@@ -55,6 +58,21 @@ namespace Items
 			{
 				draggable.ClearPayload();
 			}
+		}
+
+		// Hover shows the item's tooltip beside the cell (name, stats, rarity). Empty slots have no item, so
+		// nothing is shown. Mirrors ItemShopOfferButton's hover tooltip.
+		public void OnPointerEnter(PointerEventData eventData)
+		{
+			if (boundItem != null)
+			{
+				ItemTooltip.Show(boundItem, transform as RectTransform);
+			}
+		}
+
+		public void OnPointerExit(PointerEventData eventData)
+		{
+			ItemTooltip.Hide();
 		}
 
 		// Fades the background frame for empty slots so they read as empty; full opacity for filled slots.
@@ -99,5 +117,8 @@ namespace Items
 		private Image background;
 
 		private Color fullColor = Color.white;
+
+		// The item this cell currently holds (null for empty slots); drives the hover tooltip.
+		private TowerItem boundItem;
 	}
 }

@@ -64,6 +64,17 @@ namespace Gameplay
 			miniDragon.gameObject.SetActive(true);
 		}
 
+		// Each tower attack, send the spawned mini-dragons at a target. No-op until the skill is equipped
+		// (unlock false -> no dragons created -> empty list).
+		public override void OnTowerAttack()
+		{
+			if (!unlock)
+			{
+				return;
+			}
+			StartAttack();
+		}
+
 		public void StartAttack()
 		{
 			List<EnemyData> targets = towerModel.towerFindEnemyController.Targets;

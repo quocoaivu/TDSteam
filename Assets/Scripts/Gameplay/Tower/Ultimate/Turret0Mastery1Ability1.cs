@@ -36,6 +36,11 @@ namespace Gameplay
 			MonoSingleton<FXPool>.Instance.InitFX(FXPool.EFFECT_BLEED);
 		}
 
+		public override void OnTowerAttack()
+		{
+			TryToCastBleed();
+		}
+
 		public void TryToCastBleed()
 		{
 			if (!unlock)

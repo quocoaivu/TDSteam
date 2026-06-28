@@ -22,6 +22,17 @@ namespace Gameplay
 			base.OnReturnPool();
 		}
 
+		// Unlock adds a permanent instant-kill buff to the tower, so locking must remove it (clearing
+		// unlock alone would leave the buff active after the item is unequipped).
+		public override void LockUltimate()
+		{
+			base.LockUltimate();
+			if (towerModel != null)
+			{
+				towerModel.BuffsHolder.RemoveBuffs(buffKey);
+			}
+		}
+
 		private void ReadParameter(int currentSkillLevel)
 		{
 			chanceToInstantKill = TurretAbilitySpec.Instance.GetParamBySkillLevel(towerID, ultimateBranch, skillID, currentSkillLevel, 0);

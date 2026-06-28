@@ -88,6 +88,12 @@ namespace Gameplay
 		public void Attack()
 		{
 			StartAttack.Invoke();
+			// Let equipped skill abilities (Multi-Shot, Freezing Arrow, ...) roll their per-shot effect.
+			// Null on towers with no skill controller wired (e.g. economy towers).
+			if (base.TowerModel.towerUltimateController != null)
+			{
+				base.TowerModel.towerUltimateController.OnTowerAttack();
+			}
 			int num = 0;
 			if (singleTargetBehavior)
 			{

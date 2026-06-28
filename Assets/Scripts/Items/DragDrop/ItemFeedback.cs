@@ -39,6 +39,9 @@ namespace Items
 			case TowerEquipment.EquipBlock.AlreadyEquipped:
 				Show("Đã trang bị item này");
 				break;
+			case TowerEquipment.EquipBlock.TooManySkills:
+				Show("Tối đa 2 skill mỗi tháp");
+				break;
 			case TowerEquipment.EquipBlock.NoFreeSlot:
 				Show("Hết ô trang bị");
 				break;

@@ -22,7 +22,22 @@ namespace Items
 
 		public string icon;
 
-		public TowerItem(int itemId, int towerID, string name, StatType[] statTypes, int[] statValues, int rarity, string icon)
+		// The skill this item unlocks (Hệ B): branch + skill id of a tower Ability. -1 = plain stat item.
+		public int skillBranch;
+
+		public int skillId;
+
+		// True when this item unlocks a skill (vs. a plain stat item). Skill items activate the matching
+		// Ability on equip; the tier comes from rarity.
+		public bool IsSkillItem
+		{
+			get
+			{
+				return skillId >= 0;
+			}
+		}
+
+		public TowerItem(int itemId, int towerID, string name, StatType[] statTypes, int[] statValues, int rarity, string icon, int skillBranch, int skillId)
 		{
 			this.itemId = itemId;
 			this.towerID = towerID;
@@ -31,6 +46,8 @@ namespace Items
 			this.statValues = statValues;
 			this.rarity = rarity;
 			this.icon = icon;
+			this.skillBranch = skillBranch;
+			this.skillId = skillId;
 		}
 	}
 }

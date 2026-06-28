@@ -19,5 +19,11 @@ namespace Parameter
 		public int rarity;
 
 		public string icon;
+
+		// Skill this item unlocks (Hệ B). -1/-1 = a plain stat item (no skill). When set, equipping the
+		// item activates the matching tower Ability at tier = rarity (see TowerEquipment / TurretMasteryHandler).
+		public int skillBranch;
+
+		public int skillId;
 	}
 }

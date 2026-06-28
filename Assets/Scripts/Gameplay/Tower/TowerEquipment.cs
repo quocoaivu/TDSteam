@@ -13,6 +13,10 @@ namespace Gameplay
 	{
 		public const int SLOT_COUNT = 4;
 
+		// At most this many skill-unlock items per tower (the "pick 2 of 4 skills" rule). Plain stat items
+		// are not limited beyond SLOT_COUNT.
+		public const int MAX_SKILL_ITEMS = 2;
+
 		// Permanent buffs use a large duration by repo convention (BuffHolder ticks duration down).
 		private const float PERMANENT_DURATION = 999999f;
 
@@ -36,6 +40,7 @@ namespace Gameplay
 			None,
 			WrongTower,
 			AlreadyEquipped,
+			TooManySkills,
 			NoFreeSlot
 		}
 
@@ -50,6 +55,10 @@ namespace Gameplay
 			if (equipped.Contains(item))
 			{
 				return EquipBlock.AlreadyEquipped;
+			}
+			if (item.IsSkillItem && CountSkillItems() >= MAX_SKILL_ITEMS)
+			{
+				return EquipBlock.TooManySkills;
 			}
 			if (equipped.Count >= SLOT_COUNT)
 			{
@@ -75,6 +84,10 @@ namespace Gameplay
 			{
 				RecomputeStat(item.statTypes[i]);
 			}
+			if (item.IsSkillItem)
+			{
+				ActivateSkill(item);
+			}
 			return true;
 		}
 
@@ -87,6 +100,10 @@ namespace Gameplay
 			for (int i = 0; i < item.statTypes.Length; i++)
 			{
 				RecomputeStat(item.statTypes[i]);
+			}
+			if (item.IsSkillItem)
+			{
+				DeactivateSkill(item);
 			}
 		}
 
@@ -109,10 +126,48 @@ namespace Gameplay
 		// Drops every item without returning it (fresh build from pool). Also clears the stat buffs.
 		public void ClearAll()
 		{
+			for (int i = 0; i < equipped.Count; i++)
+			{
+				if (equipped[i].IsSkillItem)
+				{
+					DeactivateSkill(equipped[i]);
+				}
+			}
 			equipped.Clear();
 			foreach (StatType statType in System.Enum.GetValues(typeof(StatType)))
 			{
 				RemoveStatBuff(statType);
+			}
+		}
+
+		private int CountSkillItems()
+		{
+			int count = 0;
+			for (int i = 0; i < equipped.Count; i++)
+			{
+				if (equipped[i].IsSkillItem)
+				{
+					count++;
+				}
+			}
+			return count;
+		}
+
+		// Bridges a skill-item to the tower's ability controller: equipping unlocks the ability at the
+		// item's rarity (tier), unequipping locks it back off.
+		private void ActivateSkill(TowerItem item)
+		{
+			if (tower != null && tower.towerUltimateController != null)
+			{
+				tower.towerUltimateController.ActivateSkill(item.skillBranch, item.skillId, item.rarity);
+			}
+		}
+
+		private void DeactivateSkill(TowerItem item)
+		{
+			if (tower != null && tower.towerUltimateController != null)
+			{
+				tower.towerUltimateController.DeactivateSkill(item.skillBranch, item.skillId);
 			}
 		}
 

@@ -45,6 +45,11 @@ namespace Gameplay
 			MonoSingleton<FXPool>.Instance.InitFX(FXPool.LIGHTNING_PROJECTILE_RANGE);
 		}
 
+		public override void OnTowerAttack()
+		{
+			TryToCastRainOfArrow();
+		}
+
 		public void TryToCastRainOfArrow()
 		{
 			if (!unlock)

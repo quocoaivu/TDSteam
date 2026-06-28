@@ -1,6 +1,7 @@
 using Gameplay;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Items
@@ -8,11 +9,12 @@ namespace Items
 	// One equipped-item slot on the tower popup. Shows the item in this slot (or empty) and lets the
 	// player drag it out to the inventory to unequip. Place one per equip slot (TowerEquipment.SLOT_COUNT)
 	// and register it in TowerItemPanel.slotButtons.
-	public class ItemSlotButton : MonoBehaviour
+	public class ItemSlotButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
 		// item == null -> slot empty. equipment is the holder to unequip from when the slot is dragged out.
 		public void Refresh(TowerItem item, TowerEquipment equipment)
 		{
+			boundItem = item;
 			if (nameText != null)
 			{
 				nameText.SetText(item != null ? item.name : "—");
@@ -37,6 +39,21 @@ namespace Items
 					draggable.ClearPayload();
 				}
 			}
+		}
+
+		// Hover shows the equipped item's tooltip (name, stats, rarity) beside the slot. Empty slots have no
+		// item, so nothing is shown. Mirrors ItemShopOfferButton / ItemInventoryCell.
+		public void OnPointerEnter(PointerEventData eventData)
+		{
+			if (boundItem != null)
+			{
+				ItemTooltip.Show(boundItem, transform as RectTransform);
+			}
+		}
+
+		public void OnPointerExit(PointerEventData eventData)
+		{
+			ItemTooltip.Hide();
 		}
 
 		// The hand-built slots in the scene have no icon Image wired, so make sure one exists: use the wired
@@ -91,5 +108,8 @@ namespace Items
 
 		[SerializeField]
 		private DraggableItem draggable;
+
+		// The item this slot currently holds (null when empty); drives the hover tooltip.
+		private TowerItem boundItem;
 	}
 }

@@ -40,6 +40,11 @@ namespace Gameplay
 			effectAttack.damageFXType = DamageVfxType.Freezing;
 		}
 
+		public override void OnTowerAttack()
+		{
+			TryToCastFreezingArrow();
+		}
+
 		public void TryToCastFreezingArrow()
 		{
 			if (!unlock)

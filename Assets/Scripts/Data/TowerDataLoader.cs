@@ -34,6 +34,8 @@ namespace Data
 					spec.icon = list[i].ContainsKey("icon") ? list[i]["icon"].ToString() : string.Empty;
 					spec.statTypes = ParseStatTypes(list[i]);
 					spec.statValues = ParseStatValues(list[i], spec.statTypes.Length);
+					spec.skillBranch = ParseIntOrDefault(list[i], "skill_branch", -1);
+					spec.skillId = ParseIntOrDefault(list[i], "skill_id", -1);
 					ItemSpecCatalog.Instance.SetParameter(spec);
 				}
 			}
@@ -58,6 +60,17 @@ namespace Data
 				result.Add(ParseStatType(row["stat_type_3"].ToString()));
 			}
 			return result.ToArray();
+		}
+
+		// Reads an optional int column, returning fallback when the column is missing or empty (e.g. the
+		// skill_branch/skill_id columns are blank for plain stat items).
+		private static int ParseIntOrDefault(Dictionary<string, object> row, string key, int fallback)
+		{
+			if (row.ContainsKey(key) && int.TryParse(row[key]?.ToString(), out int v))
+			{
+				return v;
+			}
+			return fallback;
 		}
 
 		// Reads stat_value, stat_value_2, stat_value_3 matching the number of parsed stat types.
